@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      {
+        let a = 10;
+        var b = 1;
+      }
+      /* console.log(a);//a is not defined */
+      console.log(b); //1
+
+      for (let i = 0; i < 10; i++) {
+        console.log(i);
+      }
+      /* console.log(i);//i is not defined */
+
+      var a = [];
+      for (var i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i);
+        };
+      }
+      a[6](); //10
+
+      var a = [];
+      for (let i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i);
+        };
+      }
+      a[6](); //6
+
+      for (let i = 0; i < 3; i++) {
+        let i = "abc";
+        console.log(i);
+      } //3  abc
+
+      console.log(foo);
+      var foo = 2; //undefined
+
+      /* console.log(bar);
+      let bar = 2; //bar is not defined */
+
+      /* var tmp = 123;
+      if (true) {
+        tmp = "abc";
+        let tmp;
+      }//Cannot access 'tmp' before initialization */
+
+      if (true) {
+        /* tmp ='abc'
+          console.log(tmp);//Cannot access 'tmp' before initialization */
+
+        let tmp;
+        console.log(tmp); //undefined
+
+        tmp = 123;
+        console.log(tmp); //123
+      }
+
+      console.log(typeof "x"); //string
+      console.log(typeof x); //undefined
+      /* console.log(typeof(y));//Cannot access 'y' before initialization
+      let y; */
+
+      /* function bar(x=y,y=2){
+          return [x,y]
+      }
+      bar()// Cannot access 'y' before initialization */
+
+      function bar(x = 2, y = x) {
+        return [x, y];
+      }
+      bar(); //[2,2]
+
+      var c = c;
+      /* let d = d;// Cannot access 'd' before initialization */
+
+      /* function test1() {
+        var t1 = 2;
+        let t1 = 1;
+      }//'t1' has already been declared */
+
+      /* function test2() {
+        let t2 = 3;
+        let t2 = 5;
+      } //'t2' has already been declared */
+
+      /* function test3(arg) {
+        let arg;
+      }
+      test3(); //'arg' has already been declared */
+
+      function test4(arg) {
+        {
+          let arg;
+          arg = 18;
+          console.log(arg);
+        }
+      }
+      test4(); //18
+
+      var test5 = new Date();
+      function test6() {
+        console.log(test5); //undefined
+        if (false) {
+          var test5 = "hello world";
+          console.log(test5);
+        }
+      }
+      test6();
+
+      var str1 = "hello";
+      for (var i = 0; i < str1.length; i++) {
+        console.log(str1[i]);
+      }
+      console.log(i); //5
+
+      function test7() {
+        let n = 3;
+        if (true) {
+          let n = 10;
+        }
+        console.log(n);
+      }
+      test7(); //3
+
+      /* {
+        {
+          {
+            {
+              {
+                let insane = "ghappy";
+              }
+              console.log(isane);//isane is not defined
+            }
+          }
+        }
+      } */
+
+      {
+        {
+          {
+            let o = "sad";
+            console.log(o); //sad
+            {
+              let o = "clam";
+              console.log(o); //happy
+            }
+          }
+        }
+      }
+
+      /* // 浏览器的 ES6 环境
+      function f() {
+        console.log("I am outside!");
+      }
+      (function () {
+        if (false) {
+          // 重复声明一次函数f
+          function f() {
+            console.log("I am inside!");
+          }
+        }
+        f();
+      })(); // f is not a function */
+
+      const pi = 3.145;
+      console.log(pi);
+      /* pi = 3//Assignment to constant variable. */
+
+      /* const yop;//Missing initializer in const declaration */
+
+      if (true) {
+        const max = 5;
+      }
+      /* console.log(max)//max is not defined */
+
+      /* if(true){
+          console.log(max)//Cannot access 'max' before initialization
+          const max = 9;
+      } */
+
+      /* var message = "jack";
+      let age = 23; //Identifier 'message' has already been declared
+      const message = "lucy";
+      const age = 32; //Identifier 'age' has already been declared */
+    </script>
+  </body>
+</html>
