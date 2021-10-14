@@ -1518,7 +1518,7 @@ console.log(Object.entries({ [Symbol()]: 123, foo: "abc" })); //[ [ 'foo', 'abc'
 ```
 
 - 上面代码中，原对象有两个属性，Object.entries只输出属性名非 Symbol 值的属性。将来可能会有Reflect.ownEntries()方法，返回对象自身的所有属性。
-- Object.entries的基本用途是遍历对象的属性
+- Object.entries的基本用途是遍历对象的属性。
 
 ```js
 let o14 = { one: 1, two: 2 };
