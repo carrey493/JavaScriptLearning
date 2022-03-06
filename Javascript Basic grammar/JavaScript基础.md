@@ -457,7 +457,7 @@ console.log(typeof(timer211));//object
 
 ![image-20220102002726153](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220102002726153.png)
 
-## 5.运算符
+## 6.运算符
 
 - 能够使用常用运算符
 - 能够说出前置递增和后置递增的区别
