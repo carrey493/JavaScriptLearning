@@ -16,3 +16,15 @@ console.log(number221 === 0.3);//false
 //2.4表达式和返回值
 console.log(1 + 1);
 //把右边的表达式计算完毕把返回值给左边
+
+//3.递增和递减运算符
+//3.1递增和递减运算符概述
+//前置递增运算符 ++写在变量前面
+let age = 10
+console.log(++age);
+console.log(++age + 10);
+//先+1后返回值
+
+//后置递增运算符
+let num = 11
+console.log(num++);
