@@ -28,3 +28,14 @@ console.log(++age + 10);
 //后置递增运算符
 let num = 11
 console.log(num++);
+
+//4比较运算符
+//4.1比较运算符概述
+console.log(3 >= 5);//false
+console.log(3 >= 2);//true
+// == 默认转换数据类型 会把字符串转换为数字型
+console.log(18 == 18);//true
+console.log(18 == '18');//true
+console.log(18 != 18);//false
+//全等 ===
+console.log(18 === '18');//false
