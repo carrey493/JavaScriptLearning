@@ -39,3 +39,42 @@ console.log(18 == '18');//true
 console.log(18 != 18);//false
 //全等 ===
 console.log(18 === '18');//false
+
+//5.逻辑运算符
+//5.1逻辑运算符概述
+//1.逻辑与 &
+//两个都为true结果才为true 只要有一个为假结果为false
+console.log(3 > 5 && 3 > 2);//false
+console.log(3 < 5 && 3 > 2);//true
+//2.逻辑或 |
+//两个都为false结果才为false 只要有一个为真结果为trye
+console.log(3 > 5 || 3 > 2);//true
+console.log(3 > 5 || 3 < 2);//false
+//3.逻辑非 not |
+console.log(!true);//false
+var logicNum = 7
+var logicStr = 'loveyou'
+console.log(logicNum > 5 && logicStr.length >= 5);//true
+console.log(logicNum < 5 && logicStr.length >= 5);//false
+console.log(!(logicNum < 10));//false
+console.log(!(logicNum < 10 || logicStr.length == logicNum))//false;//true
+//5.5短路运算（逻辑中断）
+//逻辑与
+//如果第一个表达式的值为真，则返回表达式2如果第一个表达式的值为假，则返回表达式1
+console.log(123 && 456);//456
+console.log(0 && 456);//0 
+console.log(0 && 1 + 2 && 456);//0
+//如果有空的话或者否定的为假其余为真 0 '' null undefined NaN
+
+//逻辑或
+//如果第一个表达式的值为真，则返回表达式1如果第一个表达式的值为假，则返回表达式2
+console.log(123 || 456);//123
+console.log(123 || 456 + 987);//123
+console.log(0 || 456);//456
+console.log(0 || 456 || 789);//456
+
+var logicNum2 = 0
+console.log(123 || logicNum2++);//123
+console.log(logicNum2);0
+
+
