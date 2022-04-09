@@ -38,3 +38,65 @@
 
 - message属性：错误相关信息
 - stack属性：函数调用栈记录信息
+
+## 2.promise的理解与使用
+
+### 2.1Promise是什么
+
+#### 2.1.1理解
+
+- 抽象表达：Promise是JS中进行异步编程的新的解决方案
+- 具体表达
+  - 从语法上说：Promise是一个构造函数
+  - 从功能上说：promsie对象用来封装一个异步操作并可以获取其结果
+
+#### 2.1.2promise的状态改变
+
+- pending 变为 resolved
+- pending 变为 rejected
+
+说明 
+
+- 只有这两种 且一个promise对象只能改变一次
+- 无论变为成功还是失败都只会有一个结果数据
+- 成功的结果数据一般称为value 失败的结果一般称为reason
+
+#### 2.1.3promise的基本流程
+
+![](https://img2022.cnblogs.com/blog/2332774/202204/2332774-20220409163740954-5653776.png)
+
+#### 2.1.4promise的基本使用
+
+```js
+//1.创建一个新的promise对象
+const p = new Promise((resolve, reject) => {
+    //执行器函数
+    //2.执行异步任务
+    setTimeout(() => {
+        const time = Date.now()
+
+        if (time % 2 === 0) {
+            //3.1成功调用resolve(value)
+            resolve('成功的数据,time：' + time)
+        } else {
+            //3.2失败调用reject(reason)
+            reject('失败的数据,time:' + time)
+        }
+
+    }, 1000)
+})
+
+p.then(
+    //onResolved
+    value => {
+        //接收得到成功的value数据
+        console.log('成功的回调',value);
+    },
+    //onRejected
+    reason => {
+        //接收得到失败的reason数据
+        console.log('失败的回调',reason);
+    }
+)
+```
+
