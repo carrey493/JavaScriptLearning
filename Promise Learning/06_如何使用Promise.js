@@ -19,3 +19,21 @@ const p3 = Promise.reject(3)
 p1.then(value => { console.log(value); })
 p2.then(value => { console.log(value); })
 p3.catch(reason => { console.log(reason); })
+
+const pAll = Promise.all([p1, p2, p3])
+pAll.then(
+    values => { },
+    reason => {
+        console.log('all onRejected', reason);
+    }
+)
+
+const pRace = Promise.race([p1, p2, p3])
+pRace.then(
+    value => {
+        console.log('race onResolved', value);
+    },
+    reason => {
+        console.log('race onRejected', reason);
+    }
+)
