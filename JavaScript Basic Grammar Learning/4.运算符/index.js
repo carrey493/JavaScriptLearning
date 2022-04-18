@@ -75,6 +75,14 @@ console.log(0 || 456 || 789);//456
 
 var logicNum2 = 0
 console.log(123 || logicNum2++);//123
-console.log(logicNum2);0
+console.log(logicNum2); 0
 
+//6.赋值运算符
+var age6 = 6
+age6 += 7
+console.log(age6);
 
+//7.运算符优先级
+console.log(4 >= 6 || '人' != '阿凡达' && !(12 * 2 == 144) && true);//true
+var num7 = 10
+console.log(5 == num7 / 2 && (2 + 2 * num7).toString() === '22');//true
