@@ -161,3 +161,15 @@ p.then(
 - promises:包含n个promise的数组
 
 说明：返回一个新的promise，第一个完成的promise的结果状态就是最终的状态
+
+#### 2.3.2关键问题
+
+**1.如何改变promise的状态**
+
+- resolve(value):如果当前是pendding就会变为resolved
+- reject(reason):如果当前是pennding就会变为rejected
+- 抛出异常：如果当前是pennding就会变为rejected
+
+**2.一个promise指定多个成功/失败回调函数，都会调用吗**
+
+- 当promise改变为对应状态时都会调用
