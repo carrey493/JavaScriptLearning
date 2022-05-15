@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自定义Promise</title>
+</head>
+
+<body>
+    <script src="./lib/Promise.js"></script>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve(1)// value
+                reject(2)// reason
+                console.log('状态改变之后');
+            }, 1000)
+
+        })
+        p.then(
+            value => {
+                console.log('onResolved1()', value);
+            },
+            reason => {
+                console.log('onRejected1()', reason);
+            }
+        )
+        p.then(
+            value => {
+                console.log('onResolved2()', value);
+            },
+            reason => {
+                console.log('onRejected2()', reason);
+            }
+        )
+    </script>
+</body>
+
+</html>
