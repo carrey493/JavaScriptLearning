@@ -47,9 +47,9 @@ leapYear(2001)
     //最后的语句
 } */
 let score = 60
-if(score > 90){
+if (score > 90) {
     console.log('优秀');
-} else if(score > 80) {
+} else if (score > 80) {
     console.log('良好');
 } else {
     console.log('一般');
@@ -75,4 +75,9 @@ switch (1) {
     default:
         console.log('不匹配');
         break;
+}
+
+//循环的目的
+for (let i = 0; i < 100; i++) {
+    console.log('执行代码');
 }
