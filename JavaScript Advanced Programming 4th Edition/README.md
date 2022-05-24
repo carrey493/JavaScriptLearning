@@ -85,3 +85,12 @@ ECMAScript只是对实现这个规范描述的所有方面的一门语言的称�
 ##### 1.2.1.3	浏览器对ECMAScript的支持
 
 **到了2008年，五大浏览器(IE,FireFox,Safari,Chrome和Opera)全部兼容ECMA-262第3版**
+
+#### 1.2.2	DOM
+
+**文档对象(DOM,Document Object Model)是一个应用编程接口(API)，用于在HTML中使用扩展的XML**
+
+- DOM将整个页面抽象为一组分层节点
+- HTML或XML页面的每个组成部分都是一种节点，包含不同数据。
+- DOM通过创建表示文档的树，让开发者可以随心所欲地控制网页的内容与结构。
+- 使用DOM API，可以轻松地删除、添加、替换、修改节点。
