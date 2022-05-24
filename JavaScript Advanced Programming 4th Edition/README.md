@@ -61,3 +61,16 @@ Professional JavaScript for Web Developers,4th Edition
 - 全局对象
 
 ECMAScript只是对实现这个规范描述的所有方面的一门语言的称呼。JavaScript实现了ECMAScript，而Adobe ActionScript也实现了ECMAScript
+
+##### 1.2.1.1	ECMAScript版本
+
+- ECMA-262	第1版 
+- ECMA-262	第2版
+- ECMA-262	第3版
+- ECMA-262	第4版
+- ECMA-262	第5版 2009.12
+- ECMA-262	第6版 2015.6
+- ECMA-262	第7版 2016.6
+- ECMA-262	第8版 2017.6
+- ECMA-262	第9版 2018.6
+- ECMA-262	第10版 2019.6
