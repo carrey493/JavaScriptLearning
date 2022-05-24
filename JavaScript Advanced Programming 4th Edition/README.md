@@ -43,3 +43,21 @@ Professional JavaScript for Web Developers,4th Edition
 - 核心(ECMAScript)
 - 文档对象模型(DOM)
 - 浏览器对象模型(BOM)
+
+#### 1.2.1	ECMAScript
+
+**ECMAScript，即ECMAScript定义的语言，并不局限于Web浏览器**
+
+**Web浏览器只是ECMAScript实现可能存在的一种宿主环境(host environment)**
+
+**ECMA-262定义了什么**
+
+- 语法
+- 类型
+- 语句
+- 关键字
+- 保留字
+- 操作符
+- 全局对象
+
+ECMAScript只是对实现这个规范描述的所有方面的一门语言的称呼。JavaScript实现了ECMAScript，而Adobe ActionScript也实现了ECMAScript
