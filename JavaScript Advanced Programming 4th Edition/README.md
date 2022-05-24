@@ -99,3 +99,27 @@ ECMAScript只是对实现这个规范描述的所有方面的一门语言的称�
 
 - 为了保持Web跨平台的本性，必须要做点什么。
 - 人们担心如果无法控制网景和微软各行其是，那么Web就会发生分裂，导致人们面向浏览器开发网页。
+
+##### 1.2.2.2	DOM级别
+
+**DOM Level1**
+
+- 这个规范由两个模块组成：DOM Core 和 HTML
+- DOM并非只能通过JavaScript访问，而且确实被其它很多语言实现了。
+
+**DOM Level 2**
+
+- DOM 视图：描述追踪文档不同视图(如应用CSS样式前后的文档)的接口
+- DOM 事件：描述事件及事件处理的接口
+- DOM 样式：描述处理元素CSS样式的接口
+- DOM 遍历和范围：描述遍历和操作DOM树的接口
+
+**DOM Level3**
+
+- 以统一方式加载和保存文档的方法(包含在一个叫DOM Load and Save的新模块)
+- 验证文档的方法(DOM Validation)
+- 支持了所有XML1.0的特性，包括XML Infoset、XPath和XML Base
+
+**DOM Level4(DOM Living Standard)**
+
+- 替代Mutation Eventsn的Mutation Observers
