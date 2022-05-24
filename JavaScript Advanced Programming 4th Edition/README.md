@@ -123,3 +123,12 @@ ECMAScript只是对实现这个规范描述的所有方面的一门语言的称�
 **DOM Level4(DOM Living Standard)**
 
 - 替代Mutation Eventsn的Mutation Observers
+
+
+##### 1.2.2.3	其他DOM
+
+有些其它语言也发布了自己的DOM标准。下面列出的语言是基于XML的，每一种都增加了该语言独有的DOM方法与接口
+
+- 可伸缩矢量图 SVG
+- 数学标记语言 MathML
+- 同步多媒体集成语言 SMIL
