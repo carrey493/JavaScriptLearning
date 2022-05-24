@@ -29,3 +29,9 @@ Professional JavaScript for Web Developers,4th Edition
 
 **要真正学好用好JavaScript，理解其本质、历史及局限性是非常重要的。**
 
+### 1.1	简短的历史回顾
+
+- 1995年 Brendan Eich 开发
+- 1996年8月，微软重磅进入Web浏览器领域，代表JavaScript作为一门语言向前迈了一大步
+- 1997年，JavaScript1.1作为提案被提交给欧洲计算机制造商协会(Ecma)
+- 1998年，国际化标准组织(ISO)和国际电工委员会(IEC)也将ECMAScript采纳为标准(ISO/IEC-16262)。自此以后，各家浏览器均以ECMAScript作为自己JavaScript实现的依据，虽然具体实现不同。
