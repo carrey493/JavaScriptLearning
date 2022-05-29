@@ -30,5 +30,22 @@ console.log(eval(`/${a}/`).test(ex));//true
 //eval 把字符串变为js表达式
 ```
 
+### 对象创建正则表达式
+
+```js
+let a = '@'
+let reg = new RegExp(a,'g')
+let ex = 'houdunren.com'
+console.log(reg.test(ex));//false
+
+//检测高亮
+let con  = prompt('请输入要检测的内容，支持正则。')
+let reg2 = new RegExp(con,'g')
+let div = document.querySelector('div')
+div.innerHTML = div.innerHTML.replace(reg2,search=>{
+    return `<span style="color:red>${search}</span>`
+})
+```
+
 
 
