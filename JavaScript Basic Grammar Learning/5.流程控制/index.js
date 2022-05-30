@@ -81,3 +81,6 @@ switch (1) {
 for (let i = 0; i < 100; i++) {
     console.log('执行代码');
 }
+for(let i=0;i<100;i++){
+    console.log('第'+i+'次执行')
+}
