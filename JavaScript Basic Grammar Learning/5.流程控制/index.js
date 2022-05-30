@@ -81,6 +81,20 @@ switch (1) {
 for (let i = 0; i < 100; i++) {
     console.log('执行代码');
 }
-for(let i=0;i<100;i++){
-    console.log('第'+i+'次执行')
+for (let i = 0; i < 100; i++) {
+    console.log('第' + i + '次执行')
 }
+
+let init = 0
+for (let i = 0; i <= 100; i++) {
+    init += i
+}
+console.log(init);//5050
+console.log(init / 100);
+
+let even = 0//偶数
+let odd = 0//奇数
+for (let i = 0; i <= 100; i++) {
+    i % 2 == 0 ? even += i : odd += i
+}
+console.log(even, odd);

@@ -848,4 +848,12 @@ for(let i=0;i<100;i++){
 ```
 
 - 根据i值的不同，做出对应不同的操作与处理
+- for循环重复执行某些操作
 
+```js
+let init = 0
+for (let i = 0; i <= 100; i++) {
+    init += i
+}
+console.log(init);//5050
+```
