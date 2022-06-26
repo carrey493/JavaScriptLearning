@@ -66,8 +66,9 @@
     }
     /* 
     Promise原型对象的then()
-    指定成功和函数的回调函数
+    指定成功和失败的回调函数
     返回一个新的promise对象
+    返回promise的结果由onResolved/onRejected执行结果决定
     */
     Promise.prototype.then = function (onResolved, onRejected) {
 
@@ -89,7 +90,7 @@
                     */
                 try {
                     const result = callback(self.data)
-                    if (reject instanceof Promise) {
+                    if (result instanceof Promise) {
                         //3.如果回调函数返回的是promise，return的promise结果就是根据这个promise的结果
                         /* result.then(
                             value =>
@@ -116,7 +117,7 @@
                     },
                     onRejected(reason) {
                         handle(onRejected)
-                    }
+                    }  
                 })
             } else if (self.status === RESOLVED) {
                 //当前状态是resolved状态，异步执行onResilve并改变并改变return的Promise状态
