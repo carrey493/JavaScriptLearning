@@ -179,7 +179,7 @@
         return new Promise((resolve, reject) => {
             //遍历获取每个promise的结果
             promises.forEach((p, index) => {
-                p.then(
+                Promise.resolve(p).then(
                     value => {
                         resolveCount++
                         //p成功，将成功的value保存values
@@ -206,7 +206,7 @@
         return new Promise((resolve, reject) => {
             //遍历获取每个promise的结果
             promises.forEach((p, index) => {
-                p.then(
+                Promise.resolve(p).then(
                     value => {
                         //一旦有成功，将return变为成功
                         resolve(value)

@@ -101,7 +101,7 @@
        ) */
        //all onResolved() (3) [4, 1, 2]
     //    const pRace = Promise.race([p1,p2,p3])
-    const pRace = Promise.race([p4,p5,p1,p2,p3])
+    const pRace = Promise.race([6,p4,p5,p1,p2,p3])
        pRace.then(
         value =>{
             console.log('race onResolved()',value);
