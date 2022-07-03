@@ -117,7 +117,7 @@
                     },
                     onRejected(reason) {
                         handle(onRejected)
-                    }  
+                    }
                 })
             } else if (self.status === RESOLVED) {
                 //当前状态是resolved状态，异步执行onResilve并改变并改变return的Promise状态
@@ -138,21 +138,34 @@
     返回一个新的promise对象
      */
     Promise.prototype.catch = function (onRejected) {
-       return  this.then(undefined,onRejected)
+        return this.then(undefined, onRejected)
     }
     /* 
     Promise函数对象的resolve方法
     返回一个指定value的成功的promise
     */
     Promise.resolve = function (value) {
-
+        //返回一个成功/失败的promise
+        return new Promise((resolve, reject) => {
+            //value是promise 
+            if (value instanceof Promise) {
+                //使用value的结果作为promise的结果
+                value.then(resolve, reject)
+            } else {
+                //value不是promise => promise变为成功，数据是value
+                resolve(value)
+            }
+        })
     }
     /* 
     Promise函数对象的reject方法
     返回一个指定reason的失败的promise
     */
     Promise.reject = function (reason) {
-
+        //返回一个失败的promise
+        return new Promise((resolve, reject) => {
+            reject(reason)
+        })
     }
     /* 
     Promise函数对象的all方法

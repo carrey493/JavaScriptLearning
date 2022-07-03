@@ -1,6 +1,6 @@
 
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="zh">
 
     <head>
         <meta charset="UTF-8">
@@ -35,7 +35,7 @@
             console.log('onRejected2()', reason);
         }
     ) */
-        const p = new Promise((resolve, reject) => {
+        /* const p = new Promise((resolve, reject) => {
             setTimeout(() => {
                 // resolve(1)// value
                 reject(2)// reason
@@ -70,12 +70,20 @@
                 console.log('onRejected4()', reason);
                 throw 6
             }
-        )
+        ) */
         /* 状态改变之后
         08_自定义Promise.html:49 onRejected1() 2
         08_自定义Promise.html:59 onRejected2() 5
         08_自定义Promise.html:63 onResolved3() 6
         */
+       const p1 = Promise.resolve(1)//如果是一般只=值，promise成功，value就是这个值
+       const p2 = Promise.resolve(Promise.resolve(2))//如果是成功的promise,p2成功，value就是这个promise的value
+       const p3 = Promise.resolve(Promise.reject(3))//如果是失败的promise，p3失败,reason就是这个promise的reason
+
+       p1.then(value => {console.log('p1',value);})
+       p2.then(value => {console.log('p2',value);})
+       p3.catch(reason => {console.log('p3',reason);})
+
         </script>
     </body>
 
