@@ -101,7 +101,7 @@
        ) */
        //all onResolved() (3) [4, 1, 2]
     //    const pRace = Promise.race([p1,p2,p3])
-    const pRace = Promise.race([6,p4,p5,p1,p2,p3])
+    /* const pRace = Promise.race([6,p4,p5,p1,p2,p3])
        pRace.then(
         value =>{
             console.log('race onResolved()',value);
@@ -109,7 +109,11 @@
         reason =>{
             console.log('raace onReject()',reason);
         }
-       )
+       ) */
+       const p6 = Promise.resolveDelay(66,2000)
+       const p7 = Promise.rejectDelay(77,3000)
+       p6.then(value=>{console.log('p6',value)})
+       p7.catch(reason=> {console.log('p7',reason)})
         </script>
     </body>
 
