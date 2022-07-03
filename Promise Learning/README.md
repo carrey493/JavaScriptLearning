@@ -404,6 +404,7 @@ function Promise(excutor) {
     }
 ```
 ### 3.4 Promise.resolve()/reject()的实现
+**Promise.resolve()**
 ```js
 /* 
     Promise函数对象的resolve方法
@@ -422,6 +423,9 @@ function Promise(excutor) {
             }
         })
     }
+```
+**Promise.reject()**
+```js
     /* 
     Promise函数对象的reject方法
     返回一个指定reason的失败的promise
@@ -434,7 +438,8 @@ function Promise(excutor) {
     }
 ```
 
-### 3.5 Promise.all/race()的实现
+### 3.5 Promise.all()/race()的实现
+**Promise.all()**
 ```js
 /* 
     Promise函数对象的all方法
@@ -458,6 +463,30 @@ function Promise(excutor) {
                         if(resolveCount === promises.length){
                             resolve(values)
                         }
+                    },
+                    reason => {
+                        //只要有一个失败则整个都失败
+                        reject(reason)
+                    }
+                )
+            })
+        })
+    }
+```
+**Promise.race()**
+```js
+/* 
+    Promise函数对象的reace方法
+    返回一个promise，其结果由第一个完成的promise决定
+    */
+    Promise.race = function (promises) {
+        return new Promise((resolve, reject) => {
+            //遍历获取每个promise的结果
+            promises.forEach((p, index) => {
+                p.then(
+                    value => {
+                        //一旦有成功，将return变为成功
+                        resolve(value)
                     },
                     reason => {
                         //只要有一个失败则整个都失败

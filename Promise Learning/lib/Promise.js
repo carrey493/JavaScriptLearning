@@ -186,7 +186,7 @@
                         //values.push(value)
                         values[index] = value
                         //如果全部成功，将return的promise改为成功
-                        if(resolveCount === promises.length){
+                        if (resolveCount === promises.length) {
                             resolve(values)
                         }
                     },
@@ -202,8 +202,22 @@
     Promise函数对象的reace方法
     返回一个promise，其结果由第一个完成的promise决定
     */
-    Promise.reace = function (promises) {
-
+    Promise.race = function (promises) {
+        return new Promise((resolve, reject) => {
+            //遍历获取每个promise的结果
+            promises.forEach((p, index) => {
+                p.then(
+                    value => {
+                        //一旦有成功，将return变为成功
+                        resolve(value)
+                    },
+                    reason => {
+                        //只要有一个失败则整个都失败
+                        reject(reason)
+                    }
+                )
+            })
+        })
     }
     //向外暴露Promise函数
     window.Promise = Promise
