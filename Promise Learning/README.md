@@ -433,3 +433,38 @@ function Promise(excutor) {
         })
     }
 ```
+
+### 3.5 Promise.all/race()的实现
+```js
+/* 
+    Promise函数对象的all方法
+    返回一个promise,只有当所有promise都成功时才成功，否则只要有一个失败则失败
+    */
+    Promise.all = function (promises) {
+        //用来保存所有成功value的数组
+        const values = new Array(promises.length)
+        //用来保存成功promise的数量
+        let resolveCount = 0
+        return new Promise((resolve, reject) => {
+            //遍历获取每个promise的结果
+            promises.forEach((p, index) => {
+                p.then(
+                    value => {
+                        resolveCount++
+                        //p成功，将成功的value保存values
+                        //values.push(value)
+                        values[index] = value
+                        //如果全部成功，将return的promise改为成功
+                        if(resolveCount === promises.length){
+                            resolve(values)
+                        }
+                    },
+                    reason => {
+                        //只要有一个失败则整个都失败
+                        reject(reason)
+                    }
+                )
+            })
+        })
+    }
+```
