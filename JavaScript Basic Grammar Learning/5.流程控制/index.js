@@ -98,3 +98,16 @@ for (let i = 0; i <= 100; i++) {
     i % 2 == 0 ? even += i : odd += i
 }
 console.log(even, odd);
+
+let strStar = ''
+for (let i = 1; i <= 5; i++) {
+    strStar += '💕'
+}
+console.log(strStar);
+
+for (let i = 0; i < 5; i++) {
+    console.log('外层循环', i, '次😁');
+    for (let j = 0; j < 5; j++) {
+        console.log('内层循环', j, '次😋😎😍');
+    }
+}
