@@ -111,3 +111,12 @@ for (let i = 0; i < 5; i++) {
         console.log('内层循环', j, '次😋😎😍');
     }
 }
+let startStr = ''
+//打印五行五列星星
+for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
+        startStr = startStr + '💕'
+    }
+    startStr = startStr + '\n'
+}
+console.log(startStr);
