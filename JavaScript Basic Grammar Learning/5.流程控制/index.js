@@ -120,3 +120,28 @@ for (let i = 0; i < 5; i++) {
     startStr = startStr + '\n'
 }
 console.log(startStr);
+
+let startStr2 = ''
+//打印五行五列星星
+for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5 - i; j++) {
+        startStr2 = startStr2 + '🎈'
+    }
+    startStr2 = startStr2 + '\n'
+}
+console.log(startStr2);
+
+/* 九九乘法表
+一共有9行，但是每行的个数不一样，因此需要用到双重for循环外层的 for循环控制行数i，循环9次，可以打印9行
+内层的 for循环控制每行公式j
+核心算法:每一行公式的个数正好和行数一致，j<= i;每行打印完毕，都需要重新换一行 */
+let multiplication = ''
+for (let i = 1; i <= 9; i++) {
+    for (let j = 1; j <= i; j++) {
+        // multiplication = multiplication + '🎗'
+        multiplication += j + 'x' + i + '=' + i * j + ' '
+
+    }
+    multiplication = multiplication + '\n'
+}
+console.log(multiplication);
