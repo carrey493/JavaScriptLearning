@@ -447,15 +447,17 @@ console.log(typeof(timer211));//object
 
 ### 5.5 拓展阅读
 
-![image-20220102002338260](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220102002338260.png)
+![](https://img2022.cnblogs.com/blog/2332774/202207/2332774-20220719005725938-1542049222.png)
 
-![image-20220102002347470](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220102002347470.png)
+![](https://img2022.cnblogs.com/blog/2332774/202207/2332774-20220719005753544-1863611358.png)
 
-![image-20220102002617232](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220102002617232.png)
+![](https://img2022.cnblogs.com/blog/2332774/202207/2332774-20220719005823680-546571103.png)
 
-![image-20220102002633088](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220102002633088.png)
+![](https://img2022.cnblogs.com/blog/2332774/202207/2332774-20220719005853466-1779377836.png)
 
-![image-20220102002726153](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220102002726153.png)
+![](https://img2022.cnblogs.com/blog/2332774/202207/2332774-20220719005915959-392837781.png)
+
+![](https://img2022.cnblogs.com/blog/2332774/202207/2332774-20220719010005777-45957242.png)
 
 ## 6 运算符
 
@@ -796,7 +798,7 @@ switch(表达式) {
 
 for循环主要用于把某些代码循环若干次，通常跟计数有关系。其语法结构如下
 
-```json
+```js
 for(初始化变量; 条件表达式; 操作表达式){
 	//循环体
 }
