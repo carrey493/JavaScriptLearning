@@ -145,3 +145,18 @@ for (let i = 1; i <= 9; i++) {
     multiplication = multiplication + '\n'
 }
 console.log(multiplication);
+
+//while 循环语法结构 while 当...时候
+/* 
+while(条件表达式){
+    //循环体
+}
+*/
+//执行思路 当条件表达式结果为true 则执行循环体否则退出
+let whileNum = 1
+while (whileNum < 100) {
+    console.log('how are you');
+    whileNum++
+}
+// 里面有初始化变量以及计数器
+//需要有表达式 完成计数器更新 否则死循环
