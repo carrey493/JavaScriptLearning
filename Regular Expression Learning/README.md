@@ -154,3 +154,61 @@ console.log(/\s/.test('\nhd'));//true
 // \S 除了空白
 console.log(/\S/.test(' hd'));//true
 ```
+
+### w和W元字符
+```js
+// \w 包括\d 匹配字母数字下划线
+let hd = 'houdunren_2020'
+console.log(hd.match(/\d+/));//2020
+console.log(hd.match(/\w+/));//houdunren_2020
+
+let email = '2577632085@qq.com'
+console.log(email.match(/\w@\w/));//5@q
+console.log(email.match(/\w+@\w+/));//2577632085@qq
+console.log(email.match(/\w+@\w+\.\w+/));//2577632085@qq.com
+
+let email2 = '@##￥@@2577632085@qq.com'
+//$ 以...结束 ^以...开始
+console.log(email2.match(/\w+@\w+\.\w+$/));//2577632085@qq.com
+
+// \W 除了字母数字下划线
+console.log(email.match(/\W/));//@
+
+console.log(email.match(/^[a-z]\w{4,9}$/));//null
+```
+
+### 点元字符的使用
+```js
+// . 除了换行符以外的所有字符
+let hd = 'as$$$$#dhjaskdnajbdj-9uh'
+console.log(hd.match(/.+/));
+
+let url = 'http:ww.baidu.com'
+console.log(url.match(/https?:\/\/\w+\.\w+\.\w/));
+
+let hd2 = `
+asdaklslj
+sada
+`
+//s 模式s ：视为单行匹配
+console.log(hd2.match(/.+/s)[0]);
+
+//空格严格意义上与其它字符相同
+let hd3 = `010 - 986544`
+console.log(hd3.match(/\d+ - \d{6}/));
+console.log(hd3.match(/\d+\s-\s\d{6}/));
+```
+
+### 匹配所有字符
+```js
+// . \d \w
+
+let xj = 'ab'
+console.log(xj.match(/[#$%$&#^b]/));
+
+//[\s\S] [\d\D] 匹配所有字符
+let s = `<span>ahj
+kdhsjkh
+###</span>`
+console.log(s.match(/<span>[\d\D]+<\/span>/));
+```
