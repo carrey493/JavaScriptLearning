@@ -172,3 +172,29 @@ do {
     console.log('hello');
     doI++
 } while (doI <= 100)
+
+//continue退出本次循环 继续执行剩余次数循环
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) {
+        continue
+        //只要遇见contunue就跳出本次循环，直接跳到i++
+    }
+    console.log('正在吃第' + i + '个');
+}
+
+//求1-100之间 除了能被7整除之外的整数和
+let sum7 = 0
+for (let i = 0; i <= 100; i++) {
+    if (i % 7 === 0) {
+        continue
+    } 
+    sum7 += i
+}
+console.log(sum7);
+
+for(let i =1;i<=5;i++){
+    if(i===3){
+        break;
+    }
+    console.log('正在吃第'+i+'个包子');
+}
