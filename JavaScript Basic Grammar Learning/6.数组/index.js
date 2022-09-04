@@ -11,3 +11,9 @@ var arr1 = [1, 2, '老师', true];
 console.log(arr1[2]);//老师
 console.log(arr1[5]);//undefined
 
+//数组的遍历 就是把数组的元素从头到尾访问一遍
+let arr2 = ['a', 'b', 'c']
+for (let i = 0; i < 3; i++) {
+    // i 当作计数器索引来使用
+    console.log(arr2[i]);
+}
