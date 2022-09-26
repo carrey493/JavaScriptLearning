@@ -1160,3 +1160,52 @@ for (let i = 0; i < 3; i++) {
 let arr2 = ['a', 'b', 'c']
 console.console.log((arr2.length));//3
 ```
+
+#### 8.4.2 求数组的和、平均值、最大值
+```js
+//求数组的平均值与和
+let arr3 = [2, 6, 1, 7, 4]
+let sum3 = 0
+let average3 = 0
+for (let i = 0; i < arr3.length; i++) {
+    sum3 += arr3[i]
+}
+console.log('arr3的和是：', sum3);//20
+console.log('arr3的平均值是：', sum3 / arr3.length);//4
+```
+
+```js
+//求数组中的最大值
+/**
+声明一个保存最大元素的变量max。
+默认最大值可以取数组中的第一个元素。
+遍历这个数组，把里面每个数组元素和max相比较。
+如果这个数组元素大于max就把这个数组元素存到max里面，否则继续下一轮比较。
+最后输出这个max。
+ */
+let arr4 = [2, 6, 1, 77, 52, 25, 7]
+let max4 = arr4[0]
+for (let i = 1; i < arr4.length; i++) {
+    if (arr4[i] > max4) {
+        max4 = arr4[i]
+    }
+}
+console.log('arr4的最大值是：',max4);//77
+```
+
+#### 8.4.2 数组转换为分割字符串
+```js
+//数组转换为分割字符串 将数组转换为字符串并使用其它字符串分割
+/* 
+将数组['red', 'green', 'blue', 'pink']转换为字符串，并且用│或其他符号分割
+1.需要一个新变量用于存放转换完的字符串 str。
+2.遍历原来的数组，分别把里面数据取出来，加到字符串里面。
+3.同时在后面多加一个分隔符
+ */
+let arr5 = ['red', 'green', 'blue', 'pink']
+let str5 = ''
+for (let i = 0; i < arr5.length; i++) {
+    str5 += arr5[i] + '|' //可以将 | 用变量代替，使用其它任何字符
+}
+console.log('分割字符串：', str5);//分割字符串： red|green|blue|pink|
+```
