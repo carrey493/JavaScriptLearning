@@ -58,3 +58,19 @@ for (let i = 0; i < arr5.length; i++) {
     str5 += arr5[i] + '|'
 }
 console.log('分割字符串：', str5);//分割字符串： red|green|blue|pink|
+
+//新增数组元素 修改数组长度
+let arr1017 = [24, 8, 6, 8]
+console.log(arr1017.length);
+arr1017.length = 5
+console.log(arr1017);//[ 24, 8, 6, 8, <1 empty item> ]
+console.log(arr1017[4]);//undefined
+
+//新增数组元素 修改索引号
+let arr10172 = ['red', 'green']
+arr10172[2] = 'pionk'
+console.log(arr10172);//[ 'red', 'green', 'pionk' ]
+arr10172[1] = 'blue'
+console.log(arr10172);//[ 'red', 'blue', 'pionk' ] 替换原来的元素
+arr10172 = '有点意思'
+console.log(arr10172);//有点意思 不能直接给数组名赋值，否则会覆盖掉以前的数据
