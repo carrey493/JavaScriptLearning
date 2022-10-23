@@ -106,3 +106,51 @@ for (let i = 0; i < arr10232.length; i++) {
     }
 }
 console.log(newArr10232);//[ 77, 52, 25 ]
+
+/* 
+需要一个新数组用于存放筛选之后的数据。
+遍历原来的数组，把不是0的数据添加到新数组里面(此时要注意采用数组名+索引的格式接收数据)。
+新数组里面的个数,用length不断累加。
+*/
+let newArr10233 = []
+for (let i = 0; i < arr10232.length; i++) {
+    if (arr10232[i] != 0) {
+        newArr10233[newArr10233.length] = arr10232[i]
+    }
+}
+console.log(newArr10233);//[2,  6, 1, 77,52, 25, 7]
+
+/* 
+- 要求:将数组['red" , 'green", 'blue' , 'pink , 'purple']的内容反过来存放。
+- 输出:['purple' , "pink" , 'blue' , ' green', 'red']
+*/
+let arr10233 = ['red', 'green', 'blue', 'black']
+let newArr10234 = []
+
+for (let i = arr10233.length - 1; i >= 0; i--) {
+    newArr10234[newArr10234.length] = arr10233[i]
+}
+console.log(newArr10234);//[ 'black', 'blue', 'green', 'red' ]
+
+//交换变量
+let num10231 = 10
+let num10232 = 20
+let num10233
+num10233 = num10231
+num10231 = num10232
+num10232 = num10233
+console.log(num10231, num10232);//20 10
+
+let arr10235 = [5, 9, 6, 58, 14, 52, 41, 8]
+for (let i = 0; i <= arr10235.length - 1; i++) {// 外层for循环管次数
+    for (let j = 0; j <= arr10235.length - i - 1; j++) {// 内层的循环管每一趟交换的次数
+        //内部交换2个变量的值 前一个和后面一个数组元素相比较
+        // if (arr10235[j] < arr10235[j + 1])
+        if (arr10235[j] > arr10235[j + 1]) {
+            let temp = arr10235[j]
+            arr10235[j] = arr10235[j + 1]
+            arr10235[j + 1] = temp
+        }
+    }
+}
+console.log(arr10235);//[5,  6,  8,  9,14, 41, 52, 58]
