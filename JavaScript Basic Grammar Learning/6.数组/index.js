@@ -87,3 +87,22 @@ for (let i = 0; i < 10; i++) {
 }
 console.log(arr1023);
 // [0, 1, 2, 3, 4,5, 6, 7, 8, 9]
+
+//筛选数组
+let arr10232 = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7]
+/* 
+声明一个新的数组用于存放新数据newArr 。
+遍历原来的旧数组，找出大于等于10的元素。
+依次追加给新数组newArr。
+*/
+let newArr10232 = []
+let j = 0
+for (let i = 0; i < arr10232.length; i++) {
+    if (arr10232[i] >= 10) {
+        // newArr10232.push(arr10232[i])
+        //新数组从0开始依次递增
+        newArr10232[j] = arr10232[i]
+        j++
+    }
+}
+console.log(newArr10232);//[ 77, 52, 25 ]
