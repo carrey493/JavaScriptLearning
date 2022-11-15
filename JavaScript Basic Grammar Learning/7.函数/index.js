@@ -112,3 +112,31 @@ getSum4(1, 2, 3)//3
 //形参可以看做是不用声明的变量num2是一个变量但是没有接受值结果就是undefined
 
 getSum4(1)//NaN
+
+//函数的返回值格式
+/* 
+function 函数名(){
+    return 需要返回的结果
+}
+函数名()
+*/
+//我们函数只是实现某种功能，最终的结果需要返回给函数的调用者 函数名() 通过return实现的
+//只要函数遇到return 就把后面的结果返回给函数的调用者 函数名() = return 后面的接过
+
+function getResult() {
+    return 'getResult'
+}
+
+console.log(getResult());//getResult
+
+function cook(arg) {
+    return arg;
+}
+console.log(cook('蔬菜'));///蔬菜
+
+//利用函数 求两个数的最大值
+function getMax(n1, n2) {
+    // if (n1 > n2) { return n1 } else return n2
+    return n1 > n2 ? n1 : n2
+}
+console.log(getMax(11, 3));//11
