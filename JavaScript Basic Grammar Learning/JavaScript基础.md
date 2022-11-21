@@ -1514,3 +1514,46 @@ function getMax(n1, n2) {
 }
 console.log(getMax(11,3));//11
 ```
+
+#### 9.4.2 return终止函数
+
+**return语句之后的代码不被执行。**
+
+```js
+function add (num1 , num2) {
+//函数体
+return num1 + num2 ;  // 注意: return后的代码不执行alert(·我不会被执行，因为前面有return);
+var resNum = add(21,6);//调用函数，传入两个实参，并通过resNum接收函数返回值
+alert (resNum); // 27
+}
+```
+
+#### 9.4.3 return的返回值
+
+**return只能返回一个值。**如果用逗号隔开多个值，以最后一个为准。
+
+```js
+function add2(num1, num2) {
+    //函数体
+    return num1, num2;
+}
+console.log(add2(23, 1)); // 1
+
+//如果需要返回多个值，可以使用return一个数组等方法
+function getResult(n1, n2) {
+    return [n1 + n2, n1 * n2, n1 - n2, n1 / n2]
+}
+console.log(getResult(25, 62));//[ 87, 1550, -37, 0.4032258064516129 ]
+```
+
+#### 9.4.4 函数没有return返回undefined
+
+- 如果函数有 return 则返回的是 return 后面的值
+- 如果没有 return 则返回 undefiend
+
+#### 9.4.5 break continue return的区别
+
+- break :结束当前的循环体(如for、while )
+- continue :跳出本次循环，继续执行下次循环（如for、while )
+- return :不仅可以退出循环，还能够返回return语句中的值，同时还可以结束当前的函数体内的代码。
+

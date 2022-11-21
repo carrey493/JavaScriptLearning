@@ -140,3 +140,35 @@ function getMax(n1, n2) {
     return n1 > n2 ? n1 : n2
 }
 console.log(getMax(11, 3));//11
+
+//利用函数求数组中的最大值
+function getArrMax(arr) {
+    let max = arr[0]
+    for (let i = 0; i <= arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i]
+        }
+    }
+    return max
+}
+let result = getArrMax([5, 26, 14, 3, 89, 74, 15])
+console.log(result);//89
+
+//return 终止函数
+function add(num1, num2) {
+    //函数体
+    return num1 + num2;  // 注意: return后的代码不执行alert(·我不会被执行，因为前面有return);
+    var resNum = add(21, 6);//调用函数，传入两个实参，并通过resNum接收函数返回值
+    alert(resNum); // 27
+}
+
+function add2(num1, num2) {
+    //函数体
+    return num1, num2;
+}
+console.log(add2(23, 1)); // 1
+
+function getResult(n1, n2) {
+    return [n1 + n2, n1 * n2, n1 - n2, n1 / n2]
+}
+console.log(getResult(25, 62));//[ 87, 1550, -37, 0.4032258064516129 ]
