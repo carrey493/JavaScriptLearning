@@ -172,3 +172,42 @@ function getResult(n1, n2) {
     return [n1 + n2, n1 * n2, n1 - n2, n1 / n2]
 }
 console.log(getResult(25, 62));//[ 87, 1550, -37, 0.4032258064516129 ]
+
+//arguments参数的使用 只有函数才有arguments对象﹐而且是每个函数都内置好了这个arguments
+function fn() {
+    console.log(arguments);//里面存储了所有传递的实际参数
+    console.log(arguments.length);//3
+    console.log(arguments[1]);//2
+    //可以按照数组的方式遍历arguments
+    /* 
+    1
+    2
+    3
+    */
+    for (let i = 0; i < arguments.length; i++) {
+        console.log(arguments[i]);
+    }
+}
+fn(1, 2, 3)//[Arguments] { '0': 1, '1': 2, '2': 3 }
+
+//伪数组
+/*
+1.具有数组的长度
+2.按照索引的方式来处理
+3.它没有正真数组的一些方法 pop() push()
+*/
+
+//利用函数的arguments参数求任意个数的最大值
+
+function getMaxarg() {
+    let max = arguments[0]
+    for (let i = 0; i < arguments.length; i++) {
+        if (arguments[i] > max) {
+            max = arguments[i]
+        }
+    }
+    return max
+}
+console.log(getMaxarg(1, 2, 5, 36, 45, 12));//45
+console.log(getMaxarg(1, 32, 35, 346, 45, 12));//346
+console.log(getMaxarg(1, 2, 35, 36, 545, 142));//545

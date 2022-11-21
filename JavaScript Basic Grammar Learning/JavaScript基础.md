@@ -1557,3 +1557,38 @@ console.log(getResult(25, 62));//[ 87, 1550, -37, 0.4032258064516129 ]
 - continue :跳出本次循环，继续执行下次循环（如for、while )
 - return :不仅可以退出循环，还能够返回return语句中的值，同时还可以结束当前的函数体内的代码。
 
+### 9.5 arguments的使用
+
+当我们不确定有多少个参数传递的时候，可以用`arguments`来获取。在JavaScript中,arguments实际上它是当前函数的一个`内置对象`。所有函数都内置了一个arguments对象，arguments对象中`存储了传递的所有实参`。
+
+`arguments展示形式是一个伪数组`，因此可以进行遍历。伪数组具有以下特点∶
+- 具有length属性
+- 按索引方式储存数据
+- 不具有数组的push , pop等方法
+
+```js
+//arguments参数的使用 只有函数才有arguments对象﹐而且是每个函数都内置好了这个arguments
+function fn() {
+    console.log(arguments);//里面存储了所有传递的实际参数
+    console.log(arguments.length);//3
+    console.log(arguments[1]);//2
+    //可以按照数组的方式遍历arguments
+    /* 
+    1
+    2
+    3
+    */
+    for (let i = 0; i < arguments.length; i++) {
+        console.log(arguments[i]);
+    }
+}
+fn(1, 2, 3)//[Arguments] { '0': 1, '1': 2, '2': 3 }
+
+//伪数组
+/* 
+1.具有数组的长度
+2.按照索引的方式来处理
+3.它没有正真数组的一些方法 pop() push()
+*/
+```
+
