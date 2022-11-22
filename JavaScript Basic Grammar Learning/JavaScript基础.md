@@ -1592,3 +1592,88 @@ fn(1, 2, 3)//[Arguments] { '0': 1, '1': 2, '2': 3 }
 */
 ```
 
+### 9.6 使用函数的案例
+
+```js
+//利用函数的arguments参数求任意个数的最大值
+function getMaxarg() {
+    let max = arguments[0]
+    for (let i = 0; i < arguments.length; i++) {
+        if (arguments[i] > max) {
+            max = arguments[i]
+        }
+    }
+    return max
+}
+console.log(getMaxarg(1, 2, 5, 36, 45, 12));//45
+console.log(getMaxarg(1, 32, 35, 346, 45, 12));//346
+console.log(getMaxarg(1, 2, 35, 36, 545, 142));//545
+```
+
+```js
+//利用函数翻转任意数组reverse翻转
+function reverse(arr) {
+    let newArr = [];
+    for (let i = arr.length - 1; i >= 0; i--) {
+        newArr[newArr.length] = arr[i];
+    }
+    return newArr;
+}
+let arr1 = reverse([1, 3, 4, 6, 9]);//[ 9, 6, 4, 3, 1 ]
+console.log(arr1);
+```
+
+```js
+//利用函数冒泡排序sort排序
+function sort(arr) {
+    for (var i = 0; i < arr.length - 1; i++) {
+        for (var j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                var temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+let arr2 = sort([1, 4, 2, 9]);
+console.log(arr2);//[ 1, 2, 4, 9 
+```
+
+```js
+//利用函数判断闰年
+function isLeapYear(year) {
+    //如果闰年返回true否则返回false
+    let flag = false
+    if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
+        flag = true
+    }
+    return flag
+}
+console.log(isLeapYear(2000));//true
+```
+
+```js
+/* 
+函数可以调用另外一个函数
+因为每个函数都是独立的代码块，用于完成特殊任务，因此经常会用到函数相互调用的情况。
+*/
+function fn1() {
+    console.log('fn1调用了');
+    fn2()//在fn1函数调研函数fn2
+}
+function fn2() {
+    console.log('fn2调用了');
+}
+fn1()
+/* 
+fn1调用了
+fn2调用了
+*/
+function backDay(year) {
+    let result = isLeapYear(year)
+    return result ? '这一年是闰年2月有29天' : '这一年是平年2月有28天'
+}
+console.log(backDay(2036));//这一年是闰年2月有29天
+```
