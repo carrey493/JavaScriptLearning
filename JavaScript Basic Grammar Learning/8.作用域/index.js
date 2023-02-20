@@ -9,17 +9,17 @@
 - 全局作用域：整个script标签或者是一个单独的js文件
 - 局部作用域：在函数内部就是局部作用域，只在函数内部起效果和作用
 */
-var num = 10
-var num = 20
+var num = 10;
+var num = 20;
 //全局作用域：整个script标签或者是一个单独的js文件
-console.log(num);//20
+console.log(num); //20
 
 function fn1() {
-    var num = 30
-    // 局部作用域：在函数内部就是局部作用域，只在函数内部起效果和作用
-    console.log(num);
+  var num = 30;
+  // 局部作用域：在函数内部就是局部作用域，只在函数内部起效果和作用
+  console.log(num);
 }
-fn1()//30
+fn1(); //30
 
 //变量的作用域
 
@@ -31,10 +31,29 @@ fn1()//30
  */
 var num2 = 11;
 function fn2(argus) {
-    console.log(num2);//11
-    var num3 = 15
-    num4 = 33
+  console.log(num2); //11
+  var num3 = 15;
+  num4 = 33;
 }
 // console.log(num3); // num3 is not defined
-fn2()
-console.log(num4);//33
+fn2();
+console.log(num4); //33
+
+// 作用域链：就近原则
+/* 
+  内部函数访问外部函数的变量，
+  采取的是链式查找的方式来决定取哪个值，
+  这种结构我们称之为作用域链。 
+*/
+
+var num3 = 100;
+// 外部函数
+function fn3() {
+  var num3 = 200;
+  function fn33() {
+    // 内部函数 可以调用外部函数的变量。
+    console.log(num3); // 200
+  }
+  fn33();
+}
+fn3(); //200
