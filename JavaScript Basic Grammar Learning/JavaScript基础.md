@@ -1760,3 +1760,115 @@ javaScript现阶段没有块级作用域(ES5)，ES6新增的块级作用域。
 - 写在函数内部就是局部作用域
 - 如果函数中还有函数，那么在这个作用域中就又可以诞生一个作用域。
 - 根据在内部函数可以访问外部函数变量的这种机制，用链式查找决定哪些数据能被内部函数访问，就称作作用域链。
+
+## 11 预解析
+
+- 能够知道解析器运行JS分为哪两步
+- 能够说出变量提升的步骤和运行过程
+- 能够说出函数提升的步骤和运行过程
+
+**JavaScript代码是由浏览器中的JavaScript解析器来执行的。**
+
+> JavaScript解析器在运行JavaScript代码的时候分为两步︰**预解析**和**代码执行**。
+
+1. 预解析：js会把js里所有的变量与函数声明定义提升到当前作用域的最前面
+
+2. 预解析分为：变量预解析（变量提升） 和 函数预解析（函数提升）
+
+- 变量提升： 就是把所有变量声明提升到当前作用域的最前面 **不提升赋值操作**
+-  函数提升： 就是把所有函数声明提升到当前作用域最前面 **不调用函数**
+
+3.  代码执行： 按照代码书写的顺序从上往下执行
+
+```js
+var num = 10;
+fun1(); // undefined
+function fun() {
+  console.log(num);
+  var num = 20;
+}
+// 相当于执行以下代码
+
+var num;
+function fun() {
+  var num;
+  console.log(num);
+  num = 20;
+}
+num = 10;
+fun();
+
+// ------
+
+var num = 10;
+function fn() {
+  console.log(num);
+  var num = 20;
+  console.log(num);
+}
+fn(); // undefined 20
+// 相当于以下代码
+
+var num;
+function fn() {
+  var num;
+  console.log(num);
+  num = 20;
+  console.log(num);
+}
+num = 10;
+fn();
+
+// ------
+
+var a = 18;
+f1();
+
+function fun() {
+  var b = 9;
+  console.log(a);
+  console.log(b);
+  var a = "123";
+}
+// 相当于以下代码
+var a;
+function f1() {
+  var b;
+  var a;
+  b = 9;
+  console.log(a);
+  console.log(b);
+  a = "123";
+}
+a = 18;
+f1(); // undefined 9
+
+// ------
+
+f1();
+console.log(c);
+console.log(b);
+console.log(a);
+function f1() {
+  var a = b = c = 9;
+  console.log(a);
+  console.log(b);
+  console.log(c);
+}
+// 相当于以下代码
+function f1() {
+  var a = b = c = 9;
+  // 相当于 var a = 9; b = 9; c = 9;  b和c直接赋值，没有声明 当 全局变量看
+  // 集体声明 var a = 9,b = 9,c =9 ;
+  console.log(a);//9
+  console.log(b);//9
+  console.log(c);//9
+}
+f1();
+console.log(c);//9
+console.log(b);//9
+console.log(a);//undefined
+```
+
+
+
