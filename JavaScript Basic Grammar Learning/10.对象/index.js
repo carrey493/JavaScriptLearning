@@ -78,7 +78,7 @@ function Star(uname, age, sex) {
   this.uname = uname
   this.age = age
   this.sex = sex
-  this.sing = function(sang){
+  this.sing = function (sang) {
     console.log(sang);
   }
 }
@@ -91,3 +91,26 @@ let zxy = new Star("zxy", 125, "nan");//调用函数返回的是一个对象
 // 3. 我们调用构造函数时必须使用new
 // 4. 我们只要 new Star() 就调用函数生成一个对象
 // 5. 我们的属性和方法前面必须添加 this
+
+//new关键字执行的过程
+/* 
+1. new 构造函数可以在内存中创建了一个空对象
+2. this就会指向刚才创建的空对象
+3. 执行构造函数里面的代码给这个空对象添加属性和方法
+4. 返回这个对象
+*/
+
+let teacher = {
+  name: 'pink',
+  age: 25,
+  sex: 'male'
+}
+console.log(teacher.name);
+console.log(teacher.age);
+console.log(teacher.sex);
+
+// for...in 遍历对象
+for (let key in teacher) {
+  console.log(key);//nam age sex key得到的是属性名
+  console.log(teacher[key]);// 25 sex male 属性值
+}

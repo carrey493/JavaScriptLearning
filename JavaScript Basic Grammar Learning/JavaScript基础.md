@@ -2050,3 +2050,46 @@ let zxy = new Star("zxy", 125, "nan");//调用函数返回的是一个对象
 - `对象`：是一个具体的事物，特指某一个
 
 **我们利益构造函数创建对象的过程也称作为对象的实例化**
+
+### 12.3 new关键字
+
+new关键字执行的过程
+
+1. new 构造函数可以在内存中创建了一个空对象
+2. this就会指向刚才创建的空对象
+3. 执行构造函数里面的代码给这个空对象添加属性和方法
+4. 返回这个对象，所以构造函数不需要return。
+
+### 12.4 遍历对象属性
+
+`for...in语句`用于对数组或者对象的属性进行循环操作
+
+```js
+let teacher = {
+  name: 'pink',
+  age: 25,
+  sex: 'male'
+}
+
+console.log(teacher.name);
+console.log(teacher.age);
+console.log(teacher.sex);
+
+// for...in 遍历对象
+for (let key in teacher) {
+  console.log(key);//nam age sex key得到的是属性名
+  console.log(teacher[key]);// 25 sex male 属性值
+}
+```
+
+---
+
+***总结**
+
+1. 对象可以让代码结构更清晰
+2. 对象复杂数据类型Object
+3. 本质：对象就是一组无序数组的相关属性和方法的集合
+4. 构造函数泛指某一大类
+5. 对象特指某一个事物
+6. `for...in语句`用于对数组或者对象的属性进行循环操作
+ 
