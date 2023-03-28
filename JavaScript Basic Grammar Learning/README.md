@@ -2182,3 +2182,98 @@ function getRandom(min, max) {
 }
 console.log(getRandom(1, 10));//9
 ```
+
+### 13.4 日期对象
+
+#### 13.4.1 Date 概述
+
+创建`Date实例`用来处理日期和时间Date对象基于1970年1月1日(世界标准时间)起的毫秒数。
+
+`Date() 日期对象`是一个构造函数必须使用new来调用创建我们的日期对象
+
+#### 13.4.2 Date()方法的使用
+
+1. 获取当前时间必须实例化
+```js
+let date = new Date();
+console.log(date);//2023-03-28T10:52:19.981Z
+```
+2. Date()构浩函数的参数
+```js
+/* 
+1.如果没有参数返回当前系统的当前时间
+2.参数常用的写法 
+  数字型 2019,10,01 或者字符串型 2019-10-1 8:8:8
+*/
+let date2 = new Date(2023,3,28);
+console.log(date2);//2023-04-27T16:00:00.000Z
+let date3 = new Date('2023-3-28 18:58');
+console.log(date3);//2023-03-28T10:58:00.000Z
+```
+
+#### 13.4.3 日期格式化
+
+需要获取日期指定的部分，所以我们要手动的得到这种格式
+
+![](https://img2023.cnblogs.com/blog/2332774/202303/2332774-20230328190502103-457468143.png)
+
+```js
+console.log(new Date().getFullYear()); //2023
+console.log(new Date().getMonth()); //2 返回的月份需要加1
+console.log(new Date().getDate()); //28
+console.log(new Date().getDay()); //2 星期几 周日为0
+console.log(new Date().getHours()); //时 19
+console.log(new Date().getMinutes()); //分 20
+console.log(new Date().getSeconds()); //秒 4
+
+console.log(
+  "现在是" +
+    new Date().getFullYear() +
+    "年" +
+    `${new Date().getMonth() + 1}` +
+    "月" +
+    new Date().getDate() +
+    "日" +
+    "星期" +
+    `${new Date().getDay() === 0 ? "天" : new Date().getDay()}` +
+    new Date().getHours() +
+    "时" +
+    new Date().getMinutes() +
+    "分" +
+    new Date().getSeconds() +
+    "秒"
+); //现在是2023年3月28日星期2 19时23分32秒
+```
+
+#### 13.4.4 获取日期的总的毫秒形式
+
+**Date对象是基于1970年1月1日(世界标准时间)起的毫秒数**
+
+我们经常利用总的毫秒数来计算时间，因为它更精确。
+
+```js
+//获取时间秒/时间戳
+let now = new Date();
+console.log(now.valueOf()); //1680002943153
+console.log(now.getTime()); //1680002964760
+let now1 = +new Date();
+console.log(now1); //1680003021052
+//h5 新增的获得总的毫秒数
+console.log(Date.now()); //1680003087320
+```
+
+```js
+//倒计时案例
+//倒计时
+function countDown(time) {
+  let nowTime = +new Date(); //当前时间毫秒数
+  let inputTime = +new Date(time); //用户输入毫秒数
+  let tims = (inputTime - nowTime) / 1000; //剩余时间毫秒
+  let day = parseInt(tims / 60 / 60 / 24);
+  let hour = parseInt((tims / 60 / 60) % 24);
+  let m = parseInt((tims / 60) % 24);
+  let s = parseInt(tims % 60);
+  return day + "天" + hour + "时" + m + "分" + s + "秒";
+}
+console.log('距离倒计时还有：',countDown("2023-3-28 19:50:00")); //0天0时2分33秒
+```
