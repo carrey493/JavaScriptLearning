@@ -103,4 +103,25 @@ console.log(
     new Date().getSeconds() +
     "秒"
 );
-console.log('距离倒计时还有：',countDown("2023-3-28 19:50:00")); //0天0时2分33秒
+console.log("距离倒计时还有：", countDown("2023-3-28 19:50:00")); //0天0时2分33秒
+
+//创建数组的两种方式
+//1. 利用数组的字面量
+let arr = [1, 2, 3];
+console.log(arr[2]); //3
+//2. 利用new Array()
+let arr1 = new Array(2); //创建一个长度为2的数组，里面有两个空元素。
+console.log(arr1); //[ <2 empty items> ]
+let arr2 = new Array(2, 3);
+console.log(arr2); //[ 2, 3 ] 等价于创建[2,3]
+
+//检测是否为数组
+//1. instanceof 运算符
+let arrIns = [];
+let arr1Ins = {};
+console.log(arrIns instanceof Array); //true
+console.log(arr1Ins instanceof Array); //false
+
+//2. Array.isArray()
+console.log(Array.isArray(arrIns)); //true
+console.log(Array.isArray(arr1Ins)); //false

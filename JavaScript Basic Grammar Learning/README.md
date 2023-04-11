@@ -1,5 +1,7 @@
 # JavaScript 基础语法
 
+>学习地址：https://www.bilibili.com/video/BV1Sy4y1C7ha
+
 ## 1 初识 JavaScript
 
 ### 1.1 JavaScript 历史
@@ -2276,4 +2278,37 @@ function countDown(time) {
   return day + "天" + hour + "时" + m + "分" + s + "秒";
 }
 console.log('距离倒计时还有：',countDown("2023-3-28 19:50:00")); //0天0时2分33秒
+```
+
+### 13.5 数组对象
+
+#### 13.5.1 数组对象的创建
+
+创建数组对象的两种方式
+
+- 字面量方式
+- new Array()
+
+```js
+//1. 利用数组的字面量
+let arr = [1, 2, 3];
+console.log(arr[2]); //3
+//2. 利用new Array()
+let arr1 = new Array(2); //创建一个长度为2的数组，里面有两个空元素。
+console.log(arr1); //[ <2 empty items> ]
+let arr2 = new Array(2, 3);
+console.log(arr2); //[ 2, 3 ] 等价于创建[2,3]
+```
+
+#### 13.5.2 检测是否为数组
+
+```js
+let arrIns = [];
+let arr1Ins = {};
+console.log(arrIns instanceof Array); //true
+console.log(arr1Ins instanceof Array); //false
+
+//2. Array.isArray()
+console.log(Array.isArray(arrIns)); //true
+console.log(Array.isArray(arr1Ins)); //false
 ```
