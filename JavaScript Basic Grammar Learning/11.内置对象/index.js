@@ -125,3 +125,52 @@ console.log(arr1Ins instanceof Array); //false
 //2. Array.isArray()
 console.log(Array.isArray(arrIns)); //true
 console.log(Array.isArray(arr1Ins)); //false
+
+//数组元素添加删除元素
+
+//1.push() 在我们的数组末尾添加一个或多个元素
+let arrPush = [1, 2, 3];
+arrPush.push(4, "blue");
+console.log(arrPush.push(5, "pink")); //7
+console.log(arrPush); // [ 1, 2, 3, 4, 'blue' , 5, 'pink']
+/* 
+1. push()可以给数组追加新的元素 
+2. push()参数直接写数组元素就可以了
+3. push()完毕后返回的结果是新数组的长度
+4. push()完毕后原数组也会发生变化
+*/
+
+//2. unshift() 在我们数组的开头添加一个或多个元素
+let arrUnshift = [1, 2, 3];
+arrUnshift.unshift("loop", "pop");
+console.log(arrUnshift); //[ 'loop', 'pop', 1, 2, 3 ]
+/* 
+1. unshift()可以给数组前面追加新的元素 
+2. unshift()参数直接写数组元素就可以了
+3. unshift()完毕后返回的结果是新数组的长度
+4. unshift()完毕后原数组也会发生变化
+*/
+
+//3. pop() 删除数组的最后一个元素
+let arrPop = [1, 2, 3];
+arrPop.pop();
+console.log(arrPop); //[ 1, 2 ]
+console.log(arrPop.pop()); //2
+/* 
+1. pop()可以删除数组的最后一个元素记住一次只能删除一个元素
+2. pop()没有参数
+3. pop()完毕后返回的结果是删除的那个元素
+4. pop()完毕后原数组也会发生变化
+*/
+
+//4. shift() 删除数组的第一一个元素
+let arrShift = [1, 2, 3];
+arrShift.shift();
+console.log(arrShift); //[ 2, 3 ]
+console.log(arrPop.shift()); //1
+/* 
+1. shift()可以删除数组的第一个元素记住一次只能删除一个元素
+2. shift()没有参数
+3. shift()完毕后返回的结果是删除的那个元素
+4. shift()完毕后原数组也会发生变化
+*/

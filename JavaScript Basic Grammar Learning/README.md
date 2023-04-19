@@ -2094,7 +2094,7 @@ for (let key in teacher) {
 4. 构造函数泛指某一大类
 5. 对象特指某一个事物
 6. `for...in语句`用于对数组或者对象的属性进行循环操作
- 
+
  ## 13 内置对象
 
 - 能够说出什么是内置对象
@@ -2312,3 +2312,67 @@ console.log(arr1Ins instanceof Array); //false
 console.log(Array.isArray(arrIns)); //true
 console.log(Array.isArray(arr1Ins)); //false
 ```
+
+#### 13.5.3 
+添加删除数组元素的方法
+| 方法名            | 说明                                                  | 返回值             |
+| ----------------- | ----------------------------------------------------- | ------------------ |
+| push(参数1...)    | 末尾添加一个或多个元素，注意修改原数组                | 并返回新的长度     |
+| pop()             | 删除数组最后一个元素，把数组长度减1无参数、修改原数组 | 返回它删除的元素值 |
+| unshift(参数1...) | 向数组的开头添加一个或更多元素，注意修改原数组        | 返回新的长度       |
+| shift()           | 别除数组的第一个元素，数组长度减1无参数、修改原数组   | 并返回第一个元素   |
+
+
+1. push() 在我们的数组末尾添加一个或多个元素
+```js
+let arrPush = [1, 2, 3];
+arrPush.push(4, "blue");
+console.log(arrPush.push(5, "pink")); //7
+console.log(arrPush); // [ 1, 2, 3, 4, 'blue' , 5, 'pink']
+```
+
+- push()可以给数组追加新的元素 
+- push()参数直接写数组元素就可以了
+- push()完毕后返回的结果是新数组的长度
+- push()完毕后原数组也会发生变化
+
+
+2. unshift() 在我们数组的开头添加一个或多个元素
+```js
+let arrUnshift = [1, 2, 3];
+arrUnshift.unshift("loop", "pop");
+console.log(arrUnshift); //[ 'loop', 'pop', 1, 2, 3 ]
+```
+
+- unshift()可以给数组前面追加新的元素 
+- unshift()参数直接写数组元素就可以了
+- unshift()完毕后返回的结果是新数组的长度
+- unshift()完毕后原数组也会发生变化
+
+
+3. pop() 删除数组的最后一个元素
+```js
+let arrPop = [1, 2, 3];
+arrPop.pop();
+console.log(arrPop); //[ 1, 2 ]
+console.log(arrPop.pop()); //2
+```
+ 
+- pop()可以删除数组的最后一个元素记住一次只能删除一个元素
+- pop()没有参数
+- pop()完毕后返回的结果是删除的那个元素
+- pop()完毕后原数组也会发生变化
+
+
+4. shift() 删除数组的第一一个元素
+```js
+let arrShift = [1, 2, 3];
+arrShift.shift();
+console.log(arrShift); //[ 2, 3 ]
+console.log(arrPop.shift()); //1
+```
+ 
+- 1. shift()可以删除数组的第一个元素记住一次只能删除一个元素
+- 2. shift()没有参数
+- 3. shift()完毕后返回的结果是删除的那个元素
+- 4. shift()完毕后原数组也会发生变化
