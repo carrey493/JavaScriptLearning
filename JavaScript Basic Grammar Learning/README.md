@@ -2313,8 +2313,7 @@ console.log(Array.isArray(arrIns)); //true
 console.log(Array.isArray(arr1Ins)); //false
 ```
 
-#### 13.5.3 
-添加删除数组元素的方法
+#### 13.5.3 添加删除数组元素的方法
 | 方法名            | 说明                                                  | 返回值             |
 | ----------------- | ----------------------------------------------------- | ------------------ |
 | push(参数1...)    | 末尾添加一个或多个元素，注意修改原数组                | 并返回新的长度     |
@@ -2357,7 +2356,7 @@ arrPop.pop();
 console.log(arrPop); //[ 1, 2 ]
 console.log(arrPop.pop()); //2
 ```
- 
+
 - pop()可以删除数组的最后一个元素记住一次只能删除一个元素
 - pop()没有参数
 - pop()完毕后返回的结果是删除的那个元素
@@ -2371,8 +2370,96 @@ arrShift.shift();
 console.log(arrShift); //[ 2, 3 ]
 console.log(arrPop.shift()); //1
 ```
- 
+
 - 1. shift()可以删除数组的第一个元素记住一次只能删除一个元素
 - 2. shift()没有参数
 - 3. shift()完毕后返回的结果是删除的那个元素
 - 4. shift()完毕后原数组也会发生变化
+
+#### 13.5.4 数组排序
+
+| 方法名    | 说明                       | 是否修改原数组                   |
+| --------- | -------------------------- | -------------------------------- |
+| reverse() | 颠倒数组中元素的顺序无参数 | 该方法会改变原来的数组返回新数组 |
+| sort()    | 对数组的元素进行排序       | 该方法会改变原来的数组返回新数组 |
+
+```js
+let reArr = [9, 8, 7];
+reArr.reverse();
+console.log(reArr); //[ 7, 8, 9 ]
+```
+
+```js
+let sortArr = [5, 19, 13, 18, 12];
+sortArr.sort(function (a, b) {
+  return a - b; // 按照升序的方式
+});
+console.log(sortArr); //[ 5, 12, 13, 18, 19 ]
+```
+
+#### 13.5.5 数组索引方法
+
+| 方法名        | 说明                       | 是否修改原数组                       |
+| ------------- | -------------------------- | ------------------------------------ |
+| indexOf()     | 数组中查找给定的第一个元素 | 如果存在返回索引号如果不存在则返回-1 |
+| lastIndexOf() | 在数组的最后一个索引       | 如果存在返回索引号如果不存在则返回-1 |
+
+```js
+let indexOfArr = [78, 98, 635, 12, 54, 58, 68, 58];
+console.log(indexOfArr.indexOf(58)); //5 只返回第一个满足条件的索引号
+console.log(indexOfArr.indexOf(528)); // -1
+```
+
+```js
+let lastIndefOfArr = [1, 5, 8, 6, 78, 5, 87, 1, 1, 1];
+console.log(lastIndefOfArr.lastIndexOf(1)); //9 只返回最后一个满足条件的索引号
+console.log(lastIndefOfArr.lastIndexOf(158)); //-1
+```
+
+**数组去重**
+
+- 目标︰把旧数组里面不重复的元素选取出来放到新数组中，重复的元素只保留一个，放到新数组中去重。
+- 核心算法︰我们遍历旧数组，然后拿着旧数组元素去查询新数组，如果该元素在新数组里面没有出现过，我们就添加，否则不添加。
+
+```js
+let repetitiveStringArr = ["a","b","y","a","a","u","a","a","i","n","a","f","g",];
+
+function uniqueArr(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    console.log(newArr.indexOf(arr[i]) === -1, arr[i]);
+    if (newArr.indexOf(arr[i]) === -1) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+let demo = uniqueArr(repetitiveStringArr);
+console.log(demo); //['a', 'b', 'y','u', 'i', 'n','f', 'g']
+```
+
+#### 13.5.5 数组转换为子字符串
+
+| 方法名         | 说明                                       | 是否修改原数组 |
+| -------------- | ------------------------------------------ | -------------- |
+| toString()     | 把数组转换成字符串逗号分隔每一项           | 返回一个字符串 |
+| join('分隔符') | 方法用于把数组中的所有元素转换成一个字符串 | 返回一个字符串 |
+
+```js
+let stringArr = ["s", "t", "r"];
+console.log(stringArr.toString()); //s,t,r
+console.log(stringArr.join("*")); //s*t*r
+```
+
+#### 13.5.6 数组转换为子字符串
+
+| 方法名   | 说明                                  | 返回值                                       |
+| -------- | ------------------------------------- | -------------------------------------------- |
+| splice() | 数组删除splice(第几个开始,要删除个数) | 返回被删除项目的新数组注意，这个会影响原数组 |
+| concat() | 连接两个或多个数组不影响原数组        | 返回一个新的数组                             |
+| slice()  | 数组截取slice(begin, end)             | 返回被截取项目的新数组                       |
+
+
+
+
+slice()和splice()目的基本相同，建议重点看下splice()

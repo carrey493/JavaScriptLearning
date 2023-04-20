@@ -174,3 +174,61 @@ console.log(arrPop.shift()); //1
 3. shift()完毕后返回的结果是删除的那个元素
 4. shift()完毕后原数组也会发生变化
 */
+
+let reArr = [9, 8, 7];
+reArr.reverse();
+console.log(reArr); //[ 7, 8, 9 ]
+
+let sortArr = [5, 19, 13, 18, 12];
+sortArr.sort(function (a, b) {
+  return a - b; // 按照升序的方式
+});
+console.log(sortArr); //[ 5, 12, 13, 18, 19 ]
+
+//从前面开始查找
+let indexOfArr = [78, 98, 635, 12, 54, 58, 68, 58];
+console.log(indexOfArr.indexOf(58)); //5 只返回第一个满足条件的索引号
+console.log(indexOfArr.indexOf(528)); // -1
+
+//从后面开始查找
+let lastIndefOfArr = [1, 5, 8, 6, 78, 5, 87, 1, 1, 1];
+console.log(lastIndefOfArr.lastIndexOf(1)); //9 只返回最后一个满足条件的索引号
+console.log(lastIndefOfArr.lastIndexOf(158)); //-1
+
+//数组去重
+/* 
+目标︰把旧数组里面不重复的元素选取出来放到新数组中，重复的元素只保留一个，放到新数组中去重。
+核心算法︰我们遍历旧数组，然后拿着旧数组元素去查询新数组，如果该元素在新数组里面没有出现过，我们就添加，否则不添加。
+*/
+let repetitiveStringArr = [
+  "a",
+  "b",
+  "y",
+  "a",
+  "a",
+  "u",
+  "a",
+  "a",
+  "i",
+  "n",
+  "a",
+  "f",
+  "g",
+];
+
+function uniqueArr(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    console.log(newArr.indexOf(arr[i]) === -1, arr[i]);
+    if (newArr.indexOf(arr[i]) === -1) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+let demo = uniqueArr(repetitiveStringArr);
+console.log(demo); //['a', 'b', 'y','u', 'i', 'n','f', 'g']
+
+let stringArr = ["s", "t", "r"];
+console.log(stringArr.toString()); //s,t,r
+console.log(stringArr.join("*")); //s*t*r
