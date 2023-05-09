@@ -2524,19 +2524,129 @@ for (let i = 1; i < 1000000; i++) {
 console.log(str800); //会特别卡，因为需要不断地开辟新空间
 ```
 
-#### 13.6 根据字符返回位置
-
----
+#### 13.6.3 根据字符返回位置
 
 字符串所有的方法，都不会修改字符串本身(字符串是不可变的)，操作完成会返回一个新的字符串。
 
-| 方法名        | 说明                                                                          | 返回值                           |
-| ------------- | ----------------------------------------------------------------------------- | -------------------------------- |
-| indexOf(要查找的位置,[起始的位置])     | 返回指定内容在元字符串中的位置，如果找不到就返回-1，开始的位置是 index 索引号 | 返回一个字符所在位置找不到返回-1 |
-| lastIndexOf() | 从后往前找，只找第一个匹配的                                                  | 回一个字符所在位置找不到返回-1   |
+| 方法名                             | 说明                                                                          | 返回值                           |
+| ---------------------------------- | ----------------------------------------------------------------------------- | -------------------------------- |
+| indexOf(要查找的位置,[起始的位置]) | 返回指定内容在元字符串中的位置，如果找不到就返回-1，开始的位置是 index 索引号 | 返回一个字符所在位置找不到返回-1 |
+| lastIndexOf()                      | 从后往前找，只找第一个匹配的                                                  | 回一个字符所在位置找不到返回-1   |
 
 ```js
-let str810 = 'sdhajsdhjasdhajk'
-console.log(str810.indexOf('a'));//3
-console.log(str810.indexOf('a',5));//9 (包括有一个可选参数，确定查找的位置)
+let str810 = "sdhajsdhjasdhajk";
+console.log(str810.indexOf("a")); //3
+console.log(str810.indexOf("a", 5)); //9 (包括有一个可选参数，确定查找的位置)
+```
+
+```js
+//查找字符串中'adasdasmoasdasdowqodoasdqwo'所以有 o 出现的位置及次数
+/* 
+1.核心算法︰先查找第一个o出现的位置
+2.然后只要indexOf返回的结果不是-1就继续往后查找
+3.因为indexOf只能查找到第一个，所以后面的查找，利用第二个参数，当前索引加1，从而继续查找
+*/
+let str1936 = "adasdasmoasdasdowqodoasdqw";
+let index1936 = str1936.indexOf("o");
+let num1941 = 0;
+while (index1936 !== -1) {
+  num1941++;
+  index1936 = str1936.indexOf("o", index1936 + 1);
+}
+console.log(index1936, num1941); // -1 5
+```
+
+#### 13.6.4 根据位置返回字符
+
+| 方法名            | 说明                                        | 使用              |
+| ----------------- | ------------------------------------------- | ----------------- |
+| charAt(index)     | 返回指定位置的字符(index 字符串的索引号)    | str.charAt(0)     |
+| charCodeAt(index) | 获取指定位置处字符的 ASCII 码(index 索引号) | str.charCodeAt(0) |
+| str[index]        | 获取指定位置处字符                          | HTML5 支持        |
+
+```js
+// 1.charAt 根据位置返回字符
+console.log(str1936.charAt(3)); //s
+// 遍历所有的字符
+for (let i = 0; i < str1936.length; i++) {
+  console.log(str1936.charAt(i));
+}
+// 2.charCodeAt(index) 返回相应索引号的字符ACSII码 判断用户按下了哪个键
+console.log(str1936.charCodeAt(8)); //111
+//3. str[index]
+console.log(str1936[3]); //s
+```
+
+> 判断一个字符串'abcoefoxyozzopp'中出现次数最多的字符，并统计其次数。
+
+1. 核心算法:利用 charAt() 遍历这个字符串
+2. 把每个字符都存储给对象，如果对象没有该属性，就为 1，如果存在了就+1
+3. 遍历对象，得到最大值和该字符
+
+```js
+let str009 = "abcoefoxyozzopp";
+let obj009 = {};
+for (let i = 0; i < str009.length; i++) {
+  let chars = str009.charAt(i);
+  if (obj009[chars]) {
+    obj009[chars]++;
+  } else {
+    obj009[chars] = 1;
+  }
+}
+console.log(obj009); //{ a: 1, b: 1, c: 1, o: 4, e: 1, f: 1, x: 1, y: 1, z: 2, p: 2 }
+let max016 = 0;
+let char018 = "";
+for (let k in obj009) {
+  if (obj009[k] > max016) {
+    max016 = obj009[k];
+    char018 = k;
+  }
+}
+console.log("出现次数最多的字符是：" + char018, "，共：" + max016); // 出现次数最多的字符是：o ，共：4
+```
+
+#### 13.6.5 字符串操作方法(重点)
+
+| 方法名                               | 说明                                                                          | 使用 |
+| ------------------------------------ | ----------------------------------------------------------------------------- | ---- |
+| contact(s1,s2,s3)                    | concat()方法用于连接两个或多个字符串。拼接字符串，等效于+，+更常用            |      |
+| substr(start,length)                 | 从 start 位置开始(索引号), length 取的个数重点记住这个                        |      |
+| slice(start,end)                     | 从 start 位置开始(索引号), length 取的个数重点记住这个                        |      |
+| substring(start,end)                 | 从 start 位置开始，截取到 end 位置，end 取不到基本和 slice 相同但是不接受负值 |      |
+| replace('被替换的字符','替换为字符') | 替换字符串 replace('被替换的字符','替换为字符') 只会替换第一个字符            |      |
+| split('分隔符')                      | 字符串转为数组 split('分隔符')                                                |      |
+
+- concat()方法用于连接两个或多个字符串。拼接字符串，等效于+，+更常用
+
+```js
+let str0341 = "andy";
+console.log(str0341.concat("-hello")); //andy-hello
+```
+
+- substr('截取的起始位置','截取几个字符')
+
+```js
+let str036 = "改革春风满地";
+console.log(str036.substr(2, 2)); //春风
+```
+
+- 替换字符串 replace('被替换的字符','替换为字符') 只会替换第一个字符
+
+```js
+let str039 = "andya";
+console.log(str039.replace("a", "b")); //bndya
+// 有一个字符串'sdasdqwwedsfcdsgdfsg'把里面的所有s换为*
+let str045 = "sdasdqwwedsfcdsgdfsg";
+while (str045.indexOf("s") !== -1) {
+  str045 = str045.replace("s", "*");
+}
+console.log(str045); //*da*dqwwed*fcd*gdf*g
+```
+
+- 字符串转为数组 split('分隔符') 前面我们学过 join 把数组转换为字符串
+
+```js
+let str051 = "red,pink,blue";
+console.log(str051.split(",")); //[ 'red', 'pink', 'blue' ]
 ```
