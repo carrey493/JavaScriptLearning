@@ -232,3 +232,33 @@ console.log(demo); //['a', 'b', 'y','u', 'i', 'n','f', 'g']
 let stringArr = ["s", "t", "r"];
 console.log(stringArr.toString()); //s,t,r
 console.log(stringArr.join("*")); //s*t*r
+
+let str59 = "andy";
+console.log(str59.length); //4
+//为什么简单类型会有属性呢
+
+//基本包装类型：就是把简单数据类型包装成为了复杂数据类型,步骤如下：
+//1.把简单数据类型包装为复杂数据类型
+let temp = new String("andy");
+//2.把临时变量的值给str
+str59 = temp;
+//3.销毁临时变量temp
+temp = null;
+
+//字符串的不可变性
+let str758 = "pinnk";
+console.log(str758);
+str758 = "red";
+console.log(str758);
+//虽然值变了，但是开辟了新的内存空间，因此不要大量的拼接字符串
+
+/* let str800 = "";
+for (let i = 1; i < 1000000; i++) {
+  str800 += i;
+}
+console.log(str800);//会特别卡 */
+
+let str810 = 'sdhajsdhjasdhajk'
+console.log(str810.indexOf('a'));//3
+console.log(str810.indexOf('a',5));//9 (包括有一个可选参数，确定查找的位置)
+

@@ -1,6 +1,6 @@
 # JavaScript 基础语法
 
->学习地址：https://www.bilibili.com/video/BV1Sy4y1C7ha
+> 学习地址：https://www.bilibili.com/video/BV1Sy4y1C7ha
 
 ## 1 初识 JavaScript
 
@@ -2011,11 +2011,11 @@ console.log(obj3.sayHi()); // hi
 
 #### 12.2.3 利用构造函数创建对象
 
->为什么需要使用构造函数？==》就是因为之前两种创建对象的方式只能一次创建一个对象
+> 为什么需要使用构造函数？==》就是因为之前两种创建对象的方式只能一次创建一个对象
 
 我们一次创建一个对象，里面的很多属性和方法是大量相同的，只能复制。因此我们可以利用函数的方法，重复这些相同的代码 我们称这个函数为`构造函数`。又因为这个函数不一样，里面封装的不是普通代码，而是对象。
 
-`构造函数`︰是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new运算符一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。
+`构造函数`︰是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与 new 运算符一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。
 
 ```js
 // 构造函数的语法格式
@@ -2027,22 +2027,22 @@ function 构造函数名(){
 new 构造函数名();
 */
 function Star(uname, age, sex) {
-  this.uname = uname
-  this.age = age
-  this.sex = sex
-  this.sing = function(sang){
+  this.uname = uname;
+  this.age = age;
+  this.sex = sex;
+  this.sing = function (sang) {
     console.log(sang);
-  }
+  };
 }
-let ldh = new Star("ldh", 188, "nan");//调用函数返回的是一个对象
+let ldh = new Star("ldh", 188, "nan"); //调用函数返回的是一个对象
 console.log(ldh.age);
-ldh.sing('冰雨')
-let zxy = new Star("zxy", 125, "nan");//调用函数返回的是一个对象
+ldh.sing("冰雨");
+let zxy = new Star("zxy", 125, "nan"); //调用函数返回的是一个对象
 ```
 
 1. 构造函数名字首字母要大写
-2. 构造函数不需要return 就可以返回结果
-3. 我们调用构造函数时必须使用new
+2. 构造函数不需要 return 就可以返回结果
+3. 我们调用构造函数时必须使用 new
 4. 我们只要 new Star() 就调用函数生成一个对象
 5. 我们的属性和方法前面必须添加 this
 
@@ -2053,14 +2053,14 @@ let zxy = new Star("zxy", 125, "nan");//调用函数返回的是一个对象
 
 **我们利益构造函数创建对象的过程也称作为对象的实例化**
 
-### 12.3 new关键字
+### 12.3 new 关键字
 
-new关键字执行的过程
+new 关键字执行的过程
 
 1. new 构造函数可以在内存中创建了一个空对象
-2. this就会指向刚才创建的空对象
+2. this 就会指向刚才创建的空对象
 3. 执行构造函数里面的代码给这个空对象添加属性和方法
-4. 返回这个对象，所以构造函数不需要return。
+4. 返回这个对象，所以构造函数不需要 return。
 
 ### 12.4 遍历对象属性
 
@@ -2068,10 +2068,10 @@ new关键字执行的过程
 
 ```js
 let teacher = {
-  name: 'pink',
+  name: "pink",
   age: 25,
-  sex: 'male'
-}
+  sex: "male",
+};
 
 console.log(teacher.name);
 console.log(teacher.age);
@@ -2079,40 +2079,40 @@ console.log(teacher.sex);
 
 // for...in 遍历对象
 for (let key in teacher) {
-  console.log(key);//nam age sex key得到的是属性名
-  console.log(teacher[key]);// 25 sex male 属性值
+  console.log(key); //nam age sex key得到的是属性名
+  console.log(teacher[key]); // 25 sex male 属性值
 }
 ```
 
 ---
 
-***总结**
+**\*总结**
 
 1. 对象可以让代码结构更清晰
-2. 对象复杂数据类型Object
+2. 对象复杂数据类型 Object
 3. 本质：对象就是一组无序数组的相关属性和方法的集合
 4. 构造函数泛指某一大类
 5. 对象特指某一个事物
 6. `for...in语句`用于对数组或者对象的属性进行循环操作
 
- ## 13 内置对象
+## 13 内置对象
 
 - 能够说出什么是内置对象
-- 能够根据文档查询指定API的使用方法
-- 能够使用Math对象的常用方法
-- 能够使用Date对象的常用方法
-- 能够使用Array对象的常用方法
-- 能够使用String 对象的常用方法
+- 能够根据文档查询指定 API 的使用方法
+- 能够使用 Math 对象的常用方法
+- 能够使用 Date 对象的常用方法
+- 能够使用 Array 对象的常用方法
+- 能够使用 String 对象的常用方法
 
 ### 13.1 内置对象简介
 
-JavaScript中的对象分为3种:`自定义对象`、`内置对象`、`浏览器对象`
+JavaScript 中的对象分为 3 种:`自定义对象`、`内置对象`、`浏览器对象`
 
-前面两种对象是JS基础内容，属于`ECMAScript`;**第三个浏览器对象属于我们JS独有的，我们JS API讲解**
+前面两种对象是 JS 基础内容，属于`ECMAScript`;**第三个浏览器对象属于我们 JS 独有的，我们 JS API 讲解**
 
-`内置对象`就是指JS语言自带的一些对象，这些对象供开发者使用，并提供了一些常用的或是最基本而必要的功能(属性和方法)
+`内置对象`就是指 JS 语言自带的一些对象，这些对象供开发者使用，并提供了一些常用的或是最基本而必要的功能(属性和方法)
 
-JavaScript提供了多个内置对象∶`Math`、 `Date` 、`Array`、`String`等
+JavaScript 提供了多个内置对象 ∶`Math`、 `Date` 、`Array`、`String`等
 
 ### 13.2 文档查阅
 
@@ -2120,56 +2120,55 @@ JavaScript提供了多个内置对象∶`Math`、 `Date` 、`Array`、`String`�
 
 `MDN`:https://developer.mozilla.org/zh-CN/
 
-学习一个内置对象的使用，只要学会其常用成员的使用即可，我们可以通过查文档学习，可以通过MDN/W3C来查询。
+学习一个内置对象的使用，只要学会其常用成员的使用即可，我们可以通过查文档学习，可以通过 MDN/W3C 来查询。
 
-Mozilla开发者网络(MDN )提供了有关开放网络技术(Open Web )的信息，包括HTML、CSS和万维网及HTML5应用的API。
+Mozilla 开发者网络(MDN )提供了有关开放网络技术(Open Web )的信息，包括 HTML、CSS 和万维网及 HTML5 应用的 API。
 
 #### 13.2.2 如何学习对象中的方法
 
 1. 查阅该方法的功能
 2. 查看里面参数的意义和类型
 3. 查看返回值的意义和类型
-4. 通过demo进行测试
+4. 通过 demo 进行测试
 
-### 13.3 Math对象
+### 13.3 Math 对象
 
-#### 13.3.1 Math概述
+#### 13.3.1 Math 概述
 
-Math对象不是构造函数，它具有数学常数和函数的属性和方法。跟数学相关的运算（求绝对值，取整、最大值等）可以使用Math中的成员。
+Math 对象不是构造函数，它具有数学常数和函数的属性和方法。跟数学相关的运算（求绝对值，取整、最大值等）可以使用 Math 中的成员。
 
->Math.PI //圆周率
+> Math.PI //圆周率
 
->Math.floor () //向下取整
+> Math.floor () //向下取整
 
->Math.ceil() //向上取整
+> Math.ceil() //向上取整
 
->Math.round () //四舍五入版就近取整注意-3.5结果是-3
+> Math.round () //四舍五入版就近取整注意-3.5 结果是-3
 
->Math.abs () //绝对值
+> Math.abs () //绝对值
 
->Math.max () /Math.min() //求最大和最小值
-
+> Math.max () /Math.min() //求最大和最小值
 
 ```js
 console.log(Math.PI); //3.141592653589793
 
-console.log(Math.max(1,2,6,5)); //6
+console.log(Math.max(1, 2, 6, 5)); //6
 
-console.log(Math.abs(1));//1
-console.log(Math.abs(-1));//1
-console.log(Math.abs('-1'));//1 隐式转换
-console.log(Math.abs('number'));//NaN
+console.log(Math.abs(1)); //1
+console.log(Math.abs(-1)); //1
+console.log(Math.abs("-1")); //1 隐式转换
+console.log(Math.abs("number")); //NaN
 
 //三个取整方法
-console.log(Math.floor(1.1));//1 向下取整
-console.log(Math.ceil(1.1));//2 向上取整
-console.log(Math.round(1.5));//2 四舍五入
-console.log(Math.round(-1.5));//-1 四舍五入 其他数字都是四舍五入但是.5特殊它往大了取
+console.log(Math.floor(1.1)); //1 向下取整
+console.log(Math.ceil(1.1)); //2 向上取整
+console.log(Math.round(1.5)); //2 四舍五入
+console.log(Math.round(-1.5)); //-1 四舍五入 其他数字都是四舍五入但是.5特殊它往大了取
 ```
 
-#### 13.3.2 随机数方法random()
+#### 13.3.2 随机数方法 random()
 
-Math.random()函数返回一个浮点，伪随机数在范围[0，1]，也就是说，从0（包括0）往上，但是不包括1(排1 )，然后您可以缩放到所需的范围。实现将初始种子选择到随机数生成算法;它不能被用户选择或重置。
+Math.random()函数返回一个浮点，伪随机数在范围[0，1]，也就是说，从 0（包括 0）往上，但是不包括 1(排 1 )，然后您可以缩放到所需的范围。实现将初始种子选择到随机数生成算法;它不能被用户选择或重置。
 
 ```js
 //Math.random()
@@ -2182,35 +2181,38 @@ console.log(Math.random()); //0.8577023374955108 Math.floor (Math.random()(max -
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-console.log(getRandom(1, 10));//9
+console.log(getRandom(1, 10)); //9
 ```
 
 ### 13.4 日期对象
 
 #### 13.4.1 Date 概述
 
-创建`Date实例`用来处理日期和时间Date对象基于1970年1月1日(世界标准时间)起的毫秒数。
+创建`Date实例`用来处理日期和时间 Date 对象基于 1970 年 1 月 1 日(世界标准时间)起的毫秒数。
 
-`Date() 日期对象`是一个构造函数必须使用new来调用创建我们的日期对象
+`Date() 日期对象`是一个构造函数必须使用 new 来调用创建我们的日期对象
 
 #### 13.4.2 Date()方法的使用
 
 1. 获取当前时间必须实例化
+
 ```js
 let date = new Date();
-console.log(date);//2023-03-28T10:52:19.981Z
+console.log(date); //2023-03-28T10:52:19.981Z
 ```
+
 2. Date()构浩函数的参数
+
 ```js
 /* 
 1.如果没有参数返回当前系统的当前时间
 2.参数常用的写法 
   数字型 2019,10,01 或者字符串型 2019-10-1 8:8:8
 */
-let date2 = new Date(2023,3,28);
-console.log(date2);//2023-04-27T16:00:00.000Z
-let date3 = new Date('2023-3-28 18:58');
-console.log(date3);//2023-03-28T10:58:00.000Z
+let date2 = new Date(2023, 3, 28);
+console.log(date2); //2023-04-27T16:00:00.000Z
+let date3 = new Date("2023-3-28 18:58");
+console.log(date3); //2023-03-28T10:58:00.000Z
 ```
 
 #### 13.4.3 日期格式化
@@ -2249,7 +2251,7 @@ console.log(
 
 #### 13.4.4 获取日期的总的毫秒形式
 
-**Date对象是基于1970年1月1日(世界标准时间)起的毫秒数**
+**Date 对象是基于 1970 年 1 月 1 日(世界标准时间)起的毫秒数**
 
 我们经常利用总的毫秒数来计算时间，因为它更精确。
 
@@ -2277,7 +2279,7 @@ function countDown(time) {
   let s = parseInt(tims % 60);
   return day + "天" + hour + "时" + m + "分" + s + "秒";
 }
-console.log('距离倒计时还有：',countDown("2023-3-28 19:50:00")); //0天0时2分33秒
+console.log("距离倒计时还有：", countDown("2023-3-28 19:50:00")); //0天0时2分33秒
 ```
 
 ### 13.5 数组对象
@@ -2314,15 +2316,16 @@ console.log(Array.isArray(arr1Ins)); //false
 ```
 
 #### 13.5.3 添加删除数组元素的方法
-| 方法名            | 说明                                                  | 返回值             |
-| ----------------- | ----------------------------------------------------- | ------------------ |
-| push(参数1...)    | 末尾添加一个或多个元素，注意修改原数组                | 并返回新的长度     |
-| pop()             | 删除数组最后一个元素，把数组长度减1无参数、修改原数组 | 返回它删除的元素值 |
-| unshift(参数1...) | 向数组的开头添加一个或更多元素，注意修改原数组        | 返回新的长度       |
-| shift()           | 别除数组的第一个元素，数组长度减1无参数、修改原数组   | 并返回第一个元素   |
 
+| 方法名             | 说明                                                    | 返回值             |
+| ------------------ | ------------------------------------------------------- | ------------------ |
+| push(参数 1...)    | 末尾添加一个或多个元素，注意修改原数组                  | 并返回新的长度     |
+| pop()              | 删除数组最后一个元素，把数组长度减 1 无参数、修改原数组 | 返回它删除的元素值 |
+| unshift(参数 1...) | 向数组的开头添加一个或更多元素，注意修改原数组          | 返回新的长度       |
+| shift()            | 别除数组的第一个元素，数组长度减 1 无参数、修改原数组   | 并返回第一个元素   |
 
 1. push() 在我们的数组末尾添加一个或多个元素
+
 ```js
 let arrPush = [1, 2, 3];
 arrPush.push(4, "blue");
@@ -2330,26 +2333,26 @@ console.log(arrPush.push(5, "pink")); //7
 console.log(arrPush); // [ 1, 2, 3, 4, 'blue' , 5, 'pink']
 ```
 
-- push()可以给数组追加新的元素 
+- push()可以给数组追加新的元素
 - push()参数直接写数组元素就可以了
 - push()完毕后返回的结果是新数组的长度
 - push()完毕后原数组也会发生变化
 
-
 2. unshift() 在我们数组的开头添加一个或多个元素
+
 ```js
 let arrUnshift = [1, 2, 3];
 arrUnshift.unshift("loop", "pop");
 console.log(arrUnshift); //[ 'loop', 'pop', 1, 2, 3 ]
 ```
 
-- unshift()可以给数组前面追加新的元素 
+- unshift()可以给数组前面追加新的元素
 - unshift()参数直接写数组元素就可以了
 - unshift()完毕后返回的结果是新数组的长度
 - unshift()完毕后原数组也会发生变化
 
-
 3. pop() 删除数组的最后一个元素
+
 ```js
 let arrPop = [1, 2, 3];
 arrPop.pop();
@@ -2362,8 +2365,8 @@ console.log(arrPop.pop()); //2
 - pop()完毕后返回的结果是删除的那个元素
 - pop()完毕后原数组也会发生变化
 
-
 4. shift() 删除数组的第一一个元素
+
 ```js
 let arrShift = [1, 2, 3];
 arrShift.shift();
@@ -2422,7 +2425,21 @@ console.log(lastIndefOfArr.lastIndexOf(158)); //-1
 - 核心算法︰我们遍历旧数组，然后拿着旧数组元素去查询新数组，如果该元素在新数组里面没有出现过，我们就添加，否则不添加。
 
 ```js
-let repetitiveStringArr = ["a","b","y","a","a","u","a","a","i","n","a","f","g",];
+let repetitiveStringArr = [
+  "a",
+  "b",
+  "y",
+  "a",
+  "a",
+  "u",
+  "a",
+  "a",
+  "i",
+  "n",
+  "a",
+  "f",
+  "g",
+];
 
 function uniqueArr(arr) {
   let newArr = [];
@@ -2453,13 +2470,73 @@ console.log(stringArr.join("*")); //s*t*r
 
 #### 13.5.6 数组转换为子字符串
 
-| 方法名   | 说明                                  | 返回值                                       |
-| -------- | ------------------------------------- | -------------------------------------------- |
-| splice() | 数组删除splice(第几个开始,要删除个数) | 返回被删除项目的新数组注意，这个会影响原数组 |
-| concat() | 连接两个或多个数组不影响原数组        | 返回一个新的数组                             |
-| slice()  | 数组截取slice(begin, end)             | 返回被截取项目的新数组                       |
+| 方法名   | 说明                                   | 返回值                                       |
+| -------- | -------------------------------------- | -------------------------------------------- |
+| splice() | 数组删除 splice(第几个开始,要删除个数) | 返回被删除项目的新数组注意，这个会影响原数组 |
+| concat() | 连接两个或多个数组不影响原数组         | 返回一个新的数组                             |
+| slice()  | 数组截取 slice(begin, end)             | 返回被截取项目的新数组                       |
 
+slice()和 splice()目的基本相同，建议重点看下 splice()
 
+### 13.6 字符串对象
 
+#### 13.6.1 基本包装类型
 
-slice()和splice()目的基本相同，建议重点看下splice()
+为了方便操作基本数据类型，JavaScript 还提供了三个特殊的引用类型:String、Number 和 Boolean.
+
+**基本包装类型**就是把简单数据类型包装成为复杂数据类型，这样基本数据类型就有了属性和方法。
+
+```js
+let str59 = "andy";
+console.log(str59.length); //4
+```
+
+> 为什么简单类型会有属性呢?
+
+基本包装类型：就是把简单数据类型包装成为了复杂数据类型,步骤如下：
+
+```js
+//1.把简单数据类型包装为复杂数据类型
+let temp = new String("andy");
+//2.把临时变量的值给str
+str59 = temp;
+//3.销毁临时变量temp
+temp = null;
+let str59 = "andy";
+```
+
+#### 13.6.2 字符串的不可变
+
+指的是里面的值不可变，虽然看上去可以改变内容，但其实是地址变了，内存中新开辟了一个内存空间。
+
+```js
+//字符串的不可变性
+let str758 = "pinnk";
+console.log(str758);
+str758 = "red";
+console.log(str758);
+//虽然值变了，但是开辟了新的内存空间，因此不要大量的拼接字符串
+
+let str800 = "";
+for (let i = 1; i < 1000000; i++) {
+  str800 += i;
+}
+console.log(str800); //会特别卡，因为需要不断地开辟新空间
+```
+
+#### 13.6 根据字符返回位置
+
+---
+
+字符串所有的方法，都不会修改字符串本身(字符串是不可变的)，操作完成会返回一个新的字符串。
+
+| 方法名        | 说明                                                                          | 返回值                           |
+| ------------- | ----------------------------------------------------------------------------- | -------------------------------- |
+| indexOf(要查找的位置,[起始的位置])     | 返回指定内容在元字符串中的位置，如果找不到就返回-1，开始的位置是 index 索引号 | 返回一个字符所在位置找不到返回-1 |
+| lastIndexOf() | 从后往前找，只找第一个匹配的                                                  | 回一个字符所在位置找不到返回-1   |
+
+```js
+let str810 = 'sdhajsdhjasdhajk'
+console.log(str810.indexOf('a'));//3
+console.log(str810.indexOf('a',5));//9 (包括有一个可选参数，确定查找的位置)
+```
