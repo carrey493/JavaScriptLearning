@@ -2726,3 +2726,63 @@ console.log(p.name); //ldh
 f1(p);
 console.log(p.name);//zxy
 ```
+
+## 14 Web APIs
+
+### 14.1 Web APIs简介
+
+能够说出Web APIs阶段与JavaScript语法阶段的关联性
+
+能够说出什么是API
+
+能够说出什么是 Web API
+
+### 14.2 Web APIs和JS基础关联性
+
+#### 14.2.1 JS的组成
+
+![](https://img2023.cnblogs.com/blog/2332774/202307/2332774-20230704073955568-1129802340.png)
+
+#### 14.2.2 基础阶段以及Web APIs阶段
+
+**JS基础阶段**
+
+- 我们学习的是 ECMAscript标准规定的基本语法
+- 要求同学们掌握Js 基础语法
+- 只学习基本语法，做不了常用的网页交互效果
+- 目的是为了Js后面的课程打基础、做铺垫
+
+**Web APIs**
+
+- web APIs是w3c组织的标准
+- web APIs 我们主要学习DOM和BOM
+- web APIs是我们Js 所独有的部分
+- 我们主要学习页面交互功能
+- 需要使用Js基础的课程内容做基础
+
+Js基础学习ECMAscript 基础语法为后面作铺垫，web APIs是Js的应用，大量使用Js 基础语法做交互效果
+
+### 14.3 API和Web API
+
+#### 14.3.1 API
+
+**APl ( Application Programming Interface,应用程序编程接口)**是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。
+
+简单理解︰**API是给程序员提供的一种工具，以便能更轻松的实现想要完成的功能。**
+
+#### 14.3.2 Web API
+
+**Web API是浏览器**提供的一套操作**浏览器功能**和**页面元素**的**API**( BOM和DOM)。
+
+现阶段我们主要针对于浏览器讲解常用的API，主要针对浏览器做交互效果。
+
+> https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Introduction
+
+因为Web API很多，所以我们将这个阶段称为**Web APIs**
+
+#### 14.3.2 API和Web API总结
+
+1. **API是为我们程序员提供的一个接口，帮助我们实现某种功能，我们会使用就可以了，不必纠结内部如何实现**
+2. Web API主要是针对于浏览器提供的接口，主要针对于浏览器做交互效果。
+3. Web API一般都有输入和输出(函数的传参和返回值)，WebAPI很多都是方法(函数)
+4. 学习Web API可以结合前面学习内置对象方法的思路学习
