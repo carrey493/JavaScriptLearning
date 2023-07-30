@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="div"></div>
+
+    <ul>
+      <li>li</li>
+      <li>li</li>
+      <li>li</li>
+    </ul>
+
+    <ol id="ol">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+
+    <p id="box1" class="box"></p>
+    <div class="box"></div>
+    <div class="box"></div>
+    <p class="box"></p>
+
+    <script>
+      // 1. 因为我们文档页面从上往下加载，所以先得有标签所以我们script写到标签的下面
+      // 2. get 获得 element 元素 by 通过驼峰命名法
+      // 3. 参数 id 是大小写敏感的字符串
+      // 4. 返回的是一个对象
+      let div = document.getElementById("div");
+      console.log({ div });
+      // 5. console.dir 打印我们返回的对象，更好的查看里面的属性和方法
+      console.dir(div);
+
+      let li = document.getElementsByTagName("li");
+      console.log(li); // 1. 返回的是获取过来元素对的集合 以伪数组的形式存在
+      console.log(li[0]);
+      // 2. 我们想要依次打印里面的元素对象我们可以采用遍历的方式
+      for (let i = 0; i < li.length; i++) {
+        console.log(li[i]);
+      }
+
+      let ol = document.getElementsByTagName("ol");
+      // let ol = document.getElementId("ol"); // 也可以通过指定id获取单个父元素
+      console.log(ol[0].getElementsByTagName("li"));
+
+      let boxs = document.getElementsByClassName("box");
+      console.log(boxs);
+
+      let box1 = document.querySelector(".box");
+      console.log(box1);
+      let box11 = document.querySelector("#box1");
+      console.log(box11);
+
+      let allBox = document.querySelectorAll(".box");
+      console.log(allBox);
+
+      let body = document.body;
+      console.log(body);
+
+      let html = document.documentElement;
+      console.log(html);
+    </script>
+  </body>
+</html>

@@ -2812,3 +2812,99 @@ w3C已经定义了一系列的DOM接口，通过这些DOM接口可以改变网�
 - 节点︰网页中的所有内容都是节点（标签、属性、文本、注释等），DOM中使用node表示
 
 **DOM把以上内容都看做是对象**
+
+#### 14.4.2 获取元素
+
+##### 14.4.2.1 如何获取页面元素
+
+DOM在我们实际开发中主要用来操作元素。我们如何来获取页面中的元素呢?
+
+获取页面中的元素可以使用以下几种方式:
+
+- 根据ID获取
+- 根据标签名获取
+- 通过HTML5新增的方法获取
+- 特殊元素获取
+
+##### 14.4.2.2 根据ID获取
+
+使用`getElementByld()`方法可以获取带有ID的元素对象。
+
+```js
+let div = document.getElementById("div");
+console.log({ div });
+console.dir(div);
+```
+
+1. 因为我们文档页面从上往下加载，所以先得有标签所以我们script写到标签的下面
+2. get 获得 element 元素 by 通过驼峰命名法
+3. 参数 id 是大小写敏感的字符串
+4. 返回的是一个对象
+5. console.dir 打印我们返回的对象，更好的查看里面的属性和方法
+      
+##### 14.4.2.3 根据标签名获取
+
+使用getElementsByTagName()方法可以返回带有指定标签名的**对象的集合**。
+
+```js
+let li = document.getElementsByTagName("li");
+console.log(li); 
+console.log(li[0]);
+// 2. 我们想要依次打印里面的元素对象我们可以采用遍历的方式
+for (let i = 0; i < li.length; i++) {
+  console.log(li[i]);
+}
+```
+注意:
+
+1. 返回的是获取过来元素对的集合，以伪数组的形式存在。
+2．因为得到的是一个对象的集合，所以我们想要操作里面的元素就需要遍历。
+3. 得到元素对象是动态的
+4. 如果页面中只有一个li，返回的还是伪数组的形式。
+5. 如果页面中没有一个li，返回的还是一个空的伪数组。
+
+---
+
+还可以获取某个元素(父元素)内部所有指定标签名的子元素.
+
+> element.getElementsByTagName ('标签名');
+
+注意∶父元素必须是**单个对象(必须指明是哪一个元素对象)**,获取的时候不包括父元素自己。
+
+```js
+let ol = document.getElementsByTagName("ol");
+console.log(ol[0].getElementsByTagName("li"));
+```
+ 
+##### 14.4.2.4 通过 HTML5 新增的方法获取
+
+1. document.getElementsByClassName( '类名' );
+>根据类名返回元素对象集合
+```js
+let boxs = document.getElementsByClassName("box");
+```
+
+2. document.query selector ( '选择器');
+> 根据指定选择器返回第一个元素对象
+**切记里面的选择器需要加符号 .box #nav**
+```js
+let box1 = document.querySelector(".box");
+```
+
+3. document.queryselectorAll('选择器');
+>根据指定选择器返回
+```js
+let allBox = document.querySelectorAll(".box");
+```
+
+##### 14.4.2.5 获取特殊元素(body,html)
+
+1. 获取body元素
+```js
+let body = document.body;
+```
+
+2. 获取html元素
+```js
+let html = document.documentElement;
+```
