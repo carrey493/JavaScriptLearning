@@ -25,6 +25,10 @@
     <div class="box"></div>
     <p class="box"></p>
 
+    <button id="btn">事件按钮</button>
+
+    <div class="example">选中区域</div>
+
     <script>
       // 1. 因为我们文档页面从上往下加载，所以先得有标签所以我们script写到标签的下面
       // 2. get 获得 element 元素 by 通过驼峰命名法
@@ -63,6 +67,24 @@
 
       let html = document.documentElement;
       console.log(html);
+
+      /* 
+        事件是由三部分组成 事件源 事件类型 事件处理程序  称为事件三要素
+      */
+
+      // 事件源：事件被触发的对象 -》谁 按钮
+      let btn = document.getElementById("btn");
+      // 事件类型：如何触发 什么事件 比如鼠标点击事件 鼠标经过事件 鼠标按下事件
+      // 事件处理程序：通过一个函数的方式完成
+      btn.onclick = function () {
+        alert("点击按钮");
+      };
+
+      let exampleDiv = document.querySelector(".example");
+      console.log(exampleDiv);
+      exampleDiv.onclick = function(){
+        console.log('选中区域');
+      }
     </script>
   </body>
 </html>

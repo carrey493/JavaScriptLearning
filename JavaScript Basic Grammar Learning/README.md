@@ -2908,3 +2908,41 @@ let body = document.body;
 ```js
 let html = document.documentElement;
 ```
+
+#### 14.4.3 事件基础
+
+##### 14.4.3.1 事件概述
+
+JavaScript使我们有能力创建动态页面，而事件是可以被JavaScript侦测到的行为。
+
+网页中的每个元素都可以产生某些可以触发JavaScript的事件，例如，我们可以在用户点击某按钮时产生一个事件，然后去执行某些操作。
+
+##### 14.4.3.2 事件三要素
+
+事件是由三部分组成: `事件源` `事件类型` `事件处理程序`  称为事件三要素。
+
+```js
+// 事件源：事件被触发的对象 -》谁 按钮
+let btn = document.getElementById("btn");
+// 事件类型：如何触发 什么事件 比如鼠标点击事件 鼠标经过事件 鼠标按下事件
+// 事件处理程序：通过一个函数的方式完成
+btn.onclick = function () {
+  alert("点击按钮");
+};
+```
+
+##### 14.4.3.3 执行事件的步骤
+
+1. 获取事件源
+2. 注册事件(绑定事件)
+3. 添加事件处理程序(采取函数赋值形式)
+
+```js
+let exampleDiv = document.querySelector(".example");
+console.log(exampleDiv);
+exampleDiv.onclick = function(){
+  console.log('选中区域');
+}
+```
+
+![](https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png)
