@@ -2946,3 +2946,59 @@ exampleDiv.onclick = function(){
 ```
 
 ![](https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png)
+
+
+#### 14.4.4 操作元素
+
+JavaScript的DOM操作可以改变网页内容、结构和样式，我们可以利用DOM操作元素来改变元素里面的内容、属性等。**注意以下都是属性**
+
+##### 14.4.4.1 改变元素的内容
+
+>element.innerText
+
+从起始位置到终止位置的内容,但它去除html标签，同时空格和换行也会去掉
+
+>element.innerHTML
+
+起始位置到终止位置的全部内容，包括html标签，同时保留空格和换行
+
+```js
+// 1.获取元素
+let btnTime = document.getElementById("btnTime");
+let pTime = document.getElementById("pTime");
+let sTime = document.getElementById('sTime')
+// 2.注册事件
+btnTime.onclick = function(){
+  pTime.innerText = '2023-8-2'
+  pTime.innerHTML = '<strong>2023-8-2</strong>'
+  sTime.innerText = '<strong>7.27</strong>'
+}
+// 3.元素可以不用添加事件
+```
+
+innerText和innerHTML的区别
+
+1. innerText不识别html标签，非标准，去除空格和换行。
+2. innerHTML识别html标签，W3C标准，同时保留空和换行。
+
+这两个属性是可读写的，可以获取元素里面的内容。
+
+##### 14.4.4.2 常用元素的属性操作
+
+1. innerText、innerHTML改变元素内容
+2. src、href
+3. id、alt、 title
+
+```js
+let btnImg1 = document.getElementById("ingBtn1");
+let btnImg2 = document.getElementById("ingBtn2");
+let imgTest = document.getElementById("imgTest");
+btnImg1.onclick = function (){
+  imgTest.src = 'https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png'
+  imgTest.title = 'DOM事件'
+}
+btnImg2.onclick = function (){
+  imgTest.src = 'https://img2023.cnblogs.com/blog/2332774/202307/2332774-20230704075911651-1709441007.png'
+  imgTest.title = 'DOM树'
+}
+```
