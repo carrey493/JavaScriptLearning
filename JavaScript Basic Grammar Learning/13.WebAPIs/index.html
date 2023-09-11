@@ -1,124 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="div"></div>
 
-    <ul>
-      <li>li</li>
-      <li>li</li>
-      <li>li</li>
-    </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .boxs {
+      width: 400px;
+      border: 1px solid #ccc;
+      margin: 100px auto;
+    }
 
-    <ol id="ol">
-      <li></li>
-      <li></li>
-      <li></li>
-    </ol>
+    .boxs input {
+      width: 370px;
+      height: 30px;
+      border: 0;
+      outline: none;
+    }
 
-    <p id="box1" class="box"></p>
-    <div class="box"></div>
-    <div class="box"></div>
-    <p class="box"></p>
+    #shuxing {
+      width: 200px;
+      height: 200px;
+      background: orange;
+      background-color: blanchedalmond;
+    }
 
-    <button id="btn">事件按钮</button>
+    .change {
+      border: 2px dashed orange;
+    }
+  </style>
+</head>
 
-    <div class="example">选中区域</div>
+<body>
+  <div id="div"></div>
 
-    <button id="btnTime">显示时间</button>
-    <p id="pTime">时间p</p>
-    <span id="sTime">时间span</span>
+  <ul>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+  </ul>
 
-    <button id="ingBtn1">图片1</button>
-    <button id="ingBtn2">图片2</button>
-    <img id="imgTest" src="https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png" alt="">
-    <script>
-      // 1. 因为我们文档页面从上往下加载，所以先得有标签所以我们script写到标签的下面
-      // 2. get 获得 element 元素 by 通过驼峰命名法
-      // 3. 参数 id 是大小写敏感的字符串
-      // 4. 返回的是一个对象
-      let div = document.getElementById("div");
-      console.log({ div });
-      // 5. console.dir 打印我们返回的对象，更好的查看里面的属性和方法
-      console.dir(div);
+  <ol id="ol">
+    <li></li>
+    <li></li>
+    <li></li>
+  </ol>
 
-      let li = document.getElementsByTagName("li");
-      console.log(li); // 1. 返回的是获取过来元素对的集合 以伪数组的形式存在
-      console.log(li[0]);
-      // 2. 我们想要依次打印里面的元素对象我们可以采用遍历的方式
-      for (let i = 0; i < li.length; i++) {
-        console.log(li[i]);
-      }
+  <p id="box1" class="box"></p>
+  <div class="box"></div>
+  <div class="box"></div>
+  <p class="box"></p>
 
-      let ol = document.getElementsByTagName("ol");
-      // let ol = document.getElementId("ol"); // 也可以通过指定id获取单个父元素
-      console.log(ol[0].getElementsByTagName("li"));
+  <button id="btn">事件按钮</button>
 
-      let boxs = document.getElementsByClassName("box");
-      console.log(boxs);
+  <div class="example">选中区域</div>
 
-      let box1 = document.querySelector(".box");
-      console.log(box1);
-      let box11 = document.querySelector("#box1");
-      console.log(box11);
+  <button id="btnTime">显示时间</button>
+  <p id="pTime">时间p</p>
+  <span id="sTime">时间span</span>
 
-      let allBox = document.querySelectorAll(".box");
-      console.log(allBox);
+  <button id="ingBtn1">图片1</button>
+  <button id="ingBtn2">图片2</button>
+  <img id="imgTest" src="https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png"
+    alt="" />
 
-      let body = document.body;
-      console.log(body);
+  <input id="input" type="text" /> <button id="inputBtn">修改</button>
+  <hr />
 
-      let html = document.documentElement;
-      console.log(html);
+  <dic class="boxs">
+    <label for="">展示</label>
+    <input type="text" />
+  </dic>
 
-      /* 
-        事件是由三部分组成 事件源 事件类型 事件处理程序  称为事件三要素
-      */
+  <div id="shuxing" style="color: red">123456</div>
+  <script>
+    // 1. 因为我们文档页面从上往下加载，所以先得有标签所以我们script写到标签的下面
+    // 2. get 获得 element 元素 by 通过驼峰命名法
+    // 3. 参数 id 是大小写敏感的字符串
+    // 4. 返回的是一个对象
+    let div = document.getElementById("div");
+    console.log({ div });
+    // 5. console.dir 打印我们返回的对象，更好的查看里面的属性和方法
+    console.dir(div);
 
-      // 事件源：事件被触发的对象 -》谁 按钮
-      let btn = document.getElementById("btn");
-      // 事件类型：如何触发 什么事件 比如鼠标点击事件 鼠标经过事件 鼠标按下事件
-      // 事件处理程序：通过一个函数的方式完成
-      btn.onclick = function () {
-        alert("点击按钮");
-      };
+    let li = document.getElementsByTagName("li");
+    console.log(li); // 1. 返回的是获取过来元素对的集合 以伪数组的形式存在
+    console.log(li[0]);
+    // 2. 我们想要依次打印里面的元素对象我们可以采用遍历的方式
+    for (let i = 0; i < li.length; i++) {
+      console.log(li[i]);
+    }
 
-      let exampleDiv = document.querySelector(".example");
-      console.log(exampleDiv);
-      exampleDiv.onclick = function () {
-        console.log("选中区域");
-      };
+    let ol = document.getElementsByTagName("ol");
+    // let ol = document.getElementId("ol"); // 也可以通过指定id获取单个父元素
+    console.log(ol[0].getElementsByTagName("li"));
 
+    let boxs = document.getElementsByClassName("box");
+    console.log(boxs);
 
-      // 1.获取元素
-      let btnTime = document.getElementById("btnTime");
-      let pTime = document.getElementById("pTime");
-      let sTime = document.getElementById('sTime')
-      console.log(pTime.innerHTML);
-      // 2.注册事件
-      btnTime.onclick = function(){
-        pTime.innerText = '2023-8-2'
-        pTime.innerHTML = '<strong>2023-8-2</strong>'
-        sTime.innerText = '<strong>7.27</strong>'
-      }
-      // 3.元素可以不用添加事件
-      sTime.innerText = '7.27'
+    let box1 = document.querySelector(".box");
+    console.log(box1);
+    let box11 = document.querySelector("#box1");
+    console.log(box11);
 
-      let btnImg1 = document.getElementById("ingBtn1");
-      let btnImg2 = document.getElementById("ingBtn2");
-      let imgTest = document.getElementById("imgTest");
-      btnImg1.onclick = function (){
-        imgTest.src = 'https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png'
-        imgTest.title = 'DOM事件'
-      }
-      btnImg2.onclick = function (){
-        imgTest.src = 'https://img2023.cnblogs.com/blog/2332774/202307/2332774-20230704075911651-1709441007.png'
-        imgTest.title = 'DOM树'
-      }
-    </script>
-  </body>
+    let allBox = document.querySelectorAll(".box");
+    console.log(allBox);
+
+    let body = document.body;
+    console.log(body);
+
+    let html = document.documentElement;
+    console.log(html);
+
+    /* 
+      事件是由三部分组成 事件源 事件类型 事件处理程序  称为事件三要素
+    */
+
+    // 事件源：事件被触发的对象 -》谁 按钮
+    let btn = document.getElementById("btn");
+    // 事件类型：如何触发 什么事件 比如鼠标点击事件 鼠标经过事件 鼠标按下事件
+    // 事件处理程序：通过一个函数的方式完成
+    btn.onclick = function () {
+      alert("点击按钮");
+    };
+
+    let exampleDiv = document.querySelector(".example");
+    console.log(exampleDiv);
+    exampleDiv.onclick = function () {
+      console.log("选中区域");
+    };
+
+    // 1.获取元素
+    let btnTime = document.getElementById("btnTime");
+    let pTime = document.getElementById("pTime");
+    let sTime = document.getElementById("sTime");
+    console.log(pTime.innerHTML);
+    // 2.注册事件
+    btnTime.onclick = function () {
+      pTime.innerText = "2023-8-2";
+      pTime.innerHTML = "<strong>2023-8-2</strong>";
+      sTime.innerText = "<strong>7.27</strong>";
+    };
+    // 3.元素可以不用添加事件
+    sTime.innerText = "7.27";
+
+    let btnImg1 = document.getElementById("ingBtn1");
+    let btnImg2 = document.getElementById("ingBtn2");
+    let imgTest = document.getElementById("imgTest");
+    btnImg1.onclick = function () {
+      imgTest.src =
+        "https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png";
+      imgTest.title = "DOM事件";
+    };
+    btnImg2.onclick = function () {
+      imgTest.src =
+        "https://img2023.cnblogs.com/blog/2332774/202307/2332774-20230704075911651-1709441007.png";
+      imgTest.title = "DOM树";
+    };
+
+    let input = document.getElementById("input");
+    let inputBtn = document.getElementById("inputBtn");
+    inputBtn.onclick = function () {
+      input.innerHTML = "点击了"; // 这个是普通标签的内容，对于input标签无效
+      input.value = "被点击了";
+      // 禁用按钮
+      inputBtn.disabled = true;
+      this.disabled = true; // this指向的是被调用这--》inputBtn
+    };
+
+    let shuxingDiv = document.getElementById("shuxing");
+    shuxingDiv.onclick = function () {
+      this.style.backgroundColor = "blue";
+      this.style.width = "300px";
+      this.className = "change"
+    };
+  </script>
+</body>
+
 </html>

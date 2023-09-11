@@ -2651,7 +2651,7 @@ let str051 = "red,pink,blue";
 console.log(str051.split(",")); //[ 'red', 'pink', 'blue' ]
 ```
 
-## 14 Javascript中的简单数据类型与复杂数据类型
+## 14 Javascript 中的简单数据类型与复杂数据类型
 
 - 能够说出简单数据类型的内存分配
 - 能够说出复杂教据类型的内存分配
@@ -2662,22 +2662,23 @@ console.log(str051.split(",")); //[ 'red', 'pink', 'blue' ]
 
 简单类型又叫做`基本数据类型`或者`值类型`，复杂类型又叫做`引用类型`。
 
-- 值类型∶简单数据类型/基本数据类型，在存储时变量中存储的是值本身，因此叫做值类型
+- 值类型 ∶ 简单数据类型/基本数据类型，在存储时变量中存储的是值本身，因此叫做值类型
 
->string , number , boolean , undefined , null
+> string , number , boolean , undefined , null
 
 - 引用类型︰复杂数据类型，在存储时变量中存储的仅仅是地址(引用)，因此叫做引用数据类型
 
-> 通过new关键字创建的对象（系统对象、自定义对象），如Object、Array、Date等
+> 通过 new 关键字创建的对象（系统对象、自定义对象），如 Object、Array、Date 等
 
 ### 14.2 堆和栈
 
 堆栈空间分配区别:
+
 1. 栈(操作系统)︰由操作系统自动分配释放存放函数的参数值、局部变量的值等。其操作方式类似于数据结构中的栈;**简单数据类型存放到栈里面**
 
 2. 堆(操作系统)︰存储复杂类型(对象)，一般由程序员分配释放，若程序员不释放，由垃圾回收机制回收。**复杂数据类型存放到堆里面**
 
->注意︰JavaScript中没有堆栈的概念，通过堆栈的方式，可以让大家更容易理解代码的一些执行方式，便于将来学习其他语言
+> 注意︰JavaScript 中没有堆栈的概念，通过堆栈的方式，可以让大家更容易理解代码的一些执行方式，便于将来学习其他语言
 
 ### 14.3 简单类型的内存分配
 
@@ -2724,111 +2725,111 @@ function f1(x) {
 var p = new Person("ldh");
 console.log(p.name); //ldh
 f1(p);
-console.log(p.name);//zxy
+console.log(p.name); //zxy
 ```
 
-## 14 Web APIs
+## 15 Web APIs
 
-### 14.1 Web APIs简介
+### 15.1 Web APIs 简介
 
-能够说出Web APIs阶段与JavaScript语法阶段的关联性
+能够说出 Web APIs 阶段与 JavaScript 语法阶段的关联性
 
-能够说出什么是API
+能够说出什么是 API
 
 能够说出什么是 Web API
 
-### 14.2 Web APIs和JS基础关联性
+### 15.2 Web APIs 和 JS 基础关联性
 
-#### 14.2.1 JS的组成
+#### 15.2.1 JS 的组成
 
 ![](https://img2023.cnblogs.com/blog/2332774/202307/2332774-20230704073955568-1129802340.png)
 
-#### 14.2.2 基础阶段以及Web APIs阶段
+#### 15.2.2 基础阶段以及 Web APIs 阶段
 
-**JS基础阶段**
+**JS 基础阶段**
 
-- 我们学习的是 ECMAscript标准规定的基本语法
-- 要求同学们掌握Js 基础语法
+- 我们学习的是 ECMAscript 标准规定的基本语法
+- 要求同学们掌握 Js 基础语法
 - 只学习基本语法，做不了常用的网页交互效果
-- 目的是为了Js后面的课程打基础、做铺垫
+- 目的是为了 Js 后面的课程打基础、做铺垫
 
 **Web APIs**
 
-- web APIs是w3c组织的标准
-- web APIs 我们主要学习DOM和BOM
-- web APIs是我们Js 所独有的部分
+- web APIs 是 w3c 组织的标准
+- web APIs 我们主要学习 DOM 和 BOM
+- web APIs 是我们 Js 所独有的部分
 - 我们主要学习页面交互功能
-- 需要使用Js基础的课程内容做基础
+- 需要使用 Js 基础的课程内容做基础
 
-Js基础学习ECMAscript 基础语法为后面作铺垫，web APIs是Js的应用，大量使用Js 基础语法做交互效果
+Js 基础学习 ECMAscript 基础语法为后面作铺垫，web APIs 是 Js 的应用，大量使用 Js 基础语法做交互效果
 
-### 14.3 API和Web API
+### 15.3 API 和 Web API
 
-#### 14.3.1 API
+#### 15.3.1 API
 
 **APl ( Application Programming Interface,应用程序编程接口)**是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。
 
-简单理解︰**API是给程序员提供的一种工具，以便能更轻松的实现想要完成的功能。**
+简单理解︰**API 是给程序员提供的一种工具，以便能更轻松的实现想要完成的功能。**
 
-#### 14.3.2 Web API
+#### 15.3.2 Web API
 
-**Web API是浏览器**提供的一套操作**浏览器功能**和**页面元素**的**API**( BOM和DOM)。
+**Web API 是浏览器**提供的一套操作**浏览器功能**和**页面元素**的**API**( BOM 和 DOM)。
 
-现阶段我们主要针对于浏览器讲解常用的API，主要针对浏览器做交互效果。
+现阶段我们主要针对于浏览器讲解常用的 API，主要针对浏览器做交互效果。
 
 > https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Introduction
 
-因为Web API很多，所以我们将这个阶段称为**Web APIs**
+因为 Web API 很多，所以我们将这个阶段称为**Web APIs**
 
-#### 14.3.2 API和Web API总结
+#### 15.3.3 API 和 Web API 总结
 
-1. **API是为我们程序员提供的一个接口，帮助我们实现某种功能，我们会使用就可以了，不必纠结内部如何实现**
-2. Web API主要是针对于浏览器提供的接口，主要针对于浏览器做交互效果。
-3. Web API一般都有输入和输出(函数的传参和返回值)，WebAPI很多都是方法(函数)
-4. 学习Web API可以结合前面学习内置对象方法的思路学习
+1. **API 是为我们程序员提供的一个接口，帮助我们实现某种功能，我们会使用就可以了，不必纠结内部如何实现**
+2. Web API 主要是针对于浏览器提供的接口，主要针对于浏览器做交互效果。
+3. Web API 一般都有输入和输出(函数的传参和返回值)，WebAPI 很多都是方法(函数)
+4. 学习 Web API 可以结合前面学习内置对象方法的思路学习
 
-### 14.4 DOM
+### 15.4 DOM
 
-- 能够说出什么是DOM
+- 能够说出什么是 DOM
 - 能够获取页面元素
 - 能够给元素注册事件
-- 能够操作DOM元素的属性能够创建元素
-- 能够操作DOM节点
+- 能够操作 DOM 元素的属性能够创建元素
+- 能够操作 DOM 节点
 
-#### 14.4.1 DOM简介
+#### 15.4.1 DOM 简介
 
-##### 14.4.1.1 什么是DOM
+##### 15.4.1.1 什么是 DOM
 
-文档对象模型(Document Object Model，简称**DOM**)，是W3C组织推荐的处理可扩展标记语言( HTML或者XML)的**标准编程接口**。
+文档对象模型(Document Object Model，简称**DOM**)，是 W3C 组织推荐的处理可扩展标记语言( HTML 或者 XML)的**标准编程接口**。
 
-w3C已经定义了一系列的DOM接口，通过这些DOM接口可以改变网页的内容、结构和样式。
+w3C 已经定义了一系列的 DOM 接口，通过这些 DOM 接口可以改变网页的内容、结构和样式。
 
-##### 14.4.1.2 DOM树
+##### 15.4.1.2 DOM 树
 
 ![](https://img2023.cnblogs.com/blog/2332774/202307/2332774-20230704075911651-1709441007.png)
 
-- 文档:一个页面就是一个文档，DOM中使用document表示
-- 元素:页面中的所有标签都是元素，DOM中使用element表示
-- 节点︰网页中的所有内容都是节点（标签、属性、文本、注释等），DOM中使用node表示
+- 文档:一个页面就是一个文档，DOM 中使用 document 表示
+- 元素:页面中的所有标签都是元素，DOM 中使用 element 表示
+- 节点︰网页中的所有内容都是节点（标签、属性、文本、注释等），DOM 中使用 node 表示
 
-**DOM把以上内容都看做是对象**
+**DOM 把以上内容都看做是对象**
 
-#### 14.4.2 获取元素
+#### 15.4.2 获取元素
 
-##### 14.4.2.1 如何获取页面元素
+##### 15.4.2.1 如何获取页面元素
 
-DOM在我们实际开发中主要用来操作元素。我们如何来获取页面中的元素呢?
+DOM 在我们实际开发中主要用来操作元素。我们如何来获取页面中的元素呢?
 
 获取页面中的元素可以使用以下几种方式:
 
-- 根据ID获取
+- 根据 ID 获取
 - 根据标签名获取
-- 通过HTML5新增的方法获取
+- 通过 HTML5 新增的方法获取
 - 特殊元素获取
 
-##### 14.4.2.2 根据ID获取
+##### 15.4.2.2 根据 ID 获取
 
-使用`getElementByld()`方法可以获取带有ID的元素对象。
+使用`getElementByld()`方法可以获取带有 ID 的元素对象。
 
 ```js
 let div = document.getElementById("div");
@@ -2836,32 +2837,33 @@ console.log({ div });
 console.dir(div);
 ```
 
-1. 因为我们文档页面从上往下加载，所以先得有标签所以我们script写到标签的下面
+1. 因为我们文档页面从上往下加载，所以先得有标签所以我们 script 写到标签的下面
 2. get 获得 element 元素 by 通过驼峰命名法
 3. 参数 id 是大小写敏感的字符串
 4. 返回的是一个对象
 5. console.dir 打印我们返回的对象，更好的查看里面的属性和方法
-      
-##### 14.4.2.3 根据标签名获取
 
-使用getElementsByTagName()方法可以返回带有指定标签名的**对象的集合**。
+##### 15.4.2.3 根据标签名获取
+
+使用 getElementsByTagName()方法可以返回带有指定标签名的**对象的集合**。
 
 ```js
 let li = document.getElementsByTagName("li");
-console.log(li); 
+console.log(li);
 console.log(li[0]);
 // 2. 我们想要依次打印里面的元素对象我们可以采用遍历的方式
 for (let i = 0; i < li.length; i++) {
   console.log(li[i]);
 }
 ```
+
 注意:
 
 1. 返回的是获取过来元素对的集合，以伪数组的形式存在。
-2．因为得到的是一个对象的集合，所以我们想要操作里面的元素就需要遍历。
-3. 得到元素对象是动态的
-4. 如果页面中只有一个li，返回的还是伪数组的形式。
-5. 如果页面中没有一个li，返回的还是一个空的伪数组。
+   2．因为得到的是一个对象的集合，所以我们想要操作里面的元素就需要遍历。
+2. 得到元素对象是动态的
+3. 如果页面中只有一个 li，返回的还是伪数组的形式。
+4. 如果页面中没有一个 li，返回的还是一个空的伪数组。
 
 ---
 
@@ -2869,57 +2871,62 @@ for (let i = 0; i < li.length; i++) {
 
 > element.getElementsByTagName ('标签名');
 
-注意∶父元素必须是**单个对象(必须指明是哪一个元素对象)**,获取的时候不包括父元素自己。
+注意 ∶ 父元素必须是**单个对象(必须指明是哪一个元素对象)**,获取的时候不包括父元素自己。
 
 ```js
 let ol = document.getElementsByTagName("ol");
 console.log(ol[0].getElementsByTagName("li"));
 ```
- 
-##### 14.4.2.4 通过 HTML5 新增的方法获取
+
+##### 15.4.2.4 通过 HTML5 新增的方法获取
 
 1. document.getElementsByClassName( '类名' );
->根据类名返回元素对象集合
+   > 根据类名返回元素对象集合
+
 ```js
 let boxs = document.getElementsByClassName("box");
 ```
 
 2. document.query selector ( '选择器');
-> 根据指定选择器返回第一个元素对象
-**切记里面的选择器需要加符号 .box #nav**
+   > 根据指定选择器返回第一个元素对象
+   > **切记里面的选择器需要加符号 .box #nav**
+
 ```js
 let box1 = document.querySelector(".box");
 ```
 
 3. document.queryselectorAll('选择器');
->根据指定选择器返回
+   > 根据指定选择器返回
+
 ```js
 let allBox = document.querySelectorAll(".box");
 ```
 
-##### 14.4.2.5 获取特殊元素(body,html)
+##### 15.4.2.5 获取特殊元素(body,html)
 
-1. 获取body元素
+1. 获取 body 元素
+
 ```js
 let body = document.body;
 ```
 
-2. 获取html元素
+2. 获取 html 元素
+
 ```js
 let html = document.documentElement;
 ```
 
-#### 14.4.3 事件基础
+#### 15.4.3 事件基础
 
-##### 14.4.3.1 事件概述
+##### 15.4.3.1 事件概述
 
-JavaScript使我们有能力创建动态页面，而事件是可以被JavaScript侦测到的行为。
+JavaScript 使我们有能力创建动态页面，而事件是可以被 JavaScript 侦测到的行为。
 
-网页中的每个元素都可以产生某些可以触发JavaScript的事件，例如，我们可以在用户点击某按钮时产生一个事件，然后去执行某些操作。
+网页中的每个元素都可以产生某些可以触发 JavaScript 的事件，例如，我们可以在用户点击某按钮时产生一个事件，然后去执行某些操作。
 
-##### 14.4.3.2 事件三要素
+##### 15.4.3.2 事件三要素
 
-事件是由三部分组成: `事件源` `事件类型` `事件处理程序`  称为事件三要素。
+事件是由三部分组成: `事件源` `事件类型` `事件处理程序` 称为事件三要素。
 
 ```js
 // 事件源：事件被触发的对象 -》谁 按钮
@@ -2931,7 +2938,7 @@ btn.onclick = function () {
 };
 ```
 
-##### 14.4.3.3 执行事件的步骤
+##### 15.4.3.3 执行事件的步骤
 
 1. 获取事件源
 2. 注册事件(绑定事件)
@@ -2940,52 +2947,51 @@ btn.onclick = function () {
 ```js
 let exampleDiv = document.querySelector(".example");
 console.log(exampleDiv);
-exampleDiv.onclick = function(){
-  console.log('选中区域');
-}
+exampleDiv.onclick = function () {
+  console.log("选中区域");
+};
 ```
 
 ![](https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png)
 
+#### 15.4.4 操作元素
 
-#### 14.4.4 操作元素
+JavaScript 的 DOM 操作可以改变网页内容、结构和样式，我们可以利用 DOM 操作元素来改变元素里面的内容、属性等。**注意以下都是属性**
 
-JavaScript的DOM操作可以改变网页内容、结构和样式，我们可以利用DOM操作元素来改变元素里面的内容、属性等。**注意以下都是属性**
+##### 15.4.4.1 改变元素的内容
 
-##### 14.4.4.1 改变元素的内容
+> element.innerText
 
->element.innerText
+从起始位置到终止位置的内容,但它去除 html 标签，同时空格和换行也会去掉
 
-从起始位置到终止位置的内容,但它去除html标签，同时空格和换行也会去掉
+> element.innerHTML
 
->element.innerHTML
-
-起始位置到终止位置的全部内容，包括html标签，同时保留空格和换行
+起始位置到终止位置的全部内容，包括 html 标签，同时保留空格和换行
 
 ```js
 // 1.获取元素
 let btnTime = document.getElementById("btnTime");
 let pTime = document.getElementById("pTime");
-let sTime = document.getElementById('sTime')
+let sTime = document.getElementById("sTime");
 // 2.注册事件
-btnTime.onclick = function(){
-  pTime.innerText = '2023-8-2'
-  pTime.innerHTML = '<strong>2023-8-2</strong>'
-  sTime.innerText = '<strong>7.27</strong>'
-}
+btnTime.onclick = function () {
+  pTime.innerText = "2023-8-2";
+  pTime.innerHTML = "<strong>2023-8-2</strong>";
+  sTime.innerText = "<strong>7.27</strong>";
+};
 // 3.元素可以不用添加事件
 ```
 
-innerText和innerHTML的区别
+innerText 和 innerHTML 的区别
 
-1. innerText不识别html标签，非标准，去除空格和换行。
-2. innerHTML识别html标签，W3C标准，同时保留空和换行。
+1. innerText 不识别 html 标签，非标准，去除空格和换行。
+2. innerHTML 识别 html 标签，W3C 标准，同时保留空和换行。
 
 这两个属性是可读写的，可以获取元素里面的内容。
 
-##### 14.4.4.2 常用元素的属性操作
+##### 15.4.4.2 常用元素的属性操作
 
-1. innerText、innerHTML改变元素内容
+1. innerText、innerHTML 改变元素内容
 2. src、href
 3. id、alt、 title
 
@@ -2993,12 +2999,85 @@ innerText和innerHTML的区别
 let btnImg1 = document.getElementById("ingBtn1");
 let btnImg2 = document.getElementById("ingBtn2");
 let imgTest = document.getElementById("imgTest");
-btnImg1.onclick = function (){
-  imgTest.src = 'https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png'
-  imgTest.title = 'DOM事件'
-}
-btnImg2.onclick = function (){
-  imgTest.src = 'https://img2023.cnblogs.com/blog/2332774/202307/2332774-20230704075911651-1709441007.png'
-  imgTest.title = 'DOM树'
-}
+btnImg1.onclick = function () {
+  imgTest.src =
+    "https://img2023.cnblogs.com/blog/2332774/202308/2332774-20230801003210935-71569527.png";
+  imgTest.title = "DOM事件";
+};
+btnImg2.onclick = function () {
+  imgTest.src =
+    "https://img2023.cnblogs.com/blog/2332774/202307/2332774-20230704075911651-1709441007.png";
+  imgTest.title = "DOM树";
+};
 ```
+
+##### 15.4.4.3 表单元素的属性操作
+
+利用 DOM 可以操作如下表单元素的属性:
+
+```
+type、 value、checked、selected、disabled
+```
+
+```html
+<input id="input" type="text" /> <button id="inputBtn">修改</button>
+```
+
+```js
+let input = document.getElementById("input");
+let inputBtn = document.getElementById("inputBtn");
+inputBtn.onclick = function () {
+  input.innerHTML = "点击了"; // 这个是普通标签的内容，对于input标签无效
+  input.value = "被点击了";
+  // 禁用按钮
+  inputBtn.disabled = true;
+  this.disabled = true; // this指向的是被调用这--》inputBtn
+};
+```
+
+##### 15.4.4.4 样式属性操作
+
+**我们可以通过 JS 修改元素的大小、颜色、位置等样式**
+
+1. element.style 行内样式操作
+2. element.className 类名样式操作
+
+```js
+let shuxingDiv = document.getElementById("shuxing");
+shuxingDiv.onclick = function () {
+  this.style.backgroundColor = "blue";
+  this.style.width = "300px";
+};
+```
+
+注意:
+
+1. JS 里面的样式采取驼峰命名法比如 fontSize、backgroundColor
+2. JS 修改 style 样式操作，产生的是行内样式，权重比 css 高
+
+> 获得焦点：onfocus()
+> 失去焦点：onblur()
+
+**我们也可以通过 className 修改元素的大小、颜色、位置等样式**
+
+```JS
+this.className = "change";
+this.className += " change";
+```
+
+注意∶
+1．如果样式修改较多，可以采取操作类名方式更改元素样式.
+2. class因为是个保留字，因此使用className来操作元素类名属性.
+3. className会直接更改元素的类名，会覆盖原先的类名。
+
+**总结**
+
+![](https://img2023.cnblogs.com/blog/2332774/202309/2332774-20230906002102663-1966153357.png)
+
+
+##### 15.4.4.5 排他思想
+
+如果有同一组元素，我们想要某一个元素实现某种样式，需要用到循环的排他思想算法∶
+1. 所有元素全部清除样式(干掉其他人)
+2. 给当前元素设置样式(留下我自己)
+3. 注意顺序不能颠倒，首先干掉其他人，再设置自己
