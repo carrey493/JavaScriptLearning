@@ -3081,3 +3081,51 @@ this.className += " change";
 1. 所有元素全部清除样式(干掉其他人)
 2. 给当前元素设置样式(留下我自己)
 3. 注意顺序不能颠倒，首先干掉其他人，再设置自己
+
+##### 15.4.4.6 自定义属性的操作
+
+1. 获取属性值
+   
+- element. 获取元素的属性值。
+- element.getAttribute ('属性');
+
+区别
+
+element. 属性获取内置属性值(元素本身自带的属性)
+
+element.getAttribute('属性');主要获得自定义的属性（标准）我们程序员自定义的属性
+
+2. 设置属性值
+
+- element.属性='值'
+- 设置内置属性值。 element.setAttribute ('属性','值');
+
+区别
+
+- element.属性设置内置属性值
+- element.setAttribute(属性);主要设置自定义的属性(标准)
+
+3. 移除属性值
+
+- element.removeAttribute ('属性');
+
+##### 15.4.4.7 H5自定义属性
+
+**自定义属性目的︰是为了保存并使用数据。有些数据可以保存到页面中而不用保存到数据库中。自定义属性获取是通过getAttribute(属性)获取。**
+
+但是有些自定义属性很容易引起歧义，不容易判断是元素的内置属性还是自定义属性。
+
+H5给我们新增了自定义属性︰
+
+1. 设置H5自定义属性
+
+H5规定自定义属性data-开头做为属性名并且赋值。
+
+比如`<div data-index= '1'></div>`或者使用JS设置`element.setAttribute('data-index',2)`
+
+2. 获取H5自定义属性
+
+- 兼容性获取element.getAttribute('data-index');
+- H5新增`element.dataset.index`或者`element.dataset['index']` ie 11才开始支持
+
+如果自定义属性里面有多个=链接的单词，我们获取的时候采取驼峰命名法
