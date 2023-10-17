@@ -74,6 +74,17 @@
   </dic>
 
   <div id="shuxing" style="color: red">123456</div>
+
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <div>兄弟节点</div>
+  <span>兄弟节点</span>
   <script>
     // 1. 因为我们文档页面从上往下加载，所以先得有标签所以我们script写到标签的下面
     // 2. get 获得 element 元素 by 通过驼峰命名法
@@ -114,8 +125,8 @@
     console.log(html);
 
     /* 
-      事件是由三部分组成 事件源 事件类型 事件处理程序  称为事件三要素
-    */
+    事件是由三部分组成 事件源 事件类型 事件处理程序  称为事件三要素
+  */
 
     // 事件源：事件被触发的对象 -》谁 按钮
     let btn = document.getElementById("btn");
@@ -173,8 +184,41 @@
     shuxingDiv.onclick = function () {
       this.style.backgroundColor = "blue";
       this.style.width = "300px";
-      this.className = "change"
+      this.className = "change";
     };
+
+    var ul = document.queryselector("ul");
+    for (var i = 0; i < ul.childNodes.length; i++) {
+      if (ul.childNo4es[i].nodeType == 1) {
+        //ul.childNodes [i]是元素节点
+        console.log(ul.childNodes[i]);
+      }
+    }
+    //DOM提供的方法（API）获取
+    var ul = document.querySelector("ul ");
+    var lis = ul.querySelectorAll("li ");
+    function remove() {
+      ul.removeChild(ul.children[0]);
+    }
+    // 1．子节点childNodes所有的子节点包含元素节点文本节点等等
+    console.log(ul.childNodes);
+    console.log(ul.childNodes[0].nodeType);
+    console.log(ul.childNodes[1].nodeType);
+    // 2. children获取所有的子元素节点也是我们实际开发常用的
+    console.log(ul.children);
+    let lie = document.createElement("li");
+    ul.appendChild(lie);
+    ul.insertBefore(lie, ul.children[0]);
+
+    function getNextElementSibling(element) {
+      var el = element;
+      while ((el = el.nextSibling)) {
+        if (el.nodeType == 1) {
+          return el;
+        }
+      }
+      return null;
+    }
   </script>
 </body>
 

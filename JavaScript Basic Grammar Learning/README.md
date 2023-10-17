@@ -2881,6 +2881,7 @@ console.log(ol[0].getElementsByTagName("li"));
 ##### 15.4.2.4 通过 HTML5 新增的方法获取
 
 1. document.getElementsByClassName( '类名' );
+   
    > 根据类名返回元素对象集合
 
 ```js
@@ -2896,6 +2897,7 @@ let box1 = document.querySelector(".box");
 ```
 
 3. document.queryselectorAll('选择器');
+   
    > 根据指定选择器返回
 
 ```js
@@ -3129,3 +3131,262 @@ H5规定自定义属性data-开头做为属性名并且赋值。
 - H5新增`element.dataset.index`或者`element.dataset['index']` ie 11才开始支持
 
 如果自定义属性里面有多个=链接的单词，我们获取的时候采取驼峰命名法
+
+#### 15.4.5 节点操作
+
+##### 15.4.5.1 为什么学习节点操作
+
+获取元素通常使用两种方式
+
+**1.利用DOM提供的方法获取元素**
+
+1. document.getElementByld()
+2. document.getElementsByTagName()
+3. document.querySelector 等
+4. 逻辑性不强、繁琐
+
+**2.利用节点层级关系获取元素**
+
+1. 利用父子兄节点关系获取元素
+2. 逻辑性强，但是兼容性稍差
+
+这两种方式都可以获取元素节点，我们后面都会使用，但是节点操作更简单。
+
+##### 15.4.5.2 节点概述
+
+网页中的所有内容都是节点（标签、属性、文本、注释等），在DOM中，节点使用node来表示。
+
+HTML DOM树中的所有节点均可通过JavaScript进行访问，所有HTMl元素（节点）均可被修改，也可以
+创建或删除。
+
+![](https://img2023.cnblogs.com/blog/2332774/202310/2332774-20231012074800171-1166757636.png)
+
+一般地，节点至少拥有nodeType(节点类型 ) 、nodeName（节点名称）和nodeValue（节点值）这三个基本属性。
+
+- 元素节点nodeType 为1
+- 属性节点nodeType为2
+- 文本节点nodeType 为3(文本节点包含文字、空格、换行等)
+
+**我们在实际开发中，节点操作主要操作的是元素节点**
+
+##### 15.4.5.3 节点层级
+
+利用DOM树可以把节点划分为不同的层级关系，常见的是**父子兄层级关系**
+
+![](https://img2023.cnblogs.com/blog/2332774/202310/2332774-20231012075319575-1813347505.png)
+
+**1.父级节点**
+
+```html
+//得到的是离元素最近的父级节点，如果找不到父节点就返回为null
+node.parentNode
+```
+
+- parentNode属性可返回某节点的父节点，注意是**最近的一个父节点**
+- 如果指定的节点没有父节点则返回null
+
+**2.子节点**
+
+>1.parentNode.childNodes(标准)
+
+parentNode.childNodes返回包含指定节点的子节点（包含元素节点、文本节点等等）的集合，该集合为即时更新的集合。
+
+**注意:返回值里面包含了所有的子节点，包括元素节点，文本节点等。**
+
+如果只想要获得里面的元素节点，则需要专门处理。所以我们一般不提倡使用childNodes
+
+```js
+var ul = document.queryselector('ul');
+for (var i = 0; i < ul.childNodes.length; i++) {
+    if (ul.childNo4es[i].nodeType == 1) {
+        //ul.childNodes [i]是元素节点
+        console.log(ul.childNodes[i]);
+    }
+}
+```
+
+>2. parentNode.children(非标准)
+
+`parentNode.children`是一个只读属性，返回所有的子元素节点。它只返回子元素节点，其余节点不返回（**这个是我们重点掌握的**)。
+
+虽然children是一个非标准，但是得到了各个浏览器的支持，因此我们可以放心使用。
+
+```js
+//DOM提供的方法（API）获取
+var ul = document.querySelector('ul ');
+var lis = ul.querySelectorAll('li ');
+// 1．子节点childNodes所有的子节点包含元素节点文本节点等等
+console.log(ul.childNodes);
+console.log(ul.childNodes[0].nodeType);
+console.log(ul.childNodes[1].nodeType);
+// 2. children获取所有的子元素节点也是我们实际开发常用的
+console.log(ul.children);
+```
+
+> 3.parentNode . firstChild
+
+firstChild返回第一个子节点，找不到则返回null。同样，也是包含所有的节点。
+
+> 4. parentNode . lastChild
+
+lastChild返回最后一个子节点，找不到则返回null。同样，也是包含所有的节点。
+
+> 5.parentNode . firstElementChild
+
+firstElementchild返回第一个子元素节点，找不到则返回null。
+
+> 6.parentNode . 1astElementChild
+
+lastElementchild返回最后一个子元素节点，找不到则返回null。
+
+**注意:这两个方法有兼容性问题，IE9以上才支持。**
+
+实际开发中，firstchild和lastchild包含其他节点，操作不方便，而firstElementchild和lastElementchild又有兼容性问题，那么我们如何获取第一个子元素节点或最后一个子元素节点呢？
+
+可以使用`element.children`获取子元素的伪数组集合。
+
+**3.兄弟节点**
+
+>1.node .nextsibling
+
+nextsibling返回当前元素的下一个兄弟节点，找不到则返回null。同样，也是包含所有的节点。
+
+> 2. node .previoussibling
+
+previoussibling 返回当前元素上一个兄弟节点，找不到则返回null。同样，也是包含所有的节点。
+
+> 3.node.nextElementsibling
+
+nextElementsibling返回当前元素下一个兄弟元素节点，找不到则返回nulI
+
+> 4.node.previousElementsibling
+
+previousElementsibling返回当前元素上一个兄弟节点，找不到则返回null。
+
+**注意:这两个方法有兼容性问题，IE9以上才支持。**
+
+如何解决兼容性问题？
+
+```js
+function getNextElementSibling(element) {
+      var el = element;
+      while (el = el.nextSibling) {
+        if (el.nodeType == 1) {
+
+          return el;
+        }
+      }
+      return null;
+    }
+```
+
+##### 15.4.5.4 节点操作
+
+**1.创建节点**
+
+
+>document.createElement ('tagName')
+
+
+document.createElement()方法创建由tagName 指定的HTMD元素。因为这些元素原先不存在,
+是根据我们的需求动态生成的，所以我们也称为**动态创建元素节点**。
+
+**2.添加节点**
+
+>1.node .appendchild (child)
+
+node.appendchild()方法将一个节点添加到指定父节点的子节点列表**末尾**。类似于css里面的after伪元素。
+
+> 2. node .insertBefore (child，指定元素)
+
+node.insertBefore()方法将一个节点添加到父节点的指定子节点前面。类似于css里面的 before伪元素。
+
+**3.删除节点**
+
+> node.removeChild ( child)
+
+node.removeChild()方法从DOM中删除一个子节点，返回删除的节点。
+
+**4.克隆节点**
+
+> node.cloneNode()
+
+node.cloneNode()方法返回调用该方法的节点的一个副本。也称为克隆节点/拷贝节点。
+
+注意∶
+
+1. 如果括号参数**为空或者为false**，则是**浅拷贝**，即只克隆复制节点本身，不克隆里面的子节点。
+2. 2.如果括号参数为**true** ，则是**深度拷贝**，会复制节点本身以及里面所有的子节点。
+
+**5.三种动态创建元素区别**
+
+- document.write ()
+- element .innerHTML
+- document.createElement ()
+
+**区别**
+
+1. document.write是直接将内容写入页面的内容流，**但是文档流执行完毕，则它会导致页面全部重绘。**
+2. innerHTML，是将内容写入某个DOM节点，不会导致页面全部重绘
+3. innerHTML创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂
+4. createElement()创建多个元素效率稍低一点点，但是结构更清晰
+
+**总结:不同浏览器下，innerHTML效率要比 creatElement高**
+
+#### 15.4.6 DOM重点核心
+
+文档对象模型(Document Object Model，简称**DOM** )，是W3C组织推荐的处理可扩展标记语言( HTML或者XML)的标准**编程接口**。
+
+W3C已经定义了一系列的DOM接口，通过这些DOM接口可以改变网页的内容、结构和样式。
+
+1. 对于JavaScript，为了能够使JavaScript操作HTML，JavaScript就有了一套自己的dom编程接口。
+2. 对于HTML, dom使得html形成一棵dom树.包含文档、元素、节点
+3. 我们获取过来的DOM元素是—个对象( object )，所以称为文档对象模型
+
+关于dom操作，我们主要针对于元素的操作。主要有创建、增、删、改、查、属性操作、事件操作。
+
+**1.创建**
+
+1. document.write
+2. innerHTML
+3. createElement
+
+**2.增**
+
+1. appendChild
+2. insertBefore
+
+**3.删**
+
+1. removeChild
+
+**4.改**
+
+主要修改dom的元素属性，dom元素的内容、属性,表单的值等
+
+1. 修改元素属性: src、href、title等
+2. 修改普通元素内容: innerHTML、innerText
+3. 修改表单元素: value、type、disabled等
+4. 修改元素样式:style、className
+
+**5.查**
+
+主要获取查询dom的元素
+
+1. DOM提供的API方法: getElementByld、getElementsByTagName古老用法不太推荐
+2. H5提供的新方法:querySelector、querySelectorAll提倡
+3. 利用节点操作获取元素:父(parentNode)、子(children)、兄(previousElementSibling.nextElementSibling)提倡
+
+**6.属性操作**
+
+主要针对于自定义属性
+
+1. setAttribute :设置dom的属性值
+2. getAttribute :得到dom的属性值
+3. removeAttribute移除属性
+
+**7.事件操作**
+
+给元素注册事件，采取事件源.事件类型=事件处理程序
+
+![](https://img2023.cnblogs.com/blog/2332774/202310/2332774-20231018004217855-1042432412.png)
