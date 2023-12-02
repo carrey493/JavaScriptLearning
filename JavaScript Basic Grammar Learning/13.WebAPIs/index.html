@@ -29,10 +29,26 @@
     .change {
       border: 2px dashed orange;
     }
+
+    .father {
+      width: 300px;
+      height: 300px;
+      background-color: darkblue;
+    }
+
+    .son {
+      width: 100px;
+      height: 100px;
+      display: block;
+      background-color: bisque;
+    }
   </style>
 </head>
 
 <body>
+  <div class="father">
+    <dic class="son"></dic>
+  </div>
   <div id="div"></div>
 
   <ul>
@@ -90,6 +106,27 @@
     // 2. get 获得 element 元素 by 通过驼峰命名法
     // 3. 参数 id 是大小写敏感的字符串
     // 4. 返回的是一个对象
+
+    // document->html->body->father->son
+    /* let son = document.querySelector('.son');
+    son.addEventListener('click', function () {
+      alert('son')
+    }, true)
+    let father = document.querySelector('.father');
+    son.addEventListener('click', function () {
+      alert('father')
+    }, true) */
+
+    // 第三个参数为false则处于冒泡阶段 son->father->body->html->document
+    let son = document.querySelector('.son');
+    son.addEventListener('click', function () {
+      alert('son')
+    }, false)
+    let father = document.querySelector('.father');
+    son.addEventListener('click', function () {
+      alert('father')
+    }, false)
+
     let div = document.getElementById("div");
     console.log({ div });
     // 5. console.dir 打印我们返回的对象，更好的查看里面的属性和方法
