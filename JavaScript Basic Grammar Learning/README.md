@@ -3381,8 +3381,8 @@ W3C已经定义了一系列的DOM接口，通过这些DOM接口可以改变网�
 
 主要针对于自定义属性
 
-1. setAttribute :设置dom的属性值
-2. getAttribute :得到dom的属性值
+1. setAttribute: 设置dom的属性值
+2. getAttribute: 得到dom的属性值
 3. removeAttribute移除属性
 
 **7.事件操作**
@@ -3390,3 +3390,109 @@ W3C已经定义了一系列的DOM接口，通过这些DOM接口可以改变网�
 给元素注册事件，采取事件源.事件类型=事件处理程序
 
 ![](https://img2023.cnblogs.com/blog/2332774/202310/2332774-20231018004217855-1042432412.png)
+
+#### 15.4.7 事件高级
+
+目标
+
+- 能够写出元素注册事件的两种方式
+- 能够说出删除事件的两种方式
+- 能够说出DOM事件流的三个阶段
+- 能够利用事件对象完成跟随鼠标案例
+- 能够封装阻止冒泡的兼容性函数
+- 能够说出事件委托的原理
+- 能够说出常用的鼠标和键盘事件
+
+内容
+
+- 注册事件(绑定事件)
+- 删除事件(解绑事件)
+- DOM事件流
+- 事件对象
+- 阻止事件冒泡
+- 事件委托(代理、委派)
+- 常用的鼠标事件
+- 常用的键盘事件
+
+##### 15.4.7.1 注册事件(绑定事件)
+
+1. 注册事件概述
+
+给元素添加事件，称为**注册事件**或者**绑定事件**。
+
+注册事件有两种方式: **传统方式和方法监听注册方式**
+
+**传统注册方式**
+
+- 利用on开头的事件onclick
+- `<button onclick="alert('hi~')"></button>`
+- btn.onclick = function () {}
+- 特点：注册事件的**唯一性**
+- 同一个元素同一个事件只能设置一个处理函数，最后注册的处理函数会覆盖前面注册的处理函数
+
+---
+
+**方法监听注册方式**
+
+- w3c标准推荐方法
+- addEventListener()它是一个方法
+- IE9之前的IE不支持此方法，可以使用attachEvent()代替
+- 特点：同一个元素同一个事件可以注册多个监听器
+- 按注册顺序依次执行
+
+2. addEventListener 事件监听方式
+
+```
+eventTarget.addEventListener(type，listener[, usecapture])
+```
+
+eventTarget.addEventListener()方法将指定的监听器注册到eventTarget(目标对象)上，当该对象触发指定的事件时，就会执行事件处理函数。
+
+该方法接收三个参数︰
+
+- type:事件类型字符串，比如click、mouseover ，注意这里不要带on
+- listener:事件处理函数，事件发生时，会调用该监听函数
+- useCapture : 可选参数，是一个布尔值，默认是false。学完DOM事件流后，我们再进一步学习
+
+3. attachEvent 事件监听方式
+
+```
+eventTarget.attachEvent (eventNamewithon,callback)
+```
+
+eventTarget.attachEvent() 方法将指定的监听器注册到eventTarget(目标对象)上，当该对象触发指定的事件时，指定的回调函数就会被执行。
+
+该方法接收两个参数︰
+- eventNameWithOn:事件类型字符串，比如onclick、onmouseover ，这里要带on
+- callback:事件处理函数，当目标触发事件时回调函数被调用
+
+4. 注册事件兼容性解决方案
+
+```js
+function addEventListener(element, eventName, fn) {
+  // 判断当前浏览器是否支持addEventListener方法
+  if (element.addEventListener) {
+    element.addEventListener(eventName, fn); // 第三个参数默认是false
+  } else if (element.attachEvent) {
+    element.attachEvent('on' + eventName, fn);
+  } else {
+    //相当于element.onclick = fn;
+    element['on' + eventName] = fn;
+  }
+}
+```
+
+##### 15.4.7.2 删除事件(解绑事件)
+
+1. 删除事件的方式
+
+**传统删除方式**
+
+```
+elementTargert.onclick = null;
+```
+
+**方法监听删除方式**
+
+- eventTarget.removeEventListener(type，listener[, useCapture]);
+- eventTarget.detachEvent (eventNamewithon,callback) ;
