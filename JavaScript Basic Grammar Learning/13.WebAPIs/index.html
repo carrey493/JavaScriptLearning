@@ -102,6 +102,28 @@
   <div>兄弟节点</div>
   <span>兄弟节点</span>
   <script>
+
+    let div8 = document.querySelector('div')
+    div.addEventListener('click', function (e) {
+      console.log(e.target);
+      console.log(this);
+      // e.target返回的是触发事件的对象(元素)，this返回的是绑定事件的对象(元素)
+    })
+    let div05 = document.querySelector('div')
+    div.onclick = function (e) {
+      e = e || window.event
+      console.log(e);
+      if (e && e.stopPropagation) {
+        e.stopPropagation();
+      } else {
+        window.event.cancelBubble = true;
+      }
+      // 1. event就是一个事件对象 写到我们的侦听函数的小括号里，当形参看
+      // 2. 事件对象只有有了时间才会存在，是系统自动创建的，不需要我们传递
+      // 3. 事件对象是一系列相关数据的集合，，比如鼠标的相关信息以及鼠标坐标点
+      // 4. 这个事件是可以自己命名的。比如event、evt、e等
+      // 5. 事件对象也有兼容问题，此时需要用window.event e = e || window.event
+    }
     // 1. 因为我们文档页面从上往下加载，所以先得有标签所以我们script写到标签的下面
     // 2. get 获得 element 元素 by 通过驼峰命名法
     // 3. 参数 id 是大小写敏感的字符串
