@@ -3637,3 +3637,88 @@ if (e && e.stopPropagation) {
 **事件委托的作用**
 
 我们只操作了一次DOM，提高了程序的性能。
+
+##### 15.4.7.7 常用的鼠标事件
+
+1. 常用的鼠标事件
+
+![](https://img2023.cnblogs.com/blog/2332774/202312/2332774-20231217131301814-1223616321.png)
+
+- 禁止鼠标右键事件
+
+contextmenu主要控制应该何时显示上下文菜单，主要用于程序员取消默认的上下文菜单
+
+```js
+document.addEventListener ('contextmenu', function(e) {
+  e.preventDefault ();
+})
+```
+
+- 禁止鼠标选中(selectstart 开始选中)
+
+```js
+document.addEventListener ('selectstart', function(e) {
+  e.preventDefault ();
+})
+```
+
+2. 鼠标事件对象
+
+**event**对象代表事件的状态，跟事件相关的一系列信息的集合。现阶段主要是用鼠标事件对象**MouseEvent**和键盘事件对象**KeyboardEvent**
+
+```js
+document.addEventListener ('click', function(e) {
+  console.log(e);
+})
+```
+
+![](https://img2023.cnblogs.com/blog/2332774/202312/2332774-20231217140846280-1063238643.png)
+
+##### 15.4.7.8 常用的键盘事件
+
+1. 常用的键盘事件
+
+事件除了使用鼠标触发，还可以使用键盘触发。
+
+![](https://img2023.cnblogs.com/blog/2332774/202312/2332774-20231217142540474-376291615.png)
+
+```js
+document.addEventListener ('keyup', function(e) {
+  console.log(e);
+})
+
+document.onkeyup = function (e) {
+  console.log(e);
+})
+```
+注意∶
+1.如果使用addEventListener不需要加on
+2.onkeypress和前面2个的区别是，它不识别功能键，比如左右箭头，shift等。
+3.三个事件的执行顺序是:keydown-- keypress --- keyup
+
+2. 键盘事件对象
+
+键盘事件对象中的keyCode属性可以得到相应键的ASCII码值
+
+
+```js
+document.addEventListener ('keyup', function(e) {
+  console.log(e);
+  console.log(e.keycode);
+  // 我们可以利用keycode的返回的值来判断用户按下了哪个键
+})
+```
+
+| 键盘事件对象属性 |  说明    |
+| ---------------- | ---- |
+|          keycode        |   返回该键的ASCII值   |
+
+注意:onkeydown和onkeyup 不区分字母大小写，onkeypress区分字母大小写。
+
+在我们实际开发中，我们更多的使用keydown和keyup，它能识别所有的键(包括功能键)
+
+keypress不识别功能键，但是keyCode属性能区分大小写，返回不同的ASCIl值
+
+3. ASCII表
+
+![](https://img2023.cnblogs.com/blog/2332774/202312/2332774-20231225223407645-1036943575.png)
