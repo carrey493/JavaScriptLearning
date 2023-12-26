@@ -6,15 +6,15 @@
 
 `JavaScript`（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的`编程语言`。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非`浏览器`环境中，`JavaScript` 基于原型编程、多范式的动态脚本语言，并且支持`面向对象`、`命令式`、`声明式`、`函数式编程范式`。
 
-`JavaScrip`t在1995年由`Netscape`公司的`Brendan Eich`，在网景导航者浏览器上首次设计实现而成。因为Netscape与Sun合作，Netscape管理层希望它外观看起来像Java，因此取名为JavaScript。但实际上它的语法风格与Self及Scheme较为接近。
+`JavaScript`在1995年由`Netscape`公司的`Brendan Eich`，在网景导航者浏览器上首次设计实现而成。因为Netscape与Sun合作，Netscape管理层希望它外观看起来像Java，因此取名为`JavaScript`。但实际上它的语法风格与Self及Scheme较为接近。
 
-`JavaScrip`t的标准是`ECMAScript` 。截至 2012 年，所有浏览器都完整的支持ECMAScript 5.1，旧版本的浏览器至少支持ECMAScript 3 标准。2015年6月17日，ECMA国际组织发布了ECMAScript的第六版，该版本正式名称为 ECMAScript 2015，但通常被称为ECMAScript 6 或者ES2015。
+`JavaScript`的标准是`ECMAScript` 。截至 2012 年，所有浏览器都完整的支持ECMAScript 5.1，旧版本的浏览器至少支持ECMAScript 3 标准。2015年6月17日，ECMA国际组织发布了ECMAScript的第六版，该版本正式名称为 ECMAScript 2015，但通常被称为ECMAScript 6 或者ES2015。
 
 ## 产生背景
 
-`JavaScript`最初由Netscape的Brendan Eich设计，最初将其脚本语言命名为`LiveScript`，后来Netscape在与Sun合作之后将其改名为`JavaScript`。`JavaScript`最初受Java启发而开始设计的，目的之一就是“看上去像Java”，因此语法上有类似之处，一些名称和命名规范也借自Java，但`JavaScrip`t的主要设计原则源自Self和Scheme。JavaScript与Java名称上的近似，是当时Netscape为了营销考虑与Sun微系统达成协议的结果。微软同时期也推出了JScript来迎战JavaScript的脚本语言。
+`JavaScript`最初由Netscape的Brendan Eich设计，最初将其脚本语言命名为`LiveScript`，后来Netscape在与Sun合作之后将其改名为`JavaScript`。`JavaScript`最初受Java启发而开始设计的，目的之一就是“看上去像Java”，因此语法上有类似之处，一些名称和命名规范也借自Java，但`JavaScrip`t的主要设计原则源自Self和Scheme。`JavaScript`与Java名称上的近似，是当时Netscape为了营销考虑与Sun微系统达成协议的结果。微软同时期也推出了JScript来迎战`JavaScript`的脚本语言。
 
-发展初期，`JavaScript`的标准并未确定，同期有Netscape的`JavaScript`，微软的JScript和CEnvi的ScriptEase三足鼎立。为了互用性，Ecma国际（前身为欧洲计算机制造商协会）创建了`ECMA-262标准（ECMAScript）`，两者都属于`ECMAScript`的实现，尽管JavaScript作为给非程序人员的脚本语言，而非作为给程序人员的脚本语言来推广和宣传，但是`JavaScript`具有非常丰富的特性。1997年，在ECMA（欧洲计算机制造商协会）的协调下，由Netscape、Sun、微软、Borland组成的工作组确定统一标准：ECMA-262。完整的`JavaScript`实现包含`三个部分`：`ECMAScript`，`文档对象模型`，`浏览器对象模型`。
+发展初期，`JavaScript`的标准并未确定，同期有Netscape的`JavaScript`，微软的JScript和CEnvi的ScriptEase三足鼎立。为了互用性，Ecma国际（前身为欧洲计算机制造商协会）创建了`ECMA-262标准（ECMAScript）`，两者都属于`ECMAScript`的实现，尽管`JavaScript`作为给非程序人员的脚本语言，而非作为给程序人员的脚本语言来推广和宣传，但是`JavaScript`具有非常丰富的特性。1997年，在ECMA（欧洲计算机制造商协会）的协调下，由Netscape、Sun、微软、Borland组成的工作组确定统一标准：ECMA-262。完整的`JavaScript`实现包含`三个部分`：`ECMAScript`，`文档对象模型`，`浏览器对象模型`。
 
 `JavaScript`是甲骨文公司的注册商标。`Ecma`国际以`JavaScript`为基础制定了`ECMAScript标准`。`JavaScript`也可以用于其他场合，如服务器端编程（Node.js）。
 
@@ -52,9 +52,7 @@
 - （2）基于对象。`JavaScript`是一种基于对象的脚本语言，它不仅可以创建对象，也能使用现有的对象。
 - （3）简单。`JavaScript`语言中采用的是弱类型的变量类型，对使用的数据类型未做出严格的要求，是基于Java基本语句和控制的脚本语言，其设计简单紧凑。
 - （4）动态性。`JavaScript`是一种采用事件驱动的脚本语言，它不需要经过Web服务器就可以对用户的输入做出响应。在访问一个网页时，鼠标在网页中进行鼠标点击或上下移、窗口移动等操作`JavaScript`都可直接对这些事件给出相应的响应。
-- （5）跨平台性。`JavaScript`脚本语言不依赖于操作系统，仅需要浏览器的支持。因此一个`JavaScript`脚本在编写后可以带到任意机器上使用，前提是机器上的浏览器支 持`JavaScript`脚本语言，`JavaScript`已被大多数的浏览器所支持。 不同于服务器端脚本语言，例如PHP与ASP，`JavaScript`主要被作为客户端脚本语言在用户的浏览器上运行，不需要服务器的支持。所以在早期程序员比较倾向于使用`JavaScript`以减少对服务器的负担，而与此同时也带来另一个问题，安全性。
-- 
-而随着服务器的强壮，虽然程序员更喜欢运行于服务端的脚本以保证安全，但`JavaScript`仍然以其跨平台、容易上手等优势大行其道。**同时，有些特殊功能（如AJAX）必须依赖JavaScript在客户端进行支持。**
+- （5）跨平台性。`JavaScript`脚本语言不依赖于操作系统，仅需要浏览器的支持。因此一个`JavaScript`脚本在编写后可以带到任意机器上使用，前提是机器上的浏览器支 持`JavaScript`脚本语言，`JavaScript`已被大多数的浏览器所支持。 不同于服务器端脚本语言，例如PHP与ASP，`JavaScript`主要被作为客户端脚本语言在用户的浏览器上运行，不需要服务器的支持。所以在早期程序员比较倾向于使用`JavaScript`以减少对服务器的负担，而与此同时也带来另一个问题，安全性。而随着服务器的强壮，虽然程序员更喜欢运行于服务端的脚本以保证安全，但`JavaScript`仍然以其跨平台、容易上手等优势大行其道。**同时，有些特殊功能（如AJAX）必须依赖JavaScript在客户端进行支持。**
 
 ## 编译模式
 
