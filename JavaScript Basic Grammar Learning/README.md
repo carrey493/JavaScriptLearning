@@ -3717,3 +3717,109 @@ keypress不识别功能键，但是keyCode属性能区分大小写，返回不�
 3. ASCII表
 
 ![](https://img2023.cnblogs.com/blog/2332774/202312/2332774-20231225223407645-1036943575.png)
+
+### 15.5 BOM
+
+- 能够说出什么是BOM
+- 能够知道浏览器的顶级对象window
+- 能够写出页面加载事件以及注意事项命
+- 能够写出两种定时器函数并说出区别
+- 能够说出JS执行机制
+- 能够使用location对象完成页面之间的跳转
+- 能够知晓navigator对象涉及的属性
+- 能够使用history提供的方法实现页面刷新
+
+目录
+
+1. BOM概述
+2. window对象的常见事件
+3. 定时器
+4. JS执行机制
+5. location对象
+6. navigator对象
+7. history对象
+
+#### 15.5.1 BOM概述
+
+1. 什么是BOM
+
+BOM(Browser Object Model)即**浏览器对象模型**，它提供了独立于内容而与**浏览器窗口进行交互的对象**，其核心对象是window。
+
+BOM由一系列相关的对象构成，并且每个对象都提供了很多方法与属性。
+
+BOM缺乏标准，JavaScript语法的标准化组织是ECMA，DOM的标准化组织是W3C，BOM最初是Netscape浏览器标准的一部分。
+
+|  **DOM**    |   **BOM**   |
+| ---- | ---- |
+|   文档对象模型   |  浏览器对象模型    |
+|   DOM就是把「**文档**」当做一个「**对象**」来看待   |  把「**浏览器**」当做一个「**对象**」来看待    |
+|  DOM的顶级对象是**document**    |    BOM的顶级对象是**window**  |
+|   DOM主要学习的是操作页面元素   |   BOM学习的是浏览器窗口交互的一些对象   |
+|    DOM是w3C标准规范  |    BOM是浏览器厂商在各自浏览器上定义的，兼容性较差  |
+
+2. BOM的构成
+
+BOM比 DOM更大，它包含DOM。
+
+![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240103222748391-1150042011.png)
+
+**window对象是浏览器的顶级对象**，它具有双重角色。
+
+- 它是JS访问浏览器窗口的一个接口。
+- 它是一个全局对象。定义在全局作用域中的变量、函数都会变成window对象的属性和方法。(在调用的时候可以省略window，前面学习的对话框都属于window对象方法，如alert()、prompt()等。
+)
+- **注意:window下的一个特殊属性window.name**
+
+```js
+window.document.querySelectorAll('div');
+var num = 10;
+console.log(num);
+console.log(window.num);
+function fn() {
+    console.log(1);
+}
+fn();
+window.fn();
+window.alert(2);
+console.dir(window);
+```
+
+![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240103223439145-430104370.png)
+
+#### 15.5.2 window对象的常见事件
+
+1. 窗口加载事件
+
+```js
+window.onload = function () {};
+// 或者
+window.addEventListener("load",function(){});
+```
+
+window.onload是窗口(页面)加载事件,当文档内容完全加载完成会触发该事件(包括图像、脚本文件、CSS文件等),就调用的处理函数。
+
+注意：
+- 有了window.onload就可以把JS代码写到页面元素的上方，因为onload是等页面内容全部加载完毕，再去执行处理函数。
+- window.onload传统注册事件方式只能写一次，如果有多个，会以最后一个window.onload为准。
+- 如果使用addEventListener则没有限制
+
+```js
+document.addEventListener('DOMContentLoaded',function(){});
+```
+
+DOMContentLoaded事件触发时，仅当DOM加载完成，不包括样式表，图片，flash等等。
+
+如果页面的图片很多的话,从用户访问到onload触发可能需要较长的时间,交互效果就不能实现，必然影响用户的体验，此时用DOMContentLoaded事件比较合适。
+
+2. 调整窗口事件大小
+
+```js
+window.onresize = function() {};
+window.addEventListener("resize" , function () {});
+```
+
+window . onresize是调整窗口大小加载事件，当触发时就调用的处理函数。
+
+注意：
+- 只要窗口大小发生像素变化，就会触发这个事件。
+- 我们经常利用这个事件完成响应式布局。window.innerWidth当前屏幕的宽度
