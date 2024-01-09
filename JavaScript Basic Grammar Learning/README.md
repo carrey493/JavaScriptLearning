@@ -3870,14 +3870,17 @@ setTimeout()这个调用函数我们也称为`回调函数callback`
 **停止 setTimeout()定时器**
 
 ```js
-window.clearTimeout(timequtID);
+window.clearTimeout(timeoutID);
 ```
+
 clearTimeout()方法取消了先前通过调用setTimeout()建立的定时器。
 
 ```js
+let time1 = setTimeout(callback, 1000);
 clearTimeout(time1);
 ```
 
+注意：
 1. window可以省略。
 2. 里面的参数就是定时器的标识符。
 
@@ -3902,3 +3905,28 @@ setInterval(callback, 1000);
 > setTimeout延时时间到了，就去调用这个回调函数，只调用一次就结束了这个定时器。
 
 > setInterval每隔这个延时时间，就去调用这个回调函数，会调用很多次，重复调用这个函数。
+
+**停止 setInterval()定时器**
+
+```js
+window.clearInterval(intervalID);
+```
+
+clearInterval()方法取消了先前通过调用setInterval()建立的定时器。
+
+注意：
+1. window可以省略。
+2. 里面的参数就是定时器的标识符。
+
+```js
+let time3 = setInterval(callback, 1000);
+clearInterval(time3);
+```
+
+#### 15.5.3 this
+
+this的指向在函数定义的时候是确定不了的，只有函数执行的时候才能确定this到底指向谁，一般情况下this的最终指向的是那个调用它的对象
+
+1. 全局作用域或者普通函数中this指向全局对象window(注意定时器里面的this指向window)
+2. 方法调用中谁调用this指向谁
+3. 构造函数中this指向构造函数的实例

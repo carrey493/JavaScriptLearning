@@ -45,6 +45,9 @@
         3. 间隔的毫秒数省略默认是0，如果写，必须是毫秒，表示每隔多少毫秒就自动调用这个函数。
         4. 因为定时器可能有很多，所以我们经常给定时器赋值一个标识符。 */
         setInterval(callback, 1000);
+
+        let time3 = setInterval(callback, 1000);
+        clearInterval(time3);
     </script>
 </body>
 
