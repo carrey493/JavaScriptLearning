@@ -20,6 +20,31 @@
         window.fn();
         window.alert(2);
         console.dir(window);
+
+        //window.setTimeout(调用函数，[延迟的毫秒数]);
+        //1. 这个window在调用时可以省略
+        //2. 这个延时单位时毫秒，但是可以省略，如果省略默认是0
+        setTimeout(function () {
+            console.log('时间到了！');
+        })
+        function callback() {
+            console.log("倒计时已结束！");
+        }
+        setTimeout(callback, 3000)
+
+        let time1 = setTimeout(callback, 1000);
+        let time2 = setTimeout(callback, 5000);
+        //3. 这个调用函数可以直接写函数，还可以写函数名。
+        //4. 页面中可能有很多定时器，我们经常给定时器加标识符
+
+        clearTimeout(time1);
+
+        /* 注意：
+        1. window可以省略。
+        2. 这个调用函数可以直接写函数，或者写函数名或者采取字符串'函数名()'三种形式。
+        3. 间隔的毫秒数省略默认是0，如果写，必须是毫秒，表示每隔多少毫秒就自动调用这个函数。
+        4. 因为定时器可能有很多，所以我们经常给定时器赋值一个标识符。 */
+        setInterval(callback, 1000);
     </script>
 </body>
 
