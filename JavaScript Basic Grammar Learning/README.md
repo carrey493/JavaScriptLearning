@@ -4011,3 +4011,31 @@ JS 的异步是通过回调函数实现的。
 ![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240116221908929-800687578.png)
 
 由于主线程不断的重复获得任务、执行任务、再获取任务、再执行，所以这种机制被称为**事件循环( event loop )**。
+
+#### 15.5.6 location对象
+
+##### 15.5.6.1 什么是location对象
+
+window对象给我们提供了一个`location`属性用于`获取或设置窗体的URL`，并且可以用于`解析URL`。因为这个属性返回的是一个对象，所以我们将这个属性也称为`location`对象。
+
+##### 15.5.6.2 URL
+
+`统一资源定位符(Uniform Resource Locator, URL)`是互联网上标准资源的地址。互联网上的每个文件都有一个唯一的URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它。
+
+URL的一般语法格式为∶
+
+```
+protocol://host[:port]/path/[?query]#fragment
+http://www.itcast.cn/index.html?name=andy&age=18#link
+```
+
+![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240117001139932-591013421.png)
+
+##### 15.5.6.3 location对象的属性
+
+![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240117001325002-1411910826.png)
+
+
+##### 15.5.6.4 location对象的方法
+
+![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240117003459078-121626956.png)
