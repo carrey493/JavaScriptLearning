@@ -4051,3 +4051,9 @@ window . location.href = "";//手机
 window . location.href = "" ;//电脑
 }
 ```
+
+#### 15.5.8 history 对象
+
+window对象给我们提供了一个 history对象，与浏览器历史记录进行交互。该对象包含用户（在浏览器窗口中)访问过的URL。
+
+![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240122220721625-602037269.png)
