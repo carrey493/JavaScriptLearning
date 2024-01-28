@@ -4045,15 +4045,110 @@ navigator 对象包含有关浏览器的信息，它有很多属性，我们最�
 下面前端代码可以判断用户那个终端打开页面，实现跳转
 
 ```js
-if ((navigator. userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobilel|BlackBerry|IEMobile |MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|Webosl symbian|Windows Phone)/i))) {
-window . location.href = "";//手机
+if (
+  navigator.userAgent.match(
+    /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobilel|BlackBerry|IEMobile |MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|Webosl symbian|Windows Phone)/i
+  )
+) {
+  window.location.href = ""; //手机
 } else {
-window . location.href = "" ;//电脑
+  window.location.href = ""; //电脑
 }
 ```
 
 #### 15.5.8 history 对象
 
-window对象给我们提供了一个 history对象，与浏览器历史记录进行交互。该对象包含用户（在浏览器窗口中)访问过的URL。
+window 对象给我们提供了一个 history 对象，与浏览器历史记录进行交互。该对象包含用户（在浏览器窗口中）访问过的 URL。
 
 ![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240122220721625-602037269.png)
+
+#### 15.5.9 元素的宽高
+
+![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240127224839532-982407252.png)
+
+他们主要用法
+
+1. offset 系列经常用于获得元系位置 offsetLeft offsetTop
+2. client 经常用于获取元素大小 clientWidth clientHeight
+3. scroll 经常用于获取滚动距离 scrollTop scrollLeft
+
+注意页面滚动的距离通过 window.pagexoffset 获得
+
+**mouseenter 利 mouseover 的区别**
+
+1. mouseenter 鼠标事件
+
+- 当鼠标移动到元素上时就会触发 mouseenter 事件
+- 类似 mouseover，它们两者之间的差别是
+- mouseover 鼠标经过自身盒子会触发，经过子盒子还会触发。mouseenter 只会经过自身盒子触发
+- 之所以这样，就是因为 mouseenter 不会冒泡
+- 跟 mouseenter 搭配鼠标离开 mouseleave 同样不会冒泡
+
+#### 15.5.10 本地存储
+
+**本地存储特性**
+
+1、数据存储在用户浏览器中
+2、设置、读取方便、甚至页面刷新不丢失数据
+3、容量较大，sessionStorage 约 5M、localStorage 约 20M
+4、只能存储字符串，可以将对象 JSON.stringify0 编码后存储
+
+##### 15.5.10.1 window.sessionStorage
+
+1. 生命周期为关闭浏览器窗口
+2. 在同一个窗口(页面)下数据可以共享
+3. 以键值对的形式存储使用
+
+**存储数据**
+
+```js
+sessionStorage.setItem(key, value);
+```
+
+**获取数据**
+
+```js
+sessionStorage.getItem(key, value);
+```
+
+**删除数据**
+
+```js
+sessionStorage.removeItem(key, value);
+```
+
+**删除所有数据**
+
+```js
+sessionStorage.clear();
+```
+
+##### 15.5.10.2 window.localStorage
+
+1. 生命周期永久生效，除非手动删除否则关闭页面也会存在
+2. 可以多窗口(页面)共享(同一浏览器可以共享)
+3. 以键值对的形式存储使用
+
+**存储数据**
+
+```js
+localStorage.setItem(key, value);
+```
+
+**获取数据**
+
+```js
+localStorage.getItem(key, value);
+```
+
+**删除数据**
+
+```js
+localStorage.removeItem(key, value);
+```
+
+**删除所有数据**
+
+```js
+localStorage.clear();
+```
