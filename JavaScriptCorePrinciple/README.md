@@ -16,30 +16,30 @@
 
 围绕**基础原理**、**数组**、**异步编程**、**V8 引擎**几个核心知识点展开通过`4个模块`、`27讲内容`带你深挖 `JavaScript` 底层原理。
 
-**模块一：深入讲解 JavaScript 核心基础知识**
+**模块一：深入讲解 `JavaScript` 核心基础知识**
 
 > 这是构建前端工具的基础，只有掌握好这部分内容，你才能为以后的编码能力打下基础。
 
-**模块二：介绍 JavaScript 的数组相关知识**
+**模块二：介绍 `JavaScript` 的数组相关知识**
 
-> 掌握这部分知识,你可以在每次写前端业务逻辑、处理一些数组数据的时候，不用再去翻看相关的数组 API 文档,从而提升你的开发效率。
+> 掌握这部分知识,你可以在每次写前端业务逻辑、处理一些数组数据的时候，不用再去翻看相关的数组 API 文档，从而提升你的开发效率。
 
-**模块三：从 JavaScript 最基础的异步编程方式讲起**
+**模块三：从 `JavaScript` 最基础的异步编程方式讲起**
 
 > 在浏览器端比较耗时的操作都应该进行异步操作来减少等待时间。由此可见，异步编程在浏览器端是非常重要的。
-> 掌握了 JavaScript 异步编程源码精髓，你就可以摆脱前端代码的“回调地狱”，更优雅地实现并解决业务场景的复杂问题、提升页面性能。
+> 掌握了 `JavaScript` 异步编程源码精髓，你就可以摆脱前端代码的“回调地狱”，更优雅地实现并解决业务场景的复杂问题、提升页面性能。
 
 **模块四：浏览器核心 V8 引擎相关的内容**
 
-> 讲解浏览器垃圾回收机制、浏览器核心引擎的工作逻辑等内容，帮助你理解 JavaScript 代码是如何被 V8 引擎编译和执行的。
+> 讲解浏览器垃圾回收机制、浏览器核心引擎的工作逻辑等内容，帮助你理解 `JavaScript` 代码是如何被 V8 引擎编译和执行的。
 
 **各种前端新技术、新框架的出现也在考验前端工程师的能力。**
 
-<font color="FFE9C3">如何提升技术能力、建立自己的“核心竞争力”是每一位优秀的前端工程师应该思考的问题</font>
+<font color="orange">如何提升技术能力、建立自己的“核心竞争力”是每一位优秀的前端工程师应该思考的问题</font>
 
-### JS 的数据类型你了解多少?
+### JavaScript 的数据类型你了解多少?
 
-作为 JavaScript 的入门级知识点，JS 数据类型在整个 JavaScript 的学习过程中其实尤为重要。
+作为 `JavaScript` 的入门级知识点，`JavaScript` 数据类型在整个 `JavaScript` 的学习过程中其实尤为重要。
 
 特别是在：**边界数据类型条件判断问题**处理的时候，需要额外注意。
 
@@ -89,7 +89,7 @@ console.log(b.age); //第一个console 30
 console.log(a.age); //第二个console 24
 ```
 
-函数传参进来的 o，传递的是对象在堆中的内存地址，通过调用`o.age = 24;`确实改变了`a.age`的值，但是后续调用的`return`又把`o`变成了另一个内存最地址，将`{ name: "Kath", age: 30 }`这个对象存入其中，最后将该值返回给`b`。
+函数传参进来的 `o`，传递的是对象在堆中的内存地址，通过调用`o.age = 24;`确实改变了`a.age`的值，但是后续调用的`return`又把`o`变成了另一个内存最地址，将`{ name: "Kath", age: 30 }`这个对象存入其中，最后将该值返回给`b`。
 
 如果不设置返回值，则会报错`Cannot read property 'age' of undefined`。
 
@@ -97,7 +97,7 @@ console.log(a.age); //第二个console 24
 
 **数据类型检测**，也是面试过程中经常会遇到的问题。
 
-1️⃣ 第一种判断方法: typeof
+1️⃣ 第一种判断方法: `typeof`
 
 ```js
 typeof 1; // 'number'
@@ -116,7 +116,7 @@ typeof console.log; // 'function'
 
 此外，在引用数据类型中除了`function`会被判断为`ok(function)`以外，其余的结果都为`object`，无法具体的判断。
 
-2️⃣ 第二种判断方法：instanceof
+2️⃣ 第二种判断方法：`instanceof`
 
 `instanceof` 运算符可以用来判断一个对象是否是某个类的实例或者某个类的原型链中的实例，使用 `instanceof` 运算符同样会返回一个布尔值，如果 `object` 是 `class` 或者 `class` 的原型链中的实例，则返回 `true`；否则返回 `false`。
 
@@ -166,8 +166,8 @@ function mylnstanceof(left, right) {
 
 3️⃣ 两种判断数据类型的差异
 
-1. instanceof 可以准确地判断复杂引用数据类型但是不能正确判断基础数据类型
-2. 而 typeof 也存在弊端,它虽然可以判断基础数据类型(null 除外)但是引用数据类型中,除了 function 类型以外,其他的也无法判断
+1. `instanceof` 可以准确地判断复杂引用数据类型，但是不能正确判断基础数据类型。
+2. 而 `typeof` 也存在弊端，它虽然可以判断基础数据类型(`null` 除外)，但是引用数据类型中，除了 `function` 类型以外，其他的也无法判断。
 
 总之，单独使用其中的任何一个都无法满足所有场景的需求，只能通过二者混写的方式。这样也只是满足大多数的场景，而且写起来也比较繁琐。
 
@@ -179,7 +179,7 @@ Object.prototype.toString.call({}); //同上结果,加上call也ok
 Object.prototype.toString.call(1); //"[object Number]"
 Object.prototype.toString.call("1"); //"[object String]"
 Object.prototype.toString.call(true); //"[object Boolean]"
-Object.prototype.toString.call(function () {}); // "[object Function]"
+Object.prototype.toString.call(function () {}); //"[object Function]"
 Object.prototype.toString.call(null); //"[object Null]"
 Object.prototype.toString.call(undefined); //"[object Undefined]"
 Object.prototype.toString.call(/123/g); //"[object RegExp]"
@@ -214,8 +214,6 @@ getType(function () {}); // "function" typeof 能判断 因此首字母小写
 getType(/123/g); // "RegExp" toString返回
 ```
 
-![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240129203134823-1978344759.png)
-
 #### 3.数据类型转换
 
 1. 强制类型转行
@@ -229,11 +227,42 @@ getType(/123/g); // "RegExp" toString返回
 
 ![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240129203750616-543638988.png)
 
-![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240129203843830-647892237.png)
+**Number()方法的强制转换规则**
 
-![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240129203914066-962500340.png)
+- 布尔值：`true`和`false`分别被转换为`1`和`0`
+- 数字：返回自身
+- `null`：返回`0`
+- `undefined`：返回`NaN`
+- 字符串：如果字符串中只值包含数字，则将其转换为十进制；如果字符串中包含有效的浮点格式，将其转换为浮点数值；如果是空字符串，将其转换为`0`；如果不是以上格式的字符串，均返回`NaN`。
+- `Symbol`：抛出错误
+- 对象：并且部署了`[Symbol.toPrimitive]`：那么调用此方法，否则调用对象的`valueOf`方法
 
-![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240129203929408-1742397777.png)
+```js
+Number(1); // 1
+Number(false); // 0
+Number('0111'); // 111
+Number(null); // 0
+Number(''); // 0
+Number('la'); // NaN
+Number(-0x11); // -17
+Number(0x11); // 17
+```
+
+**Boolean()方法的强制转换规则**
+
+除了`undefined`、`null`、`false`、`''`、`0(包括+0,-0)`、`NaN`转换出来是`false`，其它都是`true`。
+
+
+```js
+Boolean(0); // false
+Boolean(null); // false
+Boolean(undefined); // false
+Boolean(NaN); // false
+Boolean(1); // true
+Boolean(13); // true
+Boolean('12'); // true
+Boolean({}); // true
+```
 
 2. 隐式类型转换
 
@@ -254,28 +283,25 @@ getType(/123/g); // "RegExp" toString返回
 - 如果一个操作值是`boolean`那么转换为`number`
 - 如果一个操作值为`object`且另一方为`string`、`number`或者`symbol`就会把`object`转换(调用`Object.valueOf`或者`toString`方法)为原始类型再进行判断
 
-![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204210223055-927428981.png)
-
 ```js
-null == undefined
-null == 0
-" == null
-"==0
-'123'==123
-0 == false
-1 == true
+console.log(null == undefined); // true 规则2
+console.log(null == 0); // false 规则2
+console.log('' == null); // false 规则2
+console.log(''== 0); // true 规则4 字符串转隐式转换成Number之后再对比
+console.log('123' == 123); // true 规则4 字符串转隐式转换成Number之后再对比
+console.log(0 == false); // true 5 规则布尔型隐式转换成Number之后再对比
+console.log(1 == true); // true 规则5 布尔型隐式转换成Number之后再对比
+
 var a = {
-value: 0,
-this.value++;
-return this.value;};
-// true 规则2
-// false 规则2
-// false 规则2
-// true 规则4 字符串转隐式转换成Number之后再对比// true 规则4 字符串转隐式转换成Number之后再对比//true e规则布尔型隐式转换成Number之后再对比//true e规则布尔型隐式转换成Number之后再对比
-valueOf: function() {
+  value: 0,
+  valueOf: function() {
+  this.value++;
+  return this.value;
+  }
+};
 //注意这里a又可以等于1、2、3
-console.log(a == 1 && a == 2 && a ==3); //true f规则 Object隐式转换
-/注:但是执行过3遍之后,再重新执行a=3或之前的数字就是false,因为value已经加上去了,这里需要注意一下
+console.log(a == 1 && a == 2 && a ==3); //true 规则6 Object隐式转换
+//注:但是执行过3遍之后,再重新执行a=3或之前的数字就是false,因为value已经加上去了,这里需要注意一下
 ```
 
 2️⃣ **`+`的隐式转换规则**
@@ -286,26 +312,25 @@ console.log(a == 1 && a == 2 && a ==3); //true f规则 Object隐式转换
 
 ![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204202345931-2001167424.png)
 
+- 如果其中有一个是**字符串**，另外一个是`undefined`、`null`、或**布尔型**，则调用`toString()`方法进行字符串拼接。如果是**纯对象**、**数组**、**正则**等，则默认调用对象的转换方法会存在优先级，然后再进行拼接。
+- 如果其中有一个是**数字**，另外一个是`undefined`、`null`、**布尔型**、或**数字**，则会将其转换成数字进行加法运算，对象的情况还是参考上一条规则。
+- 如果其中一个是**字符串**、一个是**数字**，则按照字符串规则进行拼接。
+
 ```js
-1+2
-//3常规情况
-'1'+'2' // ‘12'常规情况
+console.log(1 + 2); // 3 常规情况
+console.log("1" + "2"); // '12' 常规情况
+
 //下面看一下特殊情况
-'1'+undefined //"lundefined“规则1, undefined转换字符串
-'1'+null
-//"1null"规则1,null转换字符串
-'1' +true
-//"1true" 规则1, true转换字符串
-'1'+1n
-//'11' 比较特殊字符串和BigInt相加,BigInt转换为字符串1+undefined//NaN规则2,undefined转换数字相加NaN
-1 + null
-/1规则2,null转换为0
-1+true
-//2规则2,true转换为1,二者相加为2
-1+1n
-//错误不能把BigInt和Number类型直接混合相加
-'1'+3
-//'13'规则3,字符串拼接
+
+console.log("1" + undefined); // '1undefined' 规则1, undefined转换字符串
+console.log("1" + null); // '1null' 规则1，null转换字符串
+console.log("1" + true); // '1true' 规则1，true转换字符串
+console.log("1" + 1n); // '11' 比较特殊字符串和BigInt相加，BigInt转换为字符串
+console.log(1 + undefined); // NaN 规则2，undefined转换数字相加NaN
+console.log(1 + null); // 1 规则2，null转换为0
+console.log(1 + true); // 2 规则2，true转换为1，二者相加为2
+console.log(1 + 1n); // 错误：Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions 不能把BigInt和Number类型直接混合相加
+console.log("1" + 3); // '13' 规则3，字符串拼接
 ```
 
 整体看来，如果数据中有`字符串`，`JavaScript`还是更倾向于把其他类型的数据转换为字符串。
@@ -342,7 +367,7 @@ console.log(obj + 1); //输出 5
 //再看两个特殊的case
 
 console.log(10 + {}); //输出 "10[object Object]"
-//注意:{}会默认调用valueOf是{}，不是基础类型继续转换；调用toString,返回结果"[objectObject]"，于是和10进行'+'运算，按照字符串拼接规则来，参考'+'的规则C
+//注意:{}会默认调用valueOf是{}，不是基础类型继续转换；调用toString,返回结果"[object Object]"，于是和10进行'+'运算，按照字符串拼接规则来，参考'+'的规则C
 
 console.log([1, 2, undefined, 4, 5] + 10); // 输出 "1,2,,4,510"
 
