@@ -240,10 +240,10 @@ getType(/123/g); // "RegExp" toString返回
 ```js
 Number(1); // 1
 Number(false); // 0
-Number('0111'); // 111
+Number("0111"); // 111
 Number(null); // 0
-Number(''); // 0
-Number('la'); // NaN
+Number(""); // 0
+Number("la"); // NaN
 Number(-0x11); // -17
 Number(0x11); // 17
 ```
@@ -252,7 +252,6 @@ Number(0x11); // 17
 
 除了`undefined`、`null`、`false`、`''`、`0(包括+0,-0)`、`NaN`转换出来是`false`，其它都是`true`。
 
-
 ```js
 Boolean(0); // false
 Boolean(null); // false
@@ -260,7 +259,7 @@ Boolean(undefined); // false
 Boolean(NaN); // false
 Boolean(1); // true
 Boolean(13); // true
-Boolean('12'); // true
+Boolean("12"); // true
 Boolean({}); // true
 ```
 
@@ -286,21 +285,21 @@ Boolean({}); // true
 ```js
 console.log(null == undefined); // true 规则2
 console.log(null == 0); // false 规则2
-console.log('' == null); // false 规则2
-console.log(''== 0); // true 规则4 字符串转隐式转换成Number之后再对比
-console.log('123' == 123); // true 规则4 字符串转隐式转换成Number之后再对比
+console.log("" == null); // false 规则2
+console.log("" == 0); // true 规则4 字符串转隐式转换成Number之后再对比
+console.log("123" == 123); // true 规则4 字符串转隐式转换成Number之后再对比
 console.log(0 == false); // true 5 规则布尔型隐式转换成Number之后再对比
 console.log(1 == true); // true 规则5 布尔型隐式转换成Number之后再对比
 
 var a = {
   value: 0,
-  valueOf: function() {
-  this.value++;
-  return this.value;
-  }
+  valueOf: function () {
+    this.value++;
+    return this.value;
+  },
 };
 //注意这里a又可以等于1、2、3
-console.log(a == 1 && a == 2 && a ==3); //true 规则6 Object隐式转换
+console.log(a == 1 && a == 2 && a == 3); //true 规则6 Object隐式转换
 //注:但是执行过3遍之后,再重新执行a=3或之前的数字就是false,因为value已经加上去了,这里需要注意一下
 ```
 
@@ -373,3 +372,127 @@ console.log([1, 2, undefined, 4, 5] + 10); // 输出 "1,2,,4,510"
 
 //注意[1,2,undefined,4,5]会默认先调用valueOf结果还是这个数组,不是基础数据类型继续转换,也还是调用toString,返回"1,2,,4,5",然后再和10进行运算,还是按照字符串拼接规则,参考'+'的第3条规则
 ```
+
+#### 4.深拷贝与浅拷贝
+
+在`JavaScript`的编程中经常需要对数据进行复制，什么时候用深拷贝、什么时候用浅拷贝，是开发过程中需要思考的。
+
+**深入学习这部分知识可以提高你手写 JS 的能力以及对一些边界特殊情况的深入思考能力**
+
+1. 拷贝一个很多嵌套的对象怎么实现
+2. 在面试官眼中，写成什么样的深拷贝代码才算合格。
+
+1️⃣ 浅拷贝的原理与实现
+
+自己创建一个对象，来接受你要重新复制或引用的对象值。如果对象属性是基本的数据类型，复制的就是基本类型的值给新对象；但如果是属性是引用数据类型，复制的就是内存中的地址，如果其中一个对象改变了这个内存中的地址，肯定会影响到另一个对象。
+
+**方法一：`object.assign`**
+
+`object.assign`是`ES6`中`object`的一个方法，该方法可以用于`JS`对象的合并等多个用途，其中一个用途就是可以进行浅拷贝。
+
+> `object.assign`的语法为`Object.assign(target,...sources)`
+
+```js
+let target = {};
+let source = { a: { b: 1 } };
+
+Object.assign(target, source);
+console.log(target); // { a: {b: 1} }
+```
+
+下面来看另一个例子
+
+```js
+let target = {};
+let source = { a: { b: 2 } };
+
+Object.assign(target, source);
+console.log(target); // { a: {b: 2} }
+
+source.a.b = 10;
+console.log(source); // { a: {b: 10} }
+console.log(target); // { a: {b: 10} }
+```
+
+**使用`object.assign`时需要注意**
+
+- 它不会拷贝对象的继承属性
+- 它不会拷贝对象的不可枚举属性
+- 可以拷贝`Symbol`类型的属性
+
+可以简单理解为：`object.assign`循环遍历源对象的属性，通过复制的方式将其赋给目标对象的相应属性。
+
+下面代码用来验证`object.assign`可以拷贝`Symbol`类型的属性
+
+```js
+let obj1 = { a: { b: 1 }, sym: Symbol(1) };
+Object.defineProperty(obj1, "innumerable", {
+  value: "不可枚举属性",
+  enumerable: false,
+});
+let obj2 = {};
+Object.assign(obj2, obj1);
+obj1.a.b = 2;
+console.log("obj1", obj1);
+console.log("obj2", obj2);
+```
+
+![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240218204315441-139389357.png)
+
+从图中可以看到，`object.assign`可以拷贝`Symbol`类型的对象，但是如果到了对象的第二层属性`obj1.a.b`时 2，前者值的改变也会影响后者第二层属性的值。说明其中依旧存在访问共同对应内存的问题。这就说明，这种方法还不能进一步的复制，只是完成了浅拷贝的功能。
+
+**方法二：扩展运算符的方法**
+
+利用`JS`的扩展运算符，在构造对象的同时完成浅拷贝的功能。
+
+> 扩展运算符的语法为：`let cloneObj = {...obj};`
+
+```js
+/*对象的拷贝*/
+let obj = { a: 1, b: { c: 1 } };
+let obj2 = { ...obj };
+obj.a = 2;
+console.log(obj); //{a:2,b:{c:1}}
+console.log(obj2); //{a:1,b:{c:1}}
+obj.b.c = 2;
+console.log(obj); //{a:2,b:{c:2}}
+console.log(obj2); //{a:1,b:{c:2}}
+
+/*数组的拷贝*/
+let arr = [1, 2, 3];
+let newArr = [...arr]; //跟arr.slice()是一样的效果
+console.log(newArr); // [ 1, 2, 3 ]
+```
+
+扩展运算符和`object.assign`有同样的缺陷：二者实现浅拷贝的功能差不多，但是如果属性都是基本类型的值，使用扩展运算符进行浅拷贝会更加方便一些。
+
+**方法三：`concat`拷贝数组**
+
+**数组的`concat`方法其实也是浅拷贝**
+
+```js
+let arr = [1, 2, 3];
+let newArr = arr.concat();
+newArr[1] = 100;
+console.log(arr); //[ 1,2,3]
+console.log(newArr); //[1,100,3]
+```
+
+使用`concat`方法连接一个含有引用类型数据的数组时，需要注意修改原数组中的元素的属性，因为它会影响拷贝之后连接的数组。不过`concat`只能用于数组的浅拷贝，使用场景比较局限。
+
+**方法四：`slice`拷贝数组**
+
+**`slice`方法仅仅针对数组类型**
+
+> `slice`的语法为：`arr.slice(begin,end);`
+
+`slice`使用也比较局限，因为它仅仅只针对于数组类型。`slice`方法会返回一个新的数组对象，这个方法由该对象的前两个参数来决定数组截取的开始位置与结束位置，而不会改变原始数组。
+
+```js
+let arr = [1, 2, { val: 4 }];
+let newArr = arr.slice();
+newArr[2].val = 1000;
+console.log(arr); //[ 1, 2, { val: 1000 } ]
+```
+
+这段代码中就可以看到浅拷贝的限制所在了，它只能拷贝一层对象，如果存在对象的嵌套，那么浅拷贝将无能为力。因此，深拷贝就是为了解决这个问题而生的。他能解决多层对象嵌套问题，彻底实现拷贝。
