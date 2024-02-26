@@ -496,3 +496,322 @@ console.log(arr); //[ 1, 2, { val: 1000 } ]
 ```
 
 这段代码中就可以看到浅拷贝的限制所在了，它只能拷贝一层对象，如果存在对象的嵌套，那么浅拷贝将无能为力。因此，深拷贝就是为了解决这个问题而生的。他能解决多层对象嵌套问题，彻底实现拷贝。
+
+2️⃣ 手工实现一个浅拷贝
+
+1. 对基础类型做一个最基本的拷贝
+2. 对引用类型开辟一个新的存储，并且拷贝一层对象属性。
+
+```js
+const shallowClone = (target) => {
+  if (typeof target === "object" && target !== null) {
+    const cloneTarget = Array.isArray(target) ? [] : {};
+    for (let prop in cloneTarget) {
+      // if (target.hasOwnProperty(prop)) {
+      if (Object.prototype.hasOwnProperty.call(target, prop)) {
+        cloneTarget[prop] = target[prop];
+      }
+    }
+    return cloneTarget;
+  } else {
+    return target;
+  }
+};
+```
+
+这里我们利用了类型的判断，针对引用类型的对象进行`for`循环遍历对象属性，赋值给目标对象的属性，基本手工实现浅拷贝。
+
+3️⃣ 深拷贝的原理和实现
+
+浅拷贝只是创建了一个新的对象，复制了原有对象的基本类型的值。而引用数据类型值拷贝了一层属性，再深层的就无法拷贝了。
+
+**对于复杂引用数据类型，其在堆内存中完全开辟了一块内存地址，并将原有的对象完全复制过来存放。这两个对象是相互独立、不受影响的，彻底实现了内存的分离。**
+
+总的来说，深拷贝的原理可以总结为，将一个对象从内存中完整地拷贝出来一份给目标对象,并从堆内存中开辟一个全新的空间存放新对象,且新对象的修改并不会改变原对象,二者实现真正的分离。
+
+1. 方法一：乞丐版(`JSON.stringfy`)
+
+>`JSON.stringfy()`是目前开发过程中最简单的深拷贝方法，其实就是把一个对象序列化为一个`JSON`的字符串。并把对象里面的内容转换为字符串，最后再用`JSON.parse`方法将`JSON`字符串生成一个新的对象。
+
+```js
+let obj1 = { a: 1, b: [1, 2, 3] };
+let str = JSON.stringify(obj1);
+let obj2 = JSON.parse(str);
+console.log(obj2); //{a:1,b:[1,2,3]}
+obj1.a = 2;
+obj1.b.push(4);
+console.log(obj1); // {a:2,b:[1,2,3,4]}
+console.log(obj2);// {a:1,b:[1,2,3]}
+```
+
+从这段代码中可以看到，通过`JSON.stringfy()`可以初步实现一个对象的拷贝。通过改变`obj1`的`b`属性，`obj2`这个对象也不会受影响。
+
+**使用`JSON.stringfy()`进行深拷贝时要注意**
+
+1. 拷贝的对象的值中如果有`函数`、`undefined`、`symbol`这几种类型,经过
+`JSON.stringify` 序列化之后的字符串中这个键值对会消失
+2. 拷贝 Date 引用类型会变成字符串
+3. 无法拷贝不可枚举的属性
+4. 无法拷贝对象的`原型链`
+5. 拷贝 `RegExp` 引用类型会变成空对象
+6. 对象中含有 `NaN`、`Infinity` 以及`-Infinity`，`JSON` 序列化的结果会变成 `null` 
+7. 无法拷贝对象的循环应用,即对象成环`(obj[key]=obj)`
+
+```js
+function Obj() {
+  this.func = function () {
+    alert(1);
+  };
+  this.obj = { a: 1 };
+  this.arr = [1, 2, 3];
+  this.und = undefined;
+  this.reg = /123/;
+  this.date = new Date(0);
+  this.NaN = NaN;
+  this.infinity = Infinity;
+  this.sym = Symbol(1);
+}
+
+let obj1 = new Obj();
+Object.defineProperty(obj1, "innumerable", {
+  enumerable: false,
+  value: "innumerable",
+});
+console.log("obj1", obj1);
+let str = JSON.stringify(obj1);
+let obj2 = JSON.parse(str);
+console.log("obj2", obj2);
+```
+
+![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240219204257148-1780404212.png)
+
+使用`JSON.stringfy()`方法进行深拷贝对象，虽然目前还有很多无法实现的功能，但这种方法足以满足日常的开发需求。并且是最简单和快捷的。
+
+2. 方法二：基础版（手写递归实现）
+
+```js
+let obj1 = {
+  a: {
+    b: 1,
+  },
+};
+function deepClone(obj) {
+  let cloneObj = {};
+  for (let key in obj) {
+    //遍历
+    if (typeof obj[key] === "object") {
+      cloneObj[key] = deepClone(obj[key]); //是对象就再次调用该函数递归
+    } else {
+      cloneObj[key] = obj[key]; //基本类型的话直接复制值
+    }
+  }
+}
+
+let obj2 = deepClone(obj1);
+obj1.a.b = 2;
+console.log(obj2); // {a:{b:1}}
+```
+
+**使用基础班递归进行深拷贝时要注意**
+
+1. 这个深拷贝函数并不能复制不可枚举的属性以及 Symbol 类型
+2. 这种方法只是针对普通的引用类型的值做递归复制，对于`数组`、`日期函数`、`正则`、`错误对象`、`function`这样的引用类型并不能正确的拷贝。
+3. 对象的属性里面成环,即循环引用没有解决
+
+---
+
+**3. 方法三：改进版（改进后递归实现）**
+
+针对以上几个问题，通过一下四点理论来指导你怎么做
+
+1. 针对能够遍历对象的`不可枚举属性`以及 `Symbol类型` 我们可以使用 `Reflect.ownKeys` 方法
+2. 当参数为 `Date`、`RegExp`类型,则直接生成一个新的实例返回
+3. 利用 `Object` 的 `getOwnPropertyDescriptors` 方法可以获得对象的所有属性，以及对应的特性，顺便结合 `Object` 的 `create` 方法创建一个新对象，并继承传入原对象的原型链。
+4. 利用 `WeakMap` 类型作为`Hash`表,因为 `WeakMap` 是弱引用类型,可以有效防止内存泄漏,作为检测循环引用很有帮助,如果存在循环,则引用直接返回 `WeakMap` 存储的值。（*有人使用 WeakMap 来解决循环引用问题但是很多解释都是不够清晰的，建议自己学习了解。*）
+
+你写的每一行代码都是需要经过深思熟虑并且非常清晰明白的这样你才能经得住面试官的推敲
+
+```js
+const isComplexDataType = (obj) =>
+  (typeof obj === "object" || typeof obj === "function") && obj !== null;
+const deepClone = function (obj, hash = new WeakMap()) {
+  if (obj.constructor === Date) return new Date(obj); //日期对象直接返回一个新的日期对象
+  if (obj.constructor === RegExp) return new RegExp(obj); //正则对象直接返回一个新的正则对象
+  //如果循环引用了就用 weakMap 来解决
+  if (hash.has(obj)) return hash.get(obj);
+  let allDesc = Object.getOwnPropertyDescriptors(obj);
+  //遍历传入参数所有键的特性
+  let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc);
+  //继承原型链
+  hash.set(obj, cloneObj);
+  for (let key of Reflect.ownKeys(obj)) {
+    cloneObj[key] =
+      isComplexDataType(obj[key]) && typeof obj[key] !== "function"
+        ? deepClone(obj[key], hash)
+        : obj[key];
+  }
+  return cloneObj;
+};
+
+let obj = {
+  num: 0,
+  str: "",
+  boolean: true,
+  unf: undefined,
+  nul: null,
+  obj: { name: "我是一个对象", id: 1 },
+  arr: [0, 1, 2],
+  func: function () {
+    console.log("我是一个函数");
+  },
+  date: new Date(0),
+  reg: new RegExp("/我是一个正则/ig"),
+  [Symbol("1")]: 1,
+};
+
+Object.defineProperty(obj, "innumerable", {
+  enumerable: false,
+  value: "不可枚举属性",
+});
+obj = Object.create(obj, Object.getOwnPropertyDescriptors(obj));
+obj.loop = obj; //设置loop成循环引用的属性
+let cloneObj = deepClone(obj);
+cloneObj.arr.push(4);
+console.log("obj", obj);
+console.log("cloneObj", cloneObj);
+```
+![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240219210819121-1989207252.png)
+
+很多人对如何实现深拷贝的细节问题并不清楚，但是如果仔细研究你就会发现，这部分内容对于你深入了解JS 底层的原理有很大帮助。
+
+![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240219210941698-1234404498.png)
+
+
+最好的建议还是要多动手，不清楚的地方自己敲一遍代码,这样才能加深印象。
+
+### 继承实现：探究 JavaScript 常见的6种继承方式
+
+**继承：**继承是面向对象的，使用这种方式我们可以更好地服用以前开发的代码，缩短开发的周期、提升开发效率。
+
+**继承在各种编程语言中都充当着至关重要的角色**
+
+它天生的灵活性使应用场景更加丰富，`JavaScript` 中的继承也经常用在前端工程基础库的搭建中，在整个`JavaScript`的学习中尤为重要。
+
+通过这部分知识的学习，可以让你对 `JavaScript` 的继承有更深一步的理解。使用起来更加得心应手，并可以轻松掌握和 JavaScript继承相关的面试题目。
+
+思考以下下问题
+
+1. `JavaScript` 的继承到底有多少种实现方式呢?
+2. `ES6` 的 `extends` 关键字是用哪种继承方式实现的呢?
+
+#### 1. 继承概念的探究
+
+![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240221205345627-1534153238.png)
+
+**继承可以使得子类别具有父类的各种方法和属性：**在上图例子中，轿车和货车分别继了汽车的属性，而不需要在轿车中定义汽车已有的属性。在轿车继承汽车的同时，也可以重新定义汽车的某些属性，并重写或者覆盖某些属性与方法，使其获得与汽车这个父类不同的属性与方法。
+
+继承的基本概念就初步介绍到这里，下面我们就来看看 `JavaScript` 都有哪些实现继承的方法。
+
+**1. 方法一：原型链继承**
+
+原型链继承是比较常见的继承方式之一，其中涉及的构造函数、原型和实例，三者之间存在着一定的关系。
+
+- 每一个构造函数都有一个原型对象
+- 原型对象又包含一个指向构造函数的指针
+- 而实例则包含一个原型对象的指针
+
+```js
+function Parent1() {
+  this.name = "parent1";
+  this.play = [1, 2, 3];
+}
+function Child1() {
+  this.type = "child2";
+}
+Child1.prototype = new Parent1();
+console.log(new Child1()); // Parent1 { type: 'child2' }
+```
+
+这段代码看起来没什么问题，虽然父类的方法和属性都能够访问，但存在一个潜在的问题，下面举例说明。
+
+```js
+var s1 = new Child1();
+var s2 = new Child1();
+s1.play.push(4);
+console.log(s1.play, s2.play); // [ 1, 2, 3, 4 ] [ 1, 2, 3, 4 ]
+```
+
+其中只改变了s1的属性，那么为什么s2也跟着变了？ 因为两个实例使用的是统一个原型对象。
+
+内存空间是共享的，当一个发生变化的时候，另外一个也随之进行了变化，这就是使用原型链继承的一个缺点，因此我们就要使用其它方法来解决这个问题。
+
+**2. 方法二：构造函数继承(借助call)**
+
+```js
+function Parent1() {
+  this.name = "parent1";
+}
+
+Parent1.prototype.getName = function () {
+  return this.name;
+};
+
+function Child1() {
+  Parent1.call(this);
+  this.type = "child1";
+}
+
+let child = new Child1();
+console.log(child);// Child1 { name: 'parent1', type: 'child1' }
+console.log(child.getName()); // 报错 TypeError: child.getName is not a function at Object.<anonymous> 
+```
+
+![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240226200702091-728032989.png)
+
+通过打印结果可以看到，除`Child1`的属性`type`之外，`child`也继承了`Parent1`的属性`name`。这样写的时候虽然子类可以拿到父类的属性值，解决了第一种方式的弊端，但问题是，父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法。
+
+这种情况下，我们再看控制台执行结果，就可以看到构造函数继承的优缺点。
+
+![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240226201430707-1117240173.png)
+
+它使父类的引用属性不会被共享，优化了第一种继承方式的弊端。但随之而来的缺点也比较明显，只能继承父类的实例属性和方法，不能继承原型属性或方法。
+
+>上面的两种继承方式各有优缺点，那么结合二者的优点，于是就产生了下面这种组合继承的方式。
+
+**3. 方法三：组合继承(前两种组合)**
+
+这种方式组合了前两种继承的优缺点，请看代码。
+
+```js
+function Parent3() {
+  this.name = "parent3";
+  this.play = [1, 2, 3];
+}
+
+Parent3.prototype.getName = function () {
+  return this.name;
+};
+
+function Child3() {
+  // 第二次调用Parent3()
+  Parent3.call(this);
+  this.type = "child3";
+}
+
+// 第一次调用Parent3()
+Child3.prototype = new Parent3();
+// 手动挂上构造器，指向自己的构造函数
+Child3.prototype.constructor = Child3;
+let s3 = new Child3();
+let s4 = new Child3();
+s3.play.push(4);
+console.log(s3.play, s4.play); // [ 1, 2, 3, 4 ] [ 1, 2, 3 ]
+console.log(s3.getName()); // 正常输出 parent3
+console.log(s4.getName()); // 正常输出 parent3
+```
+
+![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240226203006827-1628446369.png)
+
+之前方法一和方法二的问题的得以解决，但是这里又增加了一个新问题。通过注释我们可以看到`parent3`执行了两次。第一次是改变`child3`的`prototype`的时候，第二次通过`call`调用`parent3`的时候，那么`parent3`多构造一次，就多进行了一次性能开销，这是我们不愿意看到的。那么是否有更好的方法，请看下面的第六种方式。
+
+上面的介绍更多的是围绕构造函数的方式，那么对于`JavaScript`普通对象怎么实现继承呢？
