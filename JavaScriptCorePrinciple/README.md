@@ -1030,3 +1030,297 @@ var Child = (function (_Parent) {
 你可以看到不同的继承有不同的优缺点，我们需要深入了解不同方式的优缺点，这样才能在日常开发中选择适合当前的开发方式。
 
 **开发者往往会忽视对继承相关的系统性学习，**继承的方法比较多，每个实现的方法细节也比较零散。很多开发者很难有一个系统的、整体的认识，造成效率低下以及代码能力难以进一步提升等问题。因此，通过对上面知识的学习可以深入了解到继承相关的知识，在开发中可以很好的规避提到的问题。
+
+### 四、继承进阶：如何实现 new、apply、call、bind 的底层逻辑
+
+通过上一讲的学习，可以看到在继承的实现过程中，我们综合使用了 new、apply 以及 call 的方法。那么这一讲我们就围绕着这几个方法进行深入的学习，以便于你清楚这几个核心方法的实现思路，更好的理解继承的原理。
+
+**JavaScript 中的 apply、call 和 bind 方法是前端代码开发中相当重要的概念，并且与 this 的指向密切相关。**
+
+如果你想有了解`JavaScript`凡人基础，那么必须了解这些常见的方法。在开始之前，首先请思考几个问题。
+
+1. 用什么样的思路可以 new 关键词?
+2. apply、call、bind 这三个方法之间有什么区别?
+3. 怎样实现一个 apply 或者 call 的方法?
+
+#### 1. new 原理的介绍
+
+`new` 关键词的主要作用就是执行一个构造函数、返回一个实例对象，在`new`的过程中根据构造函数的情况，来确定是否可以接受参数的传递。
+
+下面来看一个简单的例子
+
+```js
+function Person() {
+  this.name = "Jack";
+}
+
+let p = new Person();
+console.log(p.name); // Jack
+```
+
+这段代码比较简单，从输出结果可以看到，`p`是一个通过`Person`这个构造函数生成的一个实例对象。那么`new`在这个生成实例的过程中到底执行了哪些步骤呢？
+
+总结有以下几点
+
+1. 创建一个新对象
+2. 将构造函数的作用域赋给新对象(this 指向新对象)
+3. 执行构造函数中的代码(为这个新对象添加属性)
+4. 返回新对象
+
+那么如果不使用`new`关键字，结合下面的代码进行改造，去掉`new`会发生什么样的变化呢？
+
+```js
+function Person() {
+  this.name = "Jack";
+}
+var p = Person();
+console.log(p); // undefined
+console.log(name); // Jack
+console.log(p.name); // TypeError: Cannot read property 'name' of undefined
+```
+
+那么构造函数中有`return`一个对象的操作时，结果又会是怎么样呢？
+
+```js
+function Person() {
+  this.name = "Jack";
+  return { age: 18 };
+}
+var p = new Person();
+console.log(p); // { age: 18 }
+console.log(p.name); // undefined
+console.log(p.age); // 18
+```
+
+可以看出构造函数最后`return`一个与`this`无关的对象时，`new`命令会直接返回这个新对象，而不是通过`new`执行步骤生成的`this`对象。但是这里要求构造函数必须返回一个对象，如果返回不是一个对象，那么还是会按照`new`实现的步骤，返回新生成的对象。接下来，我们还是在上段代码中改造一下。
+
+```js
+function Person() {
+  this.name = "Jack";
+  return "Tom";
+}
+var p = new Person();
+console.log(p); // { name: 'Jack' }
+console.log(p.name); // Jack
+```
+
+可以看出构造函数`return`的不是一个对象时，还是通过`new`关键字执行步骤生成一个新的对象，也就是绑定了最新`this`，最后返回出来。因此，我们总结一下。
+
+**new 关键词执行之后总是会返回一个对象，要么是实例对象,要么是 return 语句指定的对象。**
+
+#### 2. apply&call&bind 原理的介绍
+
+call、apply 和 bind 是挂在 Function 对象上的三个方法，**调用这三个方法的必须是一个函数**。
+
+基础语法：
+
+```js
+func.call(thisArg,param1,param2,...)
+func.apply(thisArg,[param1,param2,...])
+func.bind(thisArg,param1,param2,...)
+```
+
+`func`是要调用的函数，`thisArg`一般为`this`指向的对象，后面的多个`param`为函数`function`的多个参数，如果不需要也可以不写。
+
+**这三个方法共有的比较明显的特征就是改变函数 func 的 this 指向**
+
+- `call`和`apply`的区别在于传参不同，`apply`的第二个参数为数组，`call`则是从第二个至第 N 个都是给`func`传参
+- `bind`和这两个不同，`bind`虽然改变了`func`的`this`指向，但不是马上执行。而`call`和`apply`是在改变了函数的`this`指向后立马执行的。
+
+这些解释理解起来有点抽象，下面配合例子与代码一起看一下。
+
+> 生活中我不经常做饭，家里没有锅，周末突然想给自己做个饭尝尝。但是家里没有锅，而我又不想出去买，所以就问隔壁邻居借了一个锅来用，这样做了饭，又节省了开销，一举两得。
+
+`A 对象`有个 `getName` 的方法，`B对象`也需要临时使用同样的方法那么这时候可以借用 `A 对象`的 `getName` 方法。既达到了目的，又节约了重复的定义以及节省了内存空间。请看以下代码：
+
+```js
+let a = {
+  name: "jack",
+  getName: function (msg) {
+    return msg + this.name;
+  },
+};
+
+let b = {
+  name: "lily",
+};
+
+console.log(a.getName("hello~")); // hello~jack
+console.log(a.getName.call(b, "hi~")); // hi~lily
+console.log(a.getName.apply(b, ["hi~"])); // hi~lily
+let name = a.getName.bind(b, "hello~");
+console.log(name()); // hello~lily
+```
+
+从执行的结果可以发现，这三个方式都可以达到我们想要的目标，也就是通过改变`this`指向，让`B`对象可以直接使用`A`对象中的`get`方法。而且可以看到，最后三个方法输出的都是和`lily`相关的打印结果，满足了我们的预期。
+
+关于这三个方法的原理相关先介绍到这里，我们再看看这几个方法的使用场景。
+
+#### 3. apply&call&bind 使用场景
+
+**下面几种应用场景的理念都是“借用”方法的思路**
+
+**1.判断数据类型**
+
+用`Object.prototype.toString`几乎可以判断所有类型的数据
+
+```js
+function getTpye(obj) {
+  let type = typeof obj;
+  if (type !== "object") return type;
+  return Object.prototype.toString.call(obj).repalce(/^$/, "$1");
+}
+```
+
+结合这段代码以及前面说的`call`方法的借用思路，那判断数据类型的方法就是借用了`object`原型链上的`toString`方法，最后返回用来判断传入的`object`字符串来确定最后的数据类型。
+
+**2.类数组借用方法**
+
+类数组因为不是真正的数组，所以没有数组类型是自带的种种方法，可以利用一些方法去**借用**数组的方法。
+
+比如借用数组的`push`方法
+
+```js
+let arrayLike = {
+  0: "java",
+  1: "script",
+  length: 2,
+};
+
+Array.prototype.push.call(arrayLike, "jack", "lily");
+console.log(typeof arrayLike); // object
+console.log(arrayLike); // { '0': 'java', '1': 'script', '2': 'jack', '3': 'lily', length: 4 }
+```
+
+可以看到，`arrayLike`是一个对象，模拟数组的是一个类数组。从数据类型上看它是一个对象，此外在代码中可以看出，用`typeof`来判断这个对象输出的是`object`，它自身是不会有`push`方法的，这里我们借用`Array`原型链上的`push`方法，可以实现一个类数组的`push`方法。这样就可以给`arrayLike`添加新的元素，从结果也可以看出`push`满足了我们添加元素的诉求。
+
+**3.获取数组的最大/最小值**
+
+用`apply`来实现数组中判断最大/最小值：`apply`直接传递数组作为调用方法的参数，也可以减少一步展开数组。
+
+```js
+let arr = [13, 6, 10, 11, 16];
+
+const max = Math.max.apply(Math, arr);
+const min = Math.min.apply(Math, arr);
+
+console.log(max); // 16
+console.log(min); // 6
+```
+
+**4.继承**
+
+与`new`、`call`、实现了各种各样的继承方式，下面是组合式继承。
+
+```js
+function Parent3() {
+  this.name = "parent3";
+  this.play = [1, 2, 3];
+}
+
+Parent3.prototype.getName = function () {
+  return this.name;
+};
+
+function Child3() {
+  Parent3.call(this);
+  this.type = "child3";
+}
+
+Child3.prototype = new Parent3();
+Child3.prototype.constructor = Child3;
+let s3 = new Child3();
+console.log(s3.getName()); // arent3
+```
+
+其实这些方法的应用场景很多，关键在于**借用**方法理念。
+
+#### 4. 如何自己实现这些方法
+
+在互联网大厂的面试中，手写实现 `new`、`call`、`apply`、`bind` 一直是比较高频的题目，结合本讲的内容，我们一起来手工实现一下这几个方法。
+
+**1. new 的实现**
+
+刚才我们介绍了`new`实现的过程，来看一下这个过程中`new`被 1 调用后大致做了几件事。
+
+![](https://img2024.cnblogs.com/blog/2332774/202403/2332774-20240327204647960-28936779.png)
+
+```js
+function _new(ctor, ...args) {
+  if (typeof ctor !== "function") {
+    throw "ctor must be a function";
+  }
+  let obj = new Object();
+  obj.__proto__ = Object.create(ctor.prototype);
+  let res = ctor.apply(obj, ...args);
+
+  let isObject = typeof res === "object" && res !== null;
+  let isFunction = typeof res === "function";
+  return isObject || isFunction ? res : obj;
+}
+```
+
+**2. apply 和 call 的实现**
+
+`apply` 和 `call`的实现方式都差不多，只是传递的参数同，因此我们放到一起学习。
+
+**结合方法“借用”的原理**
+
+```js
+Function.prototype.call = function (context, ...args) {
+  context = context || window;
+  context.fn = this;
+  let result = eval("context.fn(...args)");
+  delete context.fn;
+  return result;
+};
+
+Function.prototype.apply = function (context, args) {
+  context = context || window;
+  context.fn = this;
+  let result = eval("context.fn(...args)");
+  delete context.fn;
+  return result;
+};
+```
+
+实现`call`和`apply`的关键就在于`eval`这个代码，其中显示用了`context`这个临时变量来指定上下文，通过执行`eval`来执行`context.fn`这个函数，最后返回`result`。
+
+要注意这两个方法和`bind`的区别在于，**这两个方法是直接返回执行结果，而 bind 方法是返回一个函数。**因此这里直接用`eval`执行得到结果。
+
+**3. bind 的实现**
+
+`bind` 的实现思路基本和 `apply` 一样，但是在最后实现返回结果这里`bind`不需要直接执行,因此不再需要用 `eval` 而是需要通过返回一个函数的方式将结果返回，之后再通过执行这个结果,得到想要的执行效果。
+
+结合这个代码，我们看一下`bind`的底层逻辑以及实现代码。
+
+```js
+Function.prototype.bind = function (context, ...args) {
+  if (typeof this !== "function") {
+    throw new Error("this must be a function");
+  }
+  var self = this;
+  var fbound = function () {
+    self.apply(
+      this instanceof self ? this : context,
+      args.concat(Array.prototype.slice.call(arguments))
+    );
+  };
+  if (this.prototype) {
+    fbound.prototype = Object.create(this.prototype);
+  }
+  return fbound;
+};
+```
+
+可见看到实现`bind`的核心在于返回的时候需要返回一个函数，因此这里的`fbound`需要返回。但是在返回的过程中，原型链对象上的属性不能丢失。所以这里要使用`Object.create`方法将`this.prototype`上面的属性挂到`fbound`的原型上面，最后再返回`fbound`。这样调用`bind`方法接收到函数的对象，在通过执行接收的函数就能得到想要的结果。
+
+你是不是已经弄清了`new`、`apply`、`call`、`bind`，这些方法是如何实现的呢？如果还是一知半解，建议你手动实践。
+
+这一讲的内容基本结束了，通过原理以及对底层逻辑的剖析介绍了日常开发中经常用的 `new`、`apply`、`call`、`bind` 这几种方法，最后带你一起动手进行了实践。我们可以看到这几个方法是有区别和联系的。
+
+![](https://img2024.cnblogs.com/blog/2332774/202404/2332774-20240402213515900-1614972341.png)
+
+以上表格对这几个方法做了简单总结，希望可以帮助更好理解。在日常的前端开发中，这些方法在高级`JavaScript`编程中经常出现，尤其是一些比较好的开源项目，经常会通过借用的方式复用已有的方法来节约内存、优化代码、
+
+这些方法的底层逻辑的实现在互联网大厂的前端面试中出现的频率也比较高，每个实现的方法细节也比较零散。希望通过这一讲的学习,你能很好地掌握这部分内容，以便在面试中遇到这类题目的时候能够轻松应对。
