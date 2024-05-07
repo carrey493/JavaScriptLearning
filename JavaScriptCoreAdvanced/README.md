@@ -380,3 +380,162 @@ NaN 是粘性的，任何对 NaN 的操作都会返回 NaN。
 
 - 场景: `+` 运算符 可以实现字符串的拼接。
 - 口诀：数字相加，字符相连。
+
+**模板字符串**
+
+使用场景
+
+- 拼接字符串和变量
+- 在没有它之前，要拼接变量比较麻烦
+
+```js
+document.write("大家好，我叫" + name + "，今年" + age + "岁");
+```
+
+语法
+
+- `` (反引号)
+- 在英文输入模式下按键盘的 tab 键上方那个键(1 左边那个键)
+- 内容拼接变量时，用 `${}` 包住变量
+
+```js
+document.write(`大家好，我叫${name}，今年${age}岁`);
+```
+
+**3. 布尔类型(boolean)**
+
+表示肯定或否定时在计算机中对应的是布尔类型数据。
+
+它有两个固定的值 `true` 和 `false`，表示肯定的数据用 `true`(真)，表示否定的数据用 `false`(假)。
+
+```js
+let isCool = true;
+console.log(isCool); // true
+```
+
+**4. 未定义型(undefined)**
+
+未定义是比较特殊的类型，只有一个值 `undefined`。
+
+**什么情况出现未定义类型？**
+
+只声明变量，不赋值的情况下，变量的默认值为 undefined，一般很少【直接】为某个变量赋值为 `undefined`。
+
+```js
+let isCool;
+console.log(isCool); // undefined
+```
+
+工作中的使用场景：我们开发中经常声明一个变量，等待传送过来的数据。如果我们不知道这个数据是否传递过来，此时我们可以通过检测这个变量是不是 undefined，就判断用户是否有数据传递过来。
+
+**5. null(空类型)**
+
+`Javascript` 中的 `null` 仅仅是一个代表“无”、“空”或“值未知”的特殊值。
+
+```js
+let isCool = null;
+console.log(isCool); // null
+```
+
+**null 和 undefined 的区别**
+
+- undefined 表示没有赋值
+- null 表示赋值了，但是内容为空
+
+null 开发中的使用场景：官方解释:把 `null` 作为尚未创建的对象。大白话: 将来有个变量里面存放的是一个对象，但是对象还没创建好，可以先给个`null`。
+
+### 5. JavaScript 数据类型检测
+
+**通过 typeof 关键字检测数据类型**
+
+`typeof` 运算符可以返回被检测的数据类型。它支持两种语法形式:
+
+1. 作为运算符: `typeof x` (常用的写法)
+2. 函数形式: `typeof(x)`
+
+换言之，有括号和没有括号，得到的结果是一样的，所以我们直接使用运算符的写法。
+
+```js
+let num = 10;
+console.log(typeof num); // number
+let str = "pink";
+console.log(typeof str); // string
+let str1 = "10";
+console.log(typeof str1); // string
+let flag = false;
+console.log(typeof flag); // boolean
+let un;
+console.log(typeof un); // undefined
+let obj = null;
+console.log(typeof obj); // object
+```
+
+### 6. JavaScript 类型转换
+
+**1. 为什么需要类型转换**
+
+`JavaScript`是弱数据类型: JavaScript 也不知道变量到底属于那种数据类型，只有赋值了才清楚。
+
+坑: 使用表单、prompt 获取过来的数据默认是字符串类型的，此时就不能直接简单的进行加法运算。
+
+```js
+console.1og('10000'+'2000'); //输出结果100002000
+```
+
+此时需要转换变量的数据类型
+
+通俗来说，就是**把一种数据类型的变量转换成我们需要的数据类型**
+
+**2. 隐式转换**
+
+某些运算符被执行时，系统内部自动将数据类型进行转换，这种转换称为隐式转换。
+
+**规则**
+
+- - 号两边只要有一个是字符串，都会把另外一个转成字符串
+- 除了 + 以外的算术运算符 比如 - \* / 等都会把数据转成数字类型
+
+**缺点**
+
+- 转换类型不明确，靠经验才能总结
+
+**小技巧**
+
+- - 号作为正号解析可以转换成数字型
+- 任何数据和字符串相加结果都是字符串
+
+```js
+console.log(11 + 11); // 22
+console.log('11'+ 11); // 1111
+console.log(11-11); // 0
+console.1og('11'-11); // 0
+console.log(1*1); // 1
+console.log('1'* 1); // 1
+console.log(typeof '123'); // string
+console.log(typeof +'123'); // number
+console.log(+'11'+ 11); // 22
+```
+
+**3. 显示转换**
+
+编写程序时过度依靠系统内部的隐式转换是不严禁的，因为隐式转换规律并不清晰，大多是靠经验总结的规律。
+
+为了避免因隐式转换带来的问题，通常根逻辑需要对数据进行显示转换。
+
+**概念**
+
+自己写代码告诉系统该转成什么类型
+
+**Number(数据)**
+
+- 转成数字类型
+- 如果字符串内容里有非数字，转换失败时结果为 NaN(NotaNumber)即不是一个数字
+- NaN 也是 number 类型的数据，代表非数字
+
+**parseInt(数据)**
+
+- 只保留整数
+
+**parseFloat(数据)**
+
+- 保留浮点数
