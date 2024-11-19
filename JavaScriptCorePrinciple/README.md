@@ -2,9 +2,9 @@
 
 > 学习地址：https://www.bilibili.com/video/BV1Ze411B7rS
 
-**打好 JS 基石，走稳前端进阶之路。**
+**<font color=skyblue size=6>打好 JavaScript 基石，走稳前端进阶之路。</font>**
 
-1.为什么要学习这门课
+**<font color=black size=4>1. 为什么要学习这门课</font>**
 
 前端技术的日新月异，前端应用的复杂度日益提升，市场上对于前端人才的要求也愈加严格。
 
@@ -12,7 +12,7 @@
 
 扎实掌握并加强原生 `JavaScript` 的核心原理及编码功底、深入理解前端框架源代码，对于提升自己的前端技术能力、提高职业生涯天花板是非常有必要的。
 
-2.怎么学
+**<font color=black size=4>2. 怎么学</font>**
 
 围绕**基础原理**、**数组**、**异步编程**、**V8 引擎**几个核心知识点展开通过`4个模块`、`27讲内容`带你深挖 `JavaScript` 底层原理。
 
@@ -35,9 +35,9 @@
 
 **各种前端新技术、新框架的出现也在考验前端工程师的能力。**
 
-<font color="orange">如何提升技术能力、建立自己的“核心竞争力”是每一位优秀的前端工程师应该思考的问题</font>
+<font color="#f96351" size=5>如何提升技术能力、建立自己的“核心竞争力”是每一位优秀的前端工程师应该思考的问题</font>
 
-### JavaScript 的数据类型你了解多少?
+### 一、JavaScript 的数据类型你了解多少?
 
 作为 `JavaScript` 的入门级知识点，`JavaScript` 数据类型在整个 `JavaScript` 的学习过程中其实尤为重要。
 
@@ -47,18 +47,18 @@
 
 #### 1. 数据类型的概念
 
-![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240116202144735-1547022855.png)
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240116202144735-1547022855.png" /></p>
 
 前七种是基础类型，`Object`是引用数据类型。尤其要注意`Object`，它在日常开发使用中是最频繁的，也是需要关注细节最多的。
 
 数据类型大致可以分成两类来进行存
 
-- 基础类型存储在栈内存：被引用或拷贝时,会创建一个完全相等的变量
-- 引用类型存储在堆内存：存储的是地址,多个引用指向同一个地址
+- 基础类型存储在栈内存：被引用或拷贝时，会创建一个完全相等的变量。
+- 引用类型存储在堆内存：存储的是地址，多个引用指向同一个地址。
 
-这里会涉及一个“共享”的概念，下面通过两段代码来说明。
+这里会涉及一个**共享**的概念，下面通过两段代码来说明。
 
-1️⃣ 代码一
+**1️. 代码一**
 
 ```js
 let a = {
@@ -74,7 +74,7 @@ console.log(b.name); //第三个console son
 
 这里就体现了引用类型的特征：这两个值都存在同一个内存空间中共享，一个值改变，另一个值也随之改变。
 
-2️⃣ 代码二
+**2. 代码二**
 
 ```js
 let a = { name: "Julia", age: 20 };
@@ -84,9 +84,9 @@ function change(o) {
   o = { name: "Kath", age: 30 };
   return o;
 }
-let b = change(a); //注意这里没有new,后面new相关会有专门文章讲解
-console.log(b.age); //第一个console 30
-console.log(a.age); //第二个console 24
+let b = change(a); // 注意这里没有new，后面new相关会有专门文章讲解。
+console.log(b.age); // 第一个console 30
+console.log(a.age); // 第二个console 24
 ```
 
 函数传参进来的 `o`，传递的是对象在堆中的内存地址，通过调用`o.age = 24;`确实改变了`a.age`的值，但是后续调用的`return`又把`o`变成了另一个内存最地址，将`{ name: "Kath", age: 30 }`这个对象存入其中，最后将该值返回给`b`。
@@ -97,7 +97,7 @@ console.log(a.age); //第二个console 24
 
 **数据类型检测**，也是面试过程中经常会遇到的问题。
 
-1️⃣ 第一种判断方法: `typeof`
+**1️. 第一种判断方法: <font color="brown" size=5>typeof</font>**
 
 ```js
 typeof 1; // 'number'
@@ -116,7 +116,7 @@ typeof console.log; // 'function'
 
 此外，在引用数据类型中除了`function`会被判断为`ok(function)`以外，其余的结果都为`object`，无法具体的判断。
 
-2️⃣ 第二种判断方法：`instanceof`
+**2️. 第二种判断方法：<font color="brown" size=5>instanceof</font>**
 
 `instanceof` 运算符可以用来判断一个对象是否是某个类的实例或者某个类的原型链中的实例，使用 `instanceof` 运算符同样会返回一个布尔值，如果 `object` 是 `class` 或者 `class` 的原型链中的实例，则返回 `true`；否则返回 `false`。
 
@@ -164,29 +164,29 @@ function mylnstanceof(left, right) {
 
 这个自定义函数通过逐层查找原型链的方式，来判断一个对象是否是某个构造函数或者对象的实例。它的实现与 `instanceof` 运算符类似，但是并不完全等同。
 
-3️⃣ 两种判断数据类型的差异
+**两种判断数据类型的差异**
 
 1. `instanceof` 可以准确地判断复杂引用数据类型，但是不能正确判断基础数据类型。
 2. 而 `typeof` 也存在弊端，它虽然可以判断基础数据类型(`null` 除外)，但是引用数据类型中，除了 `function` 类型以外，其他的也无法判断。
 
 总之，单独使用其中的任何一个都无法满足所有场景的需求，只能通过二者混写的方式。这样也只是满足大多数的场景，而且写起来也比较繁琐。
 
-4️⃣ 第三种判断方法:Object.prototype.toString **(推荐)**
+**3. 第三种判断方法：<font color="brown" size=5>Object.prototype.toString</font>** **(推荐)**
 
 ```js
-Object.prototype.toString({}); //"[object Object]"
-Object.prototype.toString.call({}); //同上结果,加上call也ok
-Object.prototype.toString.call(1); //"[object Number]"
-Object.prototype.toString.call("1"); //"[object String]"
-Object.prototype.toString.call(true); //"[object Boolean]"
-Object.prototype.toString.call(function () {}); //"[object Function]"
-Object.prototype.toString.call(null); //"[object Null]"
-Object.prototype.toString.call(undefined); //"[object Undefined]"
-Object.prototype.toString.call(/123/g); //"[object RegExp]"
-Object.prototype.toString.call(new Date()); //"[object Date]"
-Object.prototype.toString.call([]); //"[object Array]"
-Object.prototype.toString.call(document); //"[object HTMLDocument]"
-Object.prototype.toString.call(window); //"[objectWindow]"
+Object.prototype.toString({}); // "[object Object]"
+Object.prototype.toString.call({}); // 同上结果,加上call也ok
+Object.prototype.toString.call(1); // "[object Number]"
+Object.prototype.toString.call("1"); // "[object String]"
+Object.prototype.toString.call(true); // "[object Boolean]"
+Object.prototype.toString.call(function () {}); // "[object Function]"
+Object.prototype.toString.call(null); // "[object Null]"
+Object.prototype.toString.call(undefined); // "[object Undefined]"
+Object.prototype.toString.call(/123/g); // "[object RegExp]"
+Object.prototype.toString.call(new Date()); // "[object Date]"
+Object.prototype.toString.call([]); // "[object Array]"
+Object.prototype.toString.call(document); // "[object HTMLDocument]"
+Object.prototype.toString.call(window); // "[objectWindow]"
 ```
 
 **全局通用的数据类型检测方法**
@@ -216,16 +216,18 @@ getType(/123/g); // "RegExp" toString返回
 
 #### 3.数据类型转换
 
-1. 强制类型转行
+**<font color="#2f9dff" size=4>1. 强制类型转行</font>**
 
 - Number()
 - parseInt()
-- parseFloat
+- parseFloat()
 - toString()
 - String()
 - Boolean()
 
-![](https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240129203750616-543638988.png)
+以上是几种比较常见的强制类型转换方法，下面重点介绍两个常用的方法。
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202401/2332774-20240129203750616-543638988.png" /></p>
 
 **Number()方法的强制转换规则**
 
@@ -235,23 +237,24 @@ getType(/123/g); // "RegExp" toString返回
 - `undefined`：返回`NaN`
 - 字符串：如果字符串中只值包含数字，则将其转换为十进制；如果字符串中包含有效的浮点格式，将其转换为浮点数值；如果是空字符串，将其转换为`0`；如果不是以上格式的字符串，均返回`NaN`。
 - `Symbol`：抛出错误
-- 对象：并且部署了`[Symbol.toPrimitive]`：那么调用此方法，否则调用对象的`valueOf`方法
+- 对象：并且部署了`[Symbol.toPrimitive]`，那么调用此方法，否则调用对象的`valueOf`方法。
 
 ```js
 Number(1); // 1
 Number(false); // 0
-Number('0111'); // 111
+Number("0111"); // 111
 Number(null); // 0
-Number(''); // 0
-Number('la'); // NaN
+Number(""); // 0
+Number("la"); // NaN
 Number(-0x11); // -17
 Number(0x11); // 17
 ```
 
+---
+
 **Boolean()方法的强制转换规则**
 
 除了`undefined`、`null`、`false`、`''`、`0(包括+0,-0)`、`NaN`转换出来是`false`，其它都是`true`。
-
 
 ```js
 Boolean(0); // false
@@ -260,21 +263,21 @@ Boolean(undefined); // false
 Boolean(NaN); // false
 Boolean(1); // true
 Boolean(13); // true
-Boolean('12'); // true
+Boolean("12"); // true
 Boolean({}); // true
 ```
 
-2. 隐式类型转换
+**<font color="#2f9dff" size=4>2. 隐式类型转换</font>**
 
 凡是通过以下的方式执行的操作，如果遇到两个数据结构不一样的情况，都会出现隐式转换。
 
-![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204193319392-390200967.png)
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204193319392-390200967.png" /></p>
 
 下面主要解释日常用的比较多的 `==` 与 `+`
 
-1️⃣ **`==`的隐式转换规则**
+**1. `==`的隐式转换规则**
 
-![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204200552466-1608942475.png)
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204200552466-1608942475.png" /></p>
 
 - 如果**类型相同**无须进行类型转换
 - 如果其中一个的操作值是`null`或者`undefined`那么另一个操作符必须为`null`或者`undefined`才会返回`true`否则返回`false`
@@ -286,31 +289,31 @@ Boolean({}); // true
 ```js
 console.log(null == undefined); // true 规则2
 console.log(null == 0); // false 规则2
-console.log('' == null); // false 规则2
-console.log(''== 0); // true 规则4 字符串转隐式转换成Number之后再对比
-console.log('123' == 123); // true 规则4 字符串转隐式转换成Number之后再对比
+console.log("" == null); // false 规则2
+console.log("" == 0); // true 规则4 字符串转隐式转换成Number之后再对比
+console.log("123" == 123); // true 规则4 字符串转隐式转换成Number之后再对比
 console.log(0 == false); // true 5 规则布尔型隐式转换成Number之后再对比
 console.log(1 == true); // true 规则5 布尔型隐式转换成Number之后再对比
 
 var a = {
   value: 0,
-  valueOf: function() {
-  this.value++;
-  return this.value;
-  }
+  valueOf: function () {
+    this.value++;
+    return this.value;
+  },
 };
 //注意这里a又可以等于1、2、3
-console.log(a == 1 && a == 2 && a ==3); //true 规则6 Object隐式转换
+console.log(a == 1 && a == 2 && a == 3); //true 规则6 Object隐式转换
 //注:但是执行过3遍之后,再重新执行a=3或之前的数字就是false,因为value已经加上去了,这里需要注意一下
 ```
 
-2️⃣ **`+`的隐式转换规则**
+**2. `+`的隐式转换规则**
 
 `+`号操作符不仅可以用作数字相加，还可以用作字符串拼接。
 
 `+`两边都是数字则直接进行加法运算，`+`两边都是字符串直接进行字符串拼接，无需进行隐式转换。
 
-![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204202345931-2001167424.png)
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204202345931-2001167424.png" /></p>
 
 - 如果其中有一个是**字符串**，另外一个是`undefined`、`null`、或**布尔型**，则调用`toString()`方法进行字符串拼接。如果是**纯对象**、**数组**、**正则**等，则默认调用对象的转换方法会存在优先级，然后再进行拼接。
 - 如果其中有一个是**数字**，另外一个是`undefined`、`null`、**布尔型**、或**数字**，则会将其转换成数字进行加法运算，对象的情况还是参考上一条规则。
@@ -335,11 +338,11 @@ console.log("1" + 3); // '13' 规则3，字符串拼接
 
 整体看来，如果数据中有`字符串`，`JavaScript`还是更倾向于把其他类型的数据转换为字符串。
 
-3️⃣ **`Object`的转换规则**
+**3. `Object`的转换规则**
 
 对象的转换首先会调其内置的`toPrimitive`方法
 
-![](https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204203238372-1196679842.png)
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240204203238372-1196679842.png" /></p>
 
 1. 如果部署了`[Symbol.toPrimitive]()`方法优先调用再返回
 2. 调用`valueOf()`，如果转换为基础类型则返回
@@ -373,3 +376,1248 @@ console.log([1, 2, undefined, 4, 5] + 10); // 输出 "1,2,,4,510"
 
 //注意[1,2,undefined,4,5]会默认先调用valueOf结果还是这个数组,不是基础数据类型继续转换,也还是调用toString,返回"1,2,,4,5",然后再和10进行运算,还是按照字符串拼接规则,参考'+'的第3条规则
 ```
+
+#### 4.深拷贝与浅拷贝
+
+在`JavaScript`的编程中经常需要对数据进行复制，什么时候用深拷贝、什么时候用浅拷贝，是开发过程中需要思考的。
+
+**深入学习这部分知识可以提高你手写 JavaScript 的能力以及对一些边界特殊情况的深入思考能力**
+
+1. 拷贝一个很多嵌套的对象怎么实现
+2. 在面试官眼中，写成什么样的深拷贝代码才算合格。
+
+**1. 浅拷贝的原理与实现**
+
+自己创建一个对象，来接受你要重新复制或引用的对象值。如果对象属性是基本的数据类型，复制的就是基本类型的值给新对象；但如果是属性是引用数据类型，复制的就是内存中的地址，如果其中一个对象改变了这个内存中的地址，肯定会影响到另一个对象。
+
+**<font color="#2f9dff" size=4>方法一：`object.assign`</font>**
+
+`object.assign`是`ES6`中`object`的一个方法，该方法可以用于`JavaScript`对象的合并等多个用途，其中一个用途就是可以进行浅拷贝。
+
+> `object.assign`的语法为`Object.assign(target,...sources)`
+
+```js
+let target = {};
+let source = { a: { b: 1 } };
+
+Object.assign(target, source);
+console.log(target); // { a: {b: 1} }
+```
+
+下面来看另一个例子
+
+```js
+let target = {};
+let source = { a: { b: 2 } };
+
+Object.assign(target, source);
+console.log(target); // { a: {b: 2} }
+
+source.a.b = 10;
+console.log(source); // { a: {b: 10} }
+console.log(target); // { a: {b: 10} }
+```
+
+**使用`object.assign`时需要注意**
+
+- 它不会拷贝对象的继承属性
+- 它不会拷贝对象的不可枚举属性
+- 可以拷贝`Symbol`类型的属性
+
+可以简单理解为：`object.assign`循环遍历源对象的属性，通过复制的方式将其赋给目标对象的相应属性。
+
+下面代码用来验证`object.assign`可以拷贝`Symbol`类型的属性
+
+```js
+let obj1 = { a: { b: 1 }, sym: Symbol(1) };
+Object.defineProperty(obj1, "innumerable", {
+  value: "不可枚举属性",
+  enumerable: false,
+});
+let obj2 = {};
+Object.assign(obj2, obj1);
+obj1.a.b = 2;
+console.log("obj1", obj1);
+console.log("obj2", obj2);
+```
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240218204315441-139389357.png" /></p>
+
+从图中可以看到，`object.assign`可以拷贝`Symbol`类型的对象，但是如果到了对象的第二层属性`obj1.a.b`时，前者值的改变也会影响后者第二层属性的值。说明其中依旧存在访问共同对应内存的问题。这就说明，这种方法还不能进一步的复制，只是完成了浅拷贝的功能。
+
+**<font color="#2f9dff" size=4>方法二：扩展运算符的方法</font>**
+
+利用`JavaScript`的扩展运算符，在构造对象的同时完成浅拷贝的功能。
+
+> 扩展运算符的语法为：`let cloneObj = {...obj};`
+
+```js
+/*对象的拷贝*/
+let obj = { a: 1, b: { c: 1 } };
+let obj2 = { ...obj };
+obj.a = 2;
+console.log(obj); //{a:2,b:{c:1}}
+console.log(obj2); //{a:1,b:{c:1}}
+obj.b.c = 2;
+console.log(obj); //{a:2,b:{c:2}}
+console.log(obj2); //{a:1,b:{c:2}}
+
+/*数组的拷贝*/
+let arr = [1, 2, 3];
+let newArr = [...arr]; //跟arr.slice()是一样的效果
+console.log(newArr); // [ 1, 2, 3 ]
+```
+
+扩展运算符和`object.assign`有同样的缺陷：二者实现浅拷贝的功能差不多，但是如果属性都是基本类型的值，使用扩展运算符进行浅拷贝会更加方便一些。
+
+**<font color="#2f9dff" size=4>方法三：`concat`拷贝数组</font>**
+
+> **数组的`concat`方法其实也是浅拷贝**
+
+```js
+let arr = [1, 2, 3];
+let newArr = arr.concat();
+newArr[1] = 100;
+console.log(arr); // [ 1,2,3]
+console.log(newArr); // [1,100,3]
+```
+
+使用`concat`方法连接一个含有引用类型数据的数组时，需要注意修改原数组中的元素的属性，因为它会影响拷贝之后连接的数组。不过`concat`只能用于数组的浅拷贝，使用场景比较局限。
+
+**<font color="#2f9dff" size=4>方法四：`slice`拷贝数组</font>**
+
+> **`slice`方法仅仅针对数组类型**
+
+> `slice`的语法为：`arr.slice(begin,end);`
+
+`slice`使用也比较局限，因为它仅仅只针对于数组类型。`slice`方法会返回一个新的数组对象，这个方法由该对象的前两个参数来决定数组截取的开始位置与结束位置，而不会改变原始数组。
+
+```js
+let arr = [1, 2, { val: 4 }];
+let newArr = arr.slice();
+newArr[2].val = 1000;
+console.log(arr); //[ 1, 2, { val: 1000 } ]
+```
+
+这段代码中就可以看到浅拷贝的限制所在了，它只能拷贝一层对象，如果存在对象的嵌套，那么浅拷贝将无能为力。因此，深拷贝就是为了解决这个问题而生的。他能解决多层对象嵌套问题，彻底实现拷贝。
+
+**2. 手工实现一个浅拷贝**
+
+1. 对基础类型做一个最基本的拷贝
+2. 对引用类型开辟一个新的存储，并且拷贝一层对象属性。
+
+```js
+const shallowClone = (target) => {
+  if (typeof target === "object" && target !== null) {
+    const cloneTarget = Array.isArray(target) ? [] : {};
+    for (let prop in cloneTarget) {
+      // if (target.hasOwnProperty(prop)) {
+      if (Object.prototype.hasOwnProperty.call(target, prop)) {
+        cloneTarget[prop] = target[prop];
+      }
+    }
+    return cloneTarget;
+  } else {
+    return target;
+  }
+};
+```
+
+这里我们利用了类型的判断，针对引用类型的对象进行`for`循环遍历对象属性，赋值给目标对象的属性，基本手工实现浅拷贝。
+
+---
+
+**3. 深拷贝的原理和实现**
+
+浅拷贝只是创建了一个新的对象，复制了原有对象的基本类型的值。而引用数据类型值拷贝了一层属性，再深层的就无法拷贝了。
+
+**对于复杂引用数据类型，其在堆内存中完全开辟了一块内存地址，并将原有的对象完全复制过来存放。这两个对象是相互独立、不受影响的，彻底实现了内存的分离。**
+
+总的来说，深拷贝的原理可以总结为，将一个对象从内存中完整地拷贝出来一份给目标对象，并从堆内存中开辟一个全新的空间存放新对象，且新对象的修改并不会改变原对象，二者实现真正的分离。
+
+**1. 方法一：乞丐版(`JSON.stringfy`)**
+
+> `JSON.stringfy()`是目前开发过程中最简单的深拷贝方法，其实就是把一个对象序列化为一个`JSON`的字符串。并把对象里面的内容转换为字符串，最后再用`JSON.parse`方法将`JSON`字符串生成一个新的对象。
+
+```js
+let obj1 = { a: 1, b: [1, 2, 3] };
+let str = JSON.stringify(obj1);
+let obj2 = JSON.parse(str);
+console.log(obj2); //{a:1,b:[1,2,3]}
+obj1.a = 2;
+obj1.b.push(4);
+console.log(obj1); // {a:2,b:[1,2,3,4]}
+console.log(obj2); // {a:1,b:[1,2,3]}
+```
+
+从这段代码中可以看到，通过`JSON.stringfy()`可以初步实现一个对象的拷贝。通过改变`obj1`的`b`属性，`obj2`这个对象也不会受影响。
+
+**使用`JSON.stringfy()`进行深拷贝时要注意**
+
+1. 拷贝的对象的值中如果有`函数`、`undefined`、`symbol`这几种类型,经过`JSON.stringify` 序列化之后的字符串中这个键值对会消失
+2. 拷贝 `Date` 引用类型会变成字符串
+3. 无法拷贝不可枚举的属性
+4. 无法拷贝对象的`原型链`
+5. 拷贝 `RegExp` 引用类型会变成空对象
+6. 对象中含有 `NaN`、`Infinity` 以及`-Infinity`，`JSON` 序列化的结果会变成 `null`
+7. 无法拷贝对象的循环应用,即对象成环`(obj[key]=obj)`
+
+```js
+function Obj() {
+  this.func = function () {
+    alert(1);
+  };
+  this.obj = { a: 1 };
+  this.arr = [1, 2, 3];
+  this.und = undefined;
+  this.reg = /123/;
+  this.date = new Date(0);
+  this.NaN = NaN;
+  this.infinity = Infinity;
+  this.sym = Symbol(1);
+}
+
+let obj1 = new Obj();
+Object.defineProperty(obj1, "innumerable", {
+  enumerable: false,
+  value: "innumerable",
+});
+console.log("obj1", obj1);
+let str = JSON.stringify(obj1);
+let obj2 = JSON.parse(str);
+console.log("obj2", obj2);
+```
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240219204257148-1780404212.png" /></p>
+
+使用`JSON.stringfy()`方法进行深拷贝对象，虽然目前还有很多无法实现的功能，但这种方法足以满足日常的开发需求。并且是最简单和快捷的。
+
+---
+
+**2. 方法二：基础版（手写递归实现）**
+
+```js
+let obj1 = {
+  a: {
+    b: 1,
+  },
+};
+function deepClone(obj) {
+  let cloneObj = {};
+  for (let key in obj) {
+    //遍历
+    if (typeof obj[key] === "object") {
+      cloneObj[key] = deepClone(obj[key]); //是对象就再次调用该函数递归
+    } else {
+      cloneObj[key] = obj[key]; //基本类型的话直接复制值
+    }
+  }
+}
+
+let obj2 = deepClone(obj1);
+obj1.a.b = 2;
+console.log(obj2); // {a:{b:1}}
+```
+
+**使用基础版递归进行深拷贝时要注意**
+
+1. 这个深拷贝函数并不能复制不可枚举的属性以及 `Symbol` 类型
+2. 这种方法只是针对普通的引用类型的值做递归复制，对于`数组`、`日期函数`、`正则`、`错误对象`、`function`这样的引用类型并不能正确的拷贝。
+3. 对象的属性里面成环，即循环引用没有解决。
+
+---
+
+**3. 方法三：改进版（改进后递归实现）**
+
+针对以上几个问题，通过一下四点理论来指导你怎么做
+
+- 针对能够遍历对象的`不可枚举属性`以及 `Symbol类型` 我们可以使用 `Reflect.ownKeys` 方法
+- 当参数为 `Date`、`RegExp`类型,则直接生成一个新的实例返回
+- 利用 `Object` 的 `getOwnPropertyDescriptors` 方法可以获得对象的所有属性，以及对应的特性，顺便结合 `Object` 的 `create` 方法创建一个新对象，并继承传入原对象的原型链。
+- 利用 `WeakMap` 类型作为`Hash`表,因为 `WeakMap` 是弱引用类型,可以有效防止内存泄漏,作为检测循环引用很有帮助,如果存在循环,则引用直接返回 `WeakMap` 存储的值。（_有人使用 WeakMap 来解决循环引用问题但是很多解释都是不够清晰的，建议自己学习了解。_）
+
+你写的每一行代码都是需要经过深思熟虑并且非常清晰明白的这样你才能经得住面试官的推敲
+
+```js
+const isComplexDataType = (obj) =>
+  (typeof obj === "object" || typeof obj === "function") && obj !== null;
+const deepClone = function (obj, hash = new WeakMap()) {
+  if (obj.constructor === Date) return new Date(obj); //日期对象直接返回一个新的日期对象
+  if (obj.constructor === RegExp) return new RegExp(obj); //正则对象直接返回一个新的正则对象
+  //如果循环引用了就用 weakMap 来解决
+  if (hash.has(obj)) return hash.get(obj);
+  let allDesc = Object.getOwnPropertyDescriptors(obj);
+  //遍历传入参数所有键的特性
+  let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc);
+  //继承原型链
+  hash.set(obj, cloneObj);
+  for (let key of Reflect.ownKeys(obj)) {
+    cloneObj[key] =
+      isComplexDataType(obj[key]) && typeof obj[key] !== "function"
+        ? deepClone(obj[key], hash)
+        : obj[key];
+  }
+  return cloneObj;
+};
+
+let obj = {
+  num: 0,
+  str: "",
+  boolean: true,
+  unf: undefined,
+  nul: null,
+  obj: { name: "我是一个对象", id: 1 },
+  arr: [0, 1, 2],
+  func: function () {
+    console.log("我是一个函数");
+  },
+  date: new Date(0),
+  reg: new RegExp("/我是一个正则/ig"),
+  [Symbol("1")]: 1,
+};
+
+Object.defineProperty(obj, "innumerable", {
+  enumerable: false,
+  value: "不可枚举属性",
+});
+obj = Object.create(obj, Object.getOwnPropertyDescriptors(obj));
+obj.loop = obj; //设置loop成循环引用的属性
+let cloneObj = deepClone(obj);
+cloneObj.arr.push(4);
+console.log("obj", obj);
+console.log("cloneObj", cloneObj);
+```
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240219210819121-1989207252.png" /></p>
+
+很多人对如何实现深拷贝的细节问题并不清楚，但是如果仔细研究你就会发现，这部分内容对于你深入了解 JavaScript 底层的原理有很大帮助。
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240219210941698-1234404498.png" /></p>
+
+最好的建议还是要多动手，不清楚的地方自己敲一遍代码,这样才能加深印象。
+
+### 二、继承实现：探究 JavaScript 常见的 6 种继承方式
+
+**继承：** 继承是面向对象的，使用这种方式我们可以更好地服用以前开发的代码，缩短开发的周期、提升开发效率。
+
+**继承在各种编程语言中都充当着至关重要的角色**
+
+它天生的灵活性使应用场景更加丰富，`JavaScript` 中的继承也经常用在前端工程基础库的搭建中，在整个`JavaScript`的学习中尤为重要。
+
+通过这部分知识的学习，可以让你对 `JavaScript` 的继承有更深一步的理解。使用起来更加得心应手，并可以轻松掌握和 `JavaScript` 继承相关的面试题目。
+
+思考以下下问题
+
+1. `JavaScript` 的继承到底有多少种实现方式呢?
+2. `ES6` 的 `extends` 关键字是用哪种继承方式实现的呢?
+
+#### 1. 继承概念的探究
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240221205345627-1534153238.png" /></p>
+
+**继承可以使得子类别具有父类的各种方法和属性：** 在上图例子中，轿车和货车分别继了汽车的属性，而不需要在轿车中定义汽车已有的属性。在轿车继承汽车的同时，也可以重新定义汽车的某些属性，并重写或者覆盖某些属性与方法，使其获得与汽车这个父类不同的属性与方法。
+
+继承的基本概念就初步介绍到这里，下面我们就来看看 `JavaScript` 都有哪些实现继承的方法。
+
+#### 2. 实现继承的几种方法
+
+**1. 方法一：原型链继承**
+
+原型链继承是比较常见的继承方式之一，其中涉及的**构造函数**、**原型**和**实例**，三者之间存在着一定的关系。
+
+- 每一个构造函数都有一个原型对象
+- 原型对象又包含一个指向构造函数的指针
+- 而实例则包含一个原型对象的指针
+
+```js
+function Parent1() {
+  this.name = "parent1";
+  this.play = [1, 2, 3];
+}
+function Child1() {
+  this.type = "child2";
+}
+Child1.prototype = new Parent1();
+console.log(new Child1()); // Parent1 { type: 'child2' }
+```
+
+这段代码看起来没什么问题，虽然父类的方法和属性都能够访问，但存在一个潜在的问题，下面举例说明。
+
+```js
+var s1 = new Child1();
+var s2 = new Child1();
+s1.play.push(4);
+console.log(s1.play, s2.play); // [ 1, 2, 3, 4 ] [ 1, 2, 3, 4 ]
+```
+
+其中只改变了 `s1` 的属性，那么为什么 `s2` 也跟着变了？ 因为两个实例使用的是统一个原型对象。
+
+内存空间是共享的，当一个发生变化的时候，另外一个也随之进行了变化，这就是使用原型链继承的一个缺点，因此我们就要使用其它方法来解决这个问题。
+
+**2. 方法二：构造函数继承(借助 call)**
+
+```js
+function Parent1() {
+  this.name = "parent1";
+}
+
+Parent1.prototype.getName = function () {
+  return this.name;
+};
+
+function Child1() {
+  Parent1.call(this);
+  this.type = "child1";
+}
+
+let child = new Child1();
+console.log(child); // Child1 { name: 'parent1', type: 'child1' }
+console.log(child.getName()); // 报错 TypeError: child.getName is not a function at Object.<anonymous>
+```
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240226200702091-728032989.png" /></p>
+
+通过打印结果可以看到，除`Child1`的属性`type`之外，`child`也继承了`Parent1`的属性`name`。这样写的时候虽然子类可以拿到父类的属性值，解决了第一种方式的弊端，但问题是，父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法。
+
+这种情况下，我们再看控制台执行结果，就可以看到构造函数继承的优缺点。
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240226201430707-1117240173.png" /></p>
+
+它使父类的引用属性不会被共享，优化了第一种继承方式的弊端。但随之而来的缺点也比较明显，只能继承父类的实例属性和方法，不能继承原型属性或方法。
+
+> 上面的两种继承方式各有优缺点，那么结合二者的优点，于是就产生了下面这种组合继承的方式。
+
+**3. 方法三：组合继承(前两种组合)**
+
+这种方式组合了前两种继承的优缺点，请看代码。
+
+```js
+function Parent3() {
+  this.name = "parent3";
+  this.play = [1, 2, 3];
+}
+
+Parent3.prototype.getName = function () {
+  return this.name;
+};
+
+function Child3() {
+  // 第二次调用Parent3()
+  Parent3.call(this);
+  this.type = "child3";
+}
+
+// 第一次调用Parent3()
+Child3.prototype = new Parent3();
+// 手动挂上构造器，指向自己的构造函数
+Child3.prototype.constructor = Child3;
+let s3 = new Child3();
+let s4 = new Child3();
+s3.play.push(4);
+console.log(s3.play, s4.play); // [ 1, 2, 3, 4 ] [ 1, 2, 3 ]
+console.log(s3.getName()); // 正常输出 parent3
+console.log(s4.getName()); // 正常输出 parent3
+```
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240226203006827-1628446369.png" /></p>
+
+之前方法一和方法二的问题的得以解决，但是这里又增加了一个新问题。通过注释我们可以看到`parent3`执行了两次，第一次是改变`child3`的`prototype`的时候，第二次通过`call`调用`parent3`的时候，那么`parent3`多构造一次，就多进行了一次性能开销，这是我们不愿意看到的。那么是否有更好的方法，请看下面的第六种方式。
+
+上面的介绍更多的是围绕构造函数的方式，那么对于`JavaScript`普通对象怎么实现继承呢？
+
+**4. 方法四：原型式继承**
+
+这里不得不提到的是`ES5`里面的`Object.create()`方法，这个方法接收两个参数。
+
+1. 用作新对象原型的对象
+2. 为新对象定义额外属性的对象(可选参数)
+
+下面通过一段代码，看看普通对象是怎么实现继承的。
+
+```js
+let parent4 = {
+  name: "parent4",
+  friends: ["p1", "p2", "p3"],
+  getName: function () {
+    return this.name;
+  },
+};
+
+let parent41 = Object.create(parent4);
+parent41.name = "tom";
+parent41.friends.push("jerry");
+
+let parent5 = Object.create(parent4);
+parent5.friends.push("lucy");
+
+console.log(parent41.name); // tom
+console.log(parent41.name === parent41.getName()); // true
+console.log(parent5.name); // parent4
+console.log(parent41.friends); // [ 'p1', 'p2', 'p3', 'jerry', 'lucy' ]
+console.log(parent5.friends); // [ 'p1', 'p2', 'p3', 'jerry', 'lucy' ]
+```
+
+从代码可以看到，通过`Object.create()`这个方法可以实现普通对象继承，不仅能继承属性，同样也能继承`getName`方法。下面是运行结果：
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202402/2332774-20240227205322098-1713923246.png" /></p>
+
+前两个结果不做说明，第三个结果是`parent5`继承了`parent4`的内部属性，没有进行覆盖，因此输出父对象的属性。最后两个输出结果是一样的，这里可以联想到前面讲过的浅拷贝的知识点，过于引用数组类型共享的问题。
+
+其实，`Object.create()`方法是可以对一些对象实现浅拷贝的，那么关于这种继承方式的缺点也很明显：多个实例的引用类型属性指向相同内存，存在篡改的可能。接下来，我们来看在这个继承基础上进行优化的另一种继承方式。
+
+**5. 方法五：寄生式继承**
+
+使用原型式继承可以获得一份目标对象的浅拷贝，然后利用这个浅拷贝的能力再进行增强，
+添加一些方法。这样的方式称为寄生式继承。
+
+虽然优缺点和原型式继承一样，但对于普通对象的继承方式来说，寄生式继承相比于原型式继承还是在父类上添加了更多的方法。
+
+```js
+let parent5 = {
+  name: "parent5",
+  friends: ["p1", "p2", "p3"],
+  getName: function () {
+    return this.name;
+  },
+};
+
+function clone(original) {
+  let clone = Object.create(original);
+  clone.getFriends = function () {
+    return this.friends;
+  };
+  return clone;
+}
+
+let person5 = clone(parent5);
+
+console.log(person5.getName());
+console.log(person5.getFriends());
+```
+
+我们可以看到通过寄生式继承生成的实例，它不仅仅有`getName()`方法，还用了`getFriends()`方法。
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202403/2332774-20240312210232195-1447153219.png" /></p>
+
+`person5`通过`clone`方法添加了`getFriends`方法，从而使`person5`这个普通对象在继承过程中有增加了一个方法，这样的继承方式就是寄生式继承。
+
+在上面几种组合式继承中提到了一些弊端，也就是两次调用父类构造函数造成浪费，上面介绍的寄生式继承就可以解决这种问题。结合第四种提及的继承方式，解决普通对象的继承`Object.create()`方法，我们在前面这几种继承方式的基础上做了改造，得出了寄生式继承的方式，这也是所有继承方式里面相对最优的继承。
+
+**6. 方法六：寄生组合式继承**
+
+```js
+function clone(parent, child) {
+  // // 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程
+  child.prototype = Object.create(parent.prototype);
+  child.prototype.constructor = child;
+}
+
+function Parent6() {
+  this.name = "parent6";
+  this.play = [1, 2, 3];
+}
+
+Parent6.prototype.getName = function () {
+  return this.name;
+};
+
+function Child6() {
+  Parent6.call(this);
+  this.friends = "child5";
+}
+
+clone(Parent6, Child6);
+
+Child6.prototype.getFriends = function () {
+  return this.friends;
+};
+
+let person6 = new Child6();
+console.log(person6);
+console.log(person6.getName());
+console.log(person6.getFriends());
+```
+
+通过这段代码可以看出来，这种寄生组合式方式基本可以解决前几种继承方式的缺点，较好的实现了继承想要的结果。同时也减少了构造函数的次数，减少了性能开销。
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202403/2332774-20240313204133702-2058872341.png" /></p>
+
+打印结果可以看到，属性都得到了继承，方法也没有问题，可以输出预期结果。整体看下来**寄生组合式继承**是最优结果。
+
+另外`ES6`还提供了继承的关键词`extend`，我们在看一下`extend`继承逻辑实现。
+
+**7. ES6 的 extends 关键字实现逻辑**
+
+使用关键词很容易直接实现 `JavaScript` 的继承，但是如果想深入了解 extends 语法糖是怎么实现的，就得深入研究 `extends` 的底层逻辑。
+
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  //原型方法
+  // 即 Person.prototype.getName=function() {}
+  // 下面可以简写为 getName() {...}
+  getName = function () {
+    console.log("Person:", this.name);
+  };
+}
+class Gamer extends Person {
+  constructor(name, age) {
+    //子类中存在构造函数,则需要在使用“this”之前首先调用 super()。
+    super(name);
+    this.age = age;
+  }
+}
+
+const asuna = new Gamer("Asuna", 20);
+asuna.getName(); //成功访问到父类的方法
+```
+
+因为浏览器的兼容性问题，如果遇到不支持`ES6`的浏览器，就得利用`babel`这个编译工具将`es5`代码编译成`es6`代码，让一些不支持新语法特性的浏览器也能运行。那么最后`extends`变异成什么样了呢？
+
+```js
+function _possibleConstructorReturn(self, call) {
+  // ...
+  return call && (typeof call === "object" || typeof call === "function")
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  //这里可以看到
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto_ = superClass);
+}
+
+var Parent = function Parent() {
+  // 验证是否是 Parent 构造出来的 this
+  _classCallCheck(this, Parent);
+};
+
+var Child = (function (_Parent) {
+  inherits(Child, _Parent);
+  function Child() {
+    classCallCheck(this, Child);
+    return _possibleConstructorReturn(
+      this,
+      (Child.__proto || Object.getPrototypeOf(Child)).apply(this, arguments)
+    );
+  }
+  return Child;
+})(Parent);
+```
+
+我们看一下转译后的代码片段，从编译完的源码中可以看到，它采用的也是寄生组合式继承的方式。因此，也证明了这种方式是最优的解决继承的方式。
+
+**8. 总结**
+
+<p align=center><img src="https://img2024.cnblogs.com/blog/2332774/202403/2332774-20240313205941172-1716967837.png" /></p>
+
+通过以上的脑图，通过`Object.create`来划分不同的继承方式。最后的寄生组合式继承，是通过组合继承改造过后最优的继承方式。而`extends`的语法糖，和寄生自合继承的方式基本类似。
+
+你可以看到不同的继承有不同的优缺点，我们需要深入了解不同方式的优缺点，这样才能在日常开发中选择适合当前的开发方式。
+
+**开发者往往会忽视对继承相关的系统性学习，**继承的方法比较多，每个实现的方法细节也比较零散。很多开发者很难有一个系统的、整体的认识，造成效率低下以及代码能力难以进一步提升等问题。因此，通过对上面知识的学习可以深入了解到继承相关的知识，在开发中可以很好的规避提到的问题。
+
+### 四、继承进阶：如何实现 new、apply、call、bind 的底层逻辑
+
+通过上一讲的学习，可以看到在继承的实现过程中，我们综合使用了 new、apply 以及 call 的方法。那么这一讲我们就围绕着这几个方法进行深入的学习，以便于你清楚这几个核心方法的实现思路，更好的理解继承的原理。
+
+**JavaScript 中的 apply、call 和 bind 方法是前端代码开发中相当重要的概念，并且与 this 的指向密切相关。**
+
+如果你想有了解`JavaScript`凡人基础，那么必须了解这些常见的方法。在开始之前，首先请思考几个问题。
+
+1. 用什么样的思路可以 new 关键词?
+2. apply、call、bind 这三个方法之间有什么区别?
+3. 怎样实现一个 apply 或者 call 的方法?
+
+#### 1. new 原理的介绍
+
+`new` 关键词的主要作用就是执行一个构造函数、返回一个实例对象，在`new`的过程中根据构造函数的情况，来确定是否可以接受参数的传递。
+
+下面来看一个简单的例子
+
+```js
+function Person() {
+  this.name = "Jack";
+}
+
+let p = new Person();
+console.log(p.name); // Jack
+```
+
+这段代码比较简单，从输出结果可以看到，`p`是一个通过`Person`这个构造函数生成的一个实例对象。那么`new`在这个生成实例的过程中到底执行了哪些步骤呢？
+
+总结有以下几点
+
+1. 创建一个新对象
+2. 将构造函数的作用域赋给新对象(this 指向新对象)
+3. 执行构造函数中的代码(为这个新对象添加属性)
+4. 返回新对象
+
+那么如果不使用`new`关键字，结合下面的代码进行改造，去掉`new`会发生什么样的变化呢？
+
+```js
+function Person() {
+  this.name = "Jack";
+}
+var p = Person();
+console.log(p); // undefined
+console.log(name); // Jack
+console.log(p.name); // TypeError: Cannot read property 'name' of undefined
+```
+
+那么构造函数中有`return`一个对象的操作时，结果又会是怎么样呢？
+
+```js
+function Person() {
+  this.name = "Jack";
+  return { age: 18 };
+}
+var p = new Person();
+console.log(p); // { age: 18 }
+console.log(p.name); // undefined
+console.log(p.age); // 18
+```
+
+可以看出构造函数最后`return`一个与`this`无关的对象时，`new`命令会直接返回这个新对象，而不是通过`new`执行步骤生成的`this`对象。但是这里要求构造函数必须返回一个对象，如果返回不是一个对象，那么还是会按照`new`实现的步骤，返回新生成的对象。接下来，我们还是在上段代码中改造一下。
+
+```js
+function Person() {
+  this.name = "Jack";
+  return "Tom";
+}
+var p = new Person();
+console.log(p); // { name: 'Jack' }
+console.log(p.name); // Jack
+```
+
+可以看出构造函数`return`的不是一个对象时，还是通过`new`关键字执行步骤生成一个新的对象，也就是绑定了最新`this`，最后返回出来。因此，我们总结一下。
+
+**new 关键词执行之后总是会返回一个对象，要么是实例对象,要么是 return 语句指定的对象。**
+
+#### 2. apply&call&bind 原理的介绍
+
+call、apply 和 bind 是挂在 Function 对象上的三个方法，**调用这三个方法的必须是一个函数**。
+
+基础语法：
+
+```js
+func.call(thisArg,param1,param2,...)
+func.apply(thisArg,[param1,param2,...])
+func.bind(thisArg,param1,param2,...)
+```
+
+`func`是要调用的函数，`thisArg`一般为`this`指向的对象，后面的多个`param`为函数`function`的多个参数，如果不需要也可以不写。
+
+**这三个方法共有的比较明显的特征就是改变函数 func 的 this 指向**
+
+- `call`和`apply`的区别在于传参不同，`apply`的第二个参数为数组，`call`则是从第二个至第 N 个都是给`func`传参
+- `bind`和这两个不同，`bind`虽然改变了`func`的`this`指向，但不是马上执行。而`call`和`apply`是在改变了函数的`this`指向后立马执行的。
+
+这些解释理解起来有点抽象，下面配合例子与代码一起看一下。
+
+> 生活中我不经常做饭，家里没有锅，周末突然想给自己做个饭尝尝。但是家里没有锅，而我又不想出去买，所以就问隔壁邻居借了一个锅来用，这样做了饭，又节省了开销，一举两得。
+
+`A 对象`有个 `getName` 的方法，`B对象`也需要临时使用同样的方法那么这时候可以借用 `A 对象`的 `getName` 方法。既达到了目的，又节约了重复的定义以及节省了内存空间。请看以下代码：
+
+```js
+let a = {
+  name: "jack",
+  getName: function (msg) {
+    return msg + this.name;
+  },
+};
+
+let b = {
+  name: "lily",
+};
+
+console.log(a.getName("hello~")); // hello~jack
+console.log(a.getName.call(b, "hi~")); // hi~lily
+console.log(a.getName.apply(b, ["hi~"])); // hi~lily
+let name = a.getName.bind(b, "hello~");
+console.log(name()); // hello~lily
+```
+
+从执行的结果可以发现，这三个方式都可以达到我们想要的目标，也就是通过改变`this`指向，让`B`对象可以直接使用`A`对象中的`get`方法。而且可以看到，最后三个方法输出的都是和`lily`相关的打印结果，满足了我们的预期。
+
+关于这三个方法的原理相关先介绍到这里，我们再看看这几个方法的使用场景。
+
+#### 3. apply&call&bind 使用场景
+
+**下面几种应用场景的理念都是“借用”方法的思路**
+
+**1.判断数据类型**
+
+用`Object.prototype.toString`几乎可以判断所有类型的数据
+
+```js
+function getTpye(obj) {
+  let type = typeof obj;
+  if (type !== "object") return type;
+  return Object.prototype.toString.call(obj).repalce(/^$/, "$1");
+}
+```
+
+结合这段代码以及前面说的`call`方法的借用思路，那判断数据类型的方法就是借用了`object`原型链上的`toString`方法，最后返回用来判断传入的`object`字符串来确定最后的数据类型。
+
+**2.类数组借用方法**
+
+类数组因为不是真正的数组，所以没有数组类型是自带的种种方法，可以利用一些方法去**借用**数组的方法。
+
+比如借用数组的`push`方法
+
+```js
+let arrayLike = {
+  0: "java",
+  1: "script",
+  length: 2,
+};
+
+Array.prototype.push.call(arrayLike, "jack", "lily");
+console.log(typeof arrayLike); // object
+console.log(arrayLike); // { '0': 'java', '1': 'script', '2': 'jack', '3': 'lily', length: 4 }
+```
+
+可以看到，`arrayLike`是一个对象，模拟数组的是一个类数组。从数据类型上看它是一个对象，此外在代码中可以看出，用`typeof`来判断这个对象输出的是`object`，它自身是不会有`push`方法的，这里我们借用`Array`原型链上的`push`方法，可以实现一个类数组的`push`方法。这样就可以给`arrayLike`添加新的元素，从结果也可以看出`push`满足了我们添加元素的诉求。
+
+**3.获取数组的最大/最小值**
+
+用`apply`来实现数组中判断最大/最小值：`apply`直接传递数组作为调用方法的参数，也可以减少一步展开数组。
+
+```js
+let arr = [13, 6, 10, 11, 16];
+
+const max = Math.max.apply(Math, arr);
+const min = Math.min.apply(Math, arr);
+
+console.log(max); // 16
+console.log(min); // 6
+```
+
+**4.继承**
+
+与`new`、`call`、实现了各种各样的继承方式，下面是组合式继承。
+
+```js
+function Parent3() {
+  this.name = "parent3";
+  this.play = [1, 2, 3];
+}
+
+Parent3.prototype.getName = function () {
+  return this.name;
+};
+
+function Child3() {
+  Parent3.call(this);
+  this.type = "child3";
+}
+
+Child3.prototype = new Parent3();
+Child3.prototype.constructor = Child3;
+let s3 = new Child3();
+console.log(s3.getName()); // arent3
+```
+
+其实这些方法的应用场景很多，关键在于**借用**方法理念。
+
+#### 4. 如何自己实现这些方法
+
+在互联网大厂的面试中，手写实现 `new`、`call`、`apply`、`bind` 一直是比较高频的题目，结合本讲的内容，我们一起来手工实现一下这几个方法。
+
+**1. new 的实现**
+
+刚才我们介绍了`new`实现的过程，来看一下这个过程中`new`被 1 调用后大致做了几件事。
+
+![](https://img2024.cnblogs.com/blog/2332774/202403/2332774-20240327204647960-28936779.png)
+
+```js
+function _new(ctor, ...args) {
+  if (typeof ctor !== "function") {
+    throw "ctor must be a function";
+  }
+  let obj = new Object();
+  obj.__proto__ = Object.create(ctor.prototype);
+  let res = ctor.apply(obj, ...args);
+
+  let isObject = typeof res === "object" && res !== null;
+  let isFunction = typeof res === "function";
+  return isObject || isFunction ? res : obj;
+}
+```
+
+**2. apply 和 call 的实现**
+
+`apply` 和 `call`的实现方式都差不多，只是传递的参数同，因此我们放到一起学习。
+
+**结合方法“借用”的原理**
+
+```js
+Function.prototype.call = function (context, ...args) {
+  context = context || window;
+  context.fn = this;
+  let result = eval("context.fn(...args)");
+  delete context.fn;
+  return result;
+};
+
+Function.prototype.apply = function (context, args) {
+  context = context || window;
+  context.fn = this;
+  let result = eval("context.fn(...args)");
+  delete context.fn;
+  return result;
+};
+```
+
+实现`call`和`apply`的关键就在于`eval`这个代码，其中显示用了`context`这个临时变量来指定上下文，通过执行`eval`来执行`context.fn`这个函数，最后返回`result`。
+
+要注意这两个方法和`bind`的区别在于，**这两个方法是直接返回执行结果，而 bind 方法是返回一个函数。**因此这里直接用`eval`执行得到结果。
+
+**3. bind 的实现**
+
+`bind` 的实现思路基本和 `apply` 一样，但是在最后实现返回结果这里`bind`不需要直接执行,因此不再需要用 `eval` 而是需要通过返回一个函数的方式将结果返回，之后再通过执行这个结果,得到想要的执行效果。
+
+结合这个代码，我们看一下`bind`的底层逻辑以及实现代码。
+
+```js
+Function.prototype.bind = function (context, ...args) {
+  if (typeof this !== "function") {
+    throw new Error("this must be a function");
+  }
+  var self = this;
+  var fbound = function () {
+    self.apply(
+      this instanceof self ? this : context,
+      args.concat(Array.prototype.slice.call(arguments))
+    );
+  };
+  if (this.prototype) {
+    fbound.prototype = Object.create(this.prototype);
+  }
+  return fbound;
+};
+```
+
+可见看到实现`bind`的核心在于返回的时候需要返回一个函数，因此这里的`fbound`需要返回。但是在返回的过程中，原型链对象上的属性不能丢失。所以这里要使用`Object.create`方法将`this.prototype`上面的属性挂到`fbound`的原型上面，最后再返回`fbound`。这样调用`bind`方法接收到函数的对象，在通过执行接收的函数就能得到想要的结果。
+
+你是不是已经弄清了`new`、`apply`、`call`、`bind`，这些方法是如何实现的呢？如果还是一知半解，建议你手动实践。
+
+这一讲的内容基本结束了，通过原理以及对底层逻辑的剖析介绍了日常开发中经常用的 `new`、`apply`、`call`、`bind` 这几种方法，最后带你一起动手进行了实践。我们可以看到这几个方法是有区别和联系的。
+
+![](https://img2024.cnblogs.com/blog/2332774/202404/2332774-20240402213515900-1614972341.png)
+
+以上表格对这几个方法做了简单总结，希望可以帮助更好理解。在日常的前端开发中，这些方法在高级`JavaScript`编程中经常出现，尤其是一些比较好的开源项目，经常会通过借用的方式复用已有的方法来节约内存、优化代码、
+
+这些方法的底层逻辑的实现在互联网大厂的前端面试中出现的频率也比较高，每个实现的方法细节也比较零散。希望通过这一讲的学习,你能很好地掌握这部分内容，以便在面试中遇到这类题目的时候能够轻松应对。
+
+### 五、函数那些事：JS 闭包难点剖析
+
+**闭包**：`JavaScript` 中的闭包是相当重要的概念并且与作用域相关知识的指向密切相关
+
+先思考几个问题
+
+1. `JavaScript` 中的作用域是什么意思?
+2. 闭包会在哪些场景中使用?
+3. 通过定时器循环输出自增的数字通过 `JavaScript` 的代码如何实现?
+
+在讲闭包之前，我们先来学习了解一下作用域的相关知识，方便更好的理解。
+
+#### 1. 作用域基本介绍
+
+`JavaScript`的作用域通常指**变量能够被访问到的范围**，在`JavaScript`中的作用域也分为好几种。
+
+- **ES5 之前：**全局作用域和函数作用域
+- **ES6 出现之后：**新增块级作用域
+
+**1. 全局作用域**
+
+不论 `Java` 也好, `JavaScript` 也罢，变量一般都会分为全局变量和局部变量两种。
+
+在 `JavaScript` 中,全局变量是挂载在 `window` 对象下的变量，所以在网页中的任何位置你都可以使用并且访问到这个全局变量。
+
+下面通过一段代码来介绍全局作用域
+
+```js
+var globalName = "global";
+
+function getName() {
+  console.log(globalName);
+  var name = "inner";
+  console.log(name);
+}
+
+getName();
+console.log(name);
+console.log(globalName);
+
+function setName() {
+  vName = "setName";
+}
+
+setName();
+
+console.log(vName);
+console.log(window.vName);
+```
+
+从这段代码中我们可以看到，`globalName`无论在什么地方都是可以被访问到的，所以它就是全局变量。而在`getName`函数中的作为局部变量的`name`变量是不具备这种能力的。
+
+在`JavaScript`中所有没有经过定义而直接被赋值的变量默认是一个变量(但不建议这样写)，比如上面代码中的`setName()`函数里面的`vName`变量一样。
+
+我们可以发现全局变量也是拥有全局的作用域，无论你所在何处都可以使用它。在浏览器控制台输入`window.vName`时，就可以访问到`window`上所有的全局变量。
+
+当然全局作用域有很多的缺点，我们定义很多的全局变量的时候会容易引起变量命名的冲突，所在在定义变量的时候应该注意作用域的问题。
+
+**2. 函数作用域**
+
+在`JavaScript`中，函数中定义的变量叫做函数变量，这个时候只能在函数内部访问到它，所以他的作用域也是函数内部也被称为函数作用域。
+
+下面来看一段代码
+
+```js
+function getName() {
+  var name = "inner";
+  console.log(name);
+}
+
+getName();
+console.log(name);
+```
+
+除了这个函数内部，其他地方都是不能访问到它的。当这个函数被执行完成之后，这个局部变量也相应会被销毁。所以可以看到`getName`函数外的`name`是访问不到的。
+
+**3. 块级作用域**
+
+最直接的表现就是新增的`let`关键字，使用`let`关键字定义的变量只能在块级作用域中被访问。有着**暂时性死区**的特点：也就是说**这个变量在被定以前是不能被使用的**
+
+举个形象的例子：在`JavaScript`编码的过程中，`if`语句以及`for`语句后面`{...}`这里面所包含的就是块级作用域。
+
+```js
+console.log(a); // a is not defined
+if (true) {
+  let a = 3;
+  console.log(a); // 123
+}
+
+console.log(a); // a is not defined
+```
+
+那么通过上述几种作用域介绍的铺垫，下面我们来学习闭包的相关知识。
+
+#### 2. 什么是闭包
+
+> 红宝书闭包的定义：闭包是指有权访问另外一个函数作用域中的变量的函数
+
+> MDN:一个函数和对其周围状态的引用捆绑在一起(或者说函数被引用包围)这样的组合就是闭包(closure)。也就是说,闭包让你可以在一个内层函数中访问到其外层函数的作用域
+
+这两个官方的定义都比较难理解，下面来说说我的理解。
+
+**1. 闭包的基本概念**
+
+闭包其实就是一个可以访问其他函数内部变量的**函数**，也是一个定义在函数内部的函数或者直接说闭包是一个内嵌函数也可以。
+
+通常情况下，函数内部变量是无法在外部访问的。因此使用闭包的作用就具备实现了能在外部访问某个函数内部变量的功能，让这些内部变量的值始终可以保存在内存中。
+
+下面结合一段代码来具体解释下闭包的概念，这段代码的最终执行结果是 1 。我们可以清楚的发现，`a`变量作为`fun1`中的内部变量，正常情况下作为函数内部的局部变量是无法被外部访问到的。但是通过闭包，我们还是拿到了`a`变量的值。
+
+```js
+function fun1() {
+  var a = 1;
+  return function () {
+    console.log(a);
+  };
+}
+
+fun1();
+
+var result = fun1();
+result(); // 1
+```
+
+现在结合闭包的概念，你是不是能很清晰的了解闭包的作用了呢？
+
+**2. 闭包产生的原因**
+
+**作用域的基本概念**：当访问一个变量时，代码解释器会首先在当前的作用域查找。如果没找到，就去父级作用域去查找。直到找到该变量或者不存在父级作用域中。
+
+需要注意的是，每一个子函数都会拷贝上级的作用域，形成一个作用域的链条。下面还是通过具体的代码来解释一下。
+
+```js
+var a = 1;
+function fun1() {
+  var a = 2;
+  function fun2() {
+    var a = 3;
+    console.log(a);
+  }
+}
+```
+
+从中可以看出，`fun1`函数的作用域指向全局作用域和它本身，`fun2`函数的作用域指向全局作用域、`fun1`和它本身。而作用域是从最底层向上找，知道找到全局作用域`window`为止。如果全局还没有的话，就会报错。
+
+那么这就很形象的说明什么是作用域链：也就是当前函数一般都会存在上层函数的作用域的引用，那么他们就形成了一条作用域链。
+
+由此可见，**闭包产生的本质就是**：当前环境中存在指向父级作用域的引用。
+
+还是拿上面的代码举例：
+
+```js
+function fun1() {
+  var a = 2;
+  function fn2 () {
+    console.log(a);
+  };
+  retuen fn2;
+}
+
+var result = fun1();
+result(); // 1
+```
+
+这里`result`会拿父级作用域的变量输出 2，因为在当前环境中含有对方`fun2`函数的引用。`fun2`的函数恰恰引用了`window`、`fun1`和`fun2`的作用域。所以函数`fun2`是可以访问到`fun1`函数的作用域变量。
+
+那是不是只有返回函数才算是产生了闭包的？**其实也不是**
+
+回到闭包的本质，**我们只需要让负极作用域的引用存在就行了**，因此我们还可以这样改代码。
+
+```js
+var fun3;
+function fun1() {
+  var a = 2;
+  fun3 = function () {
+    console.log(a);
+  };
+}
+
+fun1();
+fun3();
+```
+
+从这段代码中可以看出，它实现的结果跟前一段代码结果效果是一样的，就是在给`fun3`函数赋值后，`fun3`函数就拥有了`window`、`fun1`和`fun3`本身这几个作用域的访问权限。然后还是从下往上查找，知道找到`fun1`作用域中存在的`a`这个变量，因此最后的输出还是 2 ，最后产生了闭包形式变了，但本质没有改变。
+
+因此最后返回的不管是不是函数，都不能说明没有产生闭包。这里可以在深入体会下闭包的内涵，那么明白了闭包的本质之后，我们再来了解下闭包的表现形式。
+
+**3. 闭包的表现形式**
+
+1. 返回一个函数，上面讲原因的时候已经说过，这里就不再赘述了。
+2. 在定时器、事件监听、Ajax 请求、Web Workers 或者任何异步中只要使用了回调函数，实际上就是在使用闭包
+
+```js
+//定时器
+setTimeout(function handler() {
+  console.log("1");
+}, 1000);
+//事件监听
+$("#app").click(function () {
+  console.log("Event Listener");
+});
+```
+
+3. 作为函数参数传递的形式,比如下面的例子
+
+```js
+var a = 1;
+function foo() {
+  var a = 2;
+  function baz() {
+    console.log(a);
+  }
+  bar(baz);
+}
+function bar(fn) {
+  //这就是闭包
+  fn();
+}
+foo(); // 输出2,而不是1
+```
+
+4. IIFE(立即执行函数),创建了闭包。保存了全局作用域(window)和当前函数的作用域,因此可以输出全局的变量
+
+```js
+var a = 2;
+(function IIFE() {
+  console.log(a); // 输出2
+})();
+```
+
+IIFE 这个函数会有些特殊，算是一种自执行匿名函数。这个匿名函数拥有独立的作用域，这不仅可以避免了外界访问此 IIFE 中的变量，而且又不会全局污染作用域。我们经常能在高级的`JavaScript`编程中看到此类函数。
+
+关于闭包的基本概念、产生原因以及表现形式，这三个方面你已经有了一定的了解。
+
+最后一部分，我们看一下闭包的应用场景。
+
+**4. 如何解决循环输出的问题**
+
+```js
+for (var i = 1; i <= 5; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, 0);
+}
+```
+
+这段代码输出后，可以看到输出结果是 5 个 6 。
+
+1. 为什么输出都是 6
+
+   - setTimeout 为宏任务,由于 JS 中单线程 eventLoop 机制在主线程同步任务执行完后才去执行宏任务因此循环结束后 setTimeout 中的回调才依次执行
+   - 因为 setTimeout 函数也是一种闭包,往上找它的父级作用域链就是 window 变量 i 为 window 上的全局变量,开始执行 setTimeout 之前变量已经就是 6 了因此最后输出的连续就都是 6
+
+2. 如何顺序输出 1 2 3 4 5
+
+- 利用：IIFE
+
+```js
+for (var i = 1; i <= 5; i++) {
+  (function (j) {
+    setTimeout(function timer() {
+      console.log(j);
+    }, 0);
+  })(i);
+}
+```
+
+- 使用 ES6 中的 let ：利用块级作用域可以最快速的解决这一个问题
+
+```js
+for (let i = 1; i <= 5; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, 0);
+}
+```
+
+- 定时器传入第三个参数：setTimeout 作为经常使用的定时器它是存在第三个参数的，传递第三个参数可以改变 setTimeout 的执行逻辑，从而实现我们想要的结果。
+
+```js
+for (var i = 1; i <= 5; i++) {
+  setTimeout(
+    function (j) {
+      console.log(j);
+    },
+    0,
+    i
+  );
+}
+```
+
+#### 3. 总结
+
+通过原理结合实践的方式将闭包相关的知识点串起来剖析了一遍，整体来看闭包的知识还是比较复杂的，它依赖于相关的上游知识点。
+
+闭包的使用在日常的 `JavaScript` 编程中经常出现使用的场景特别多而且复杂，由于闭包会使用一些变量一直保存在内存中，不会自动释放。所以大量使用的话就会消耗大量的内存。从而影响页面性能，所以说你更应该深入理解闭包的原理，从而使交付的代码质量更好。
