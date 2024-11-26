@@ -1621,3 +1621,47 @@ for (var i = 1; i <= 5; i++) {
 通过原理结合实践的方式将闭包相关的知识点串起来剖析了一遍，整体来看闭包的知识还是比较复杂的，它依赖于相关的上游知识点。
 
 闭包的使用在日常的 `JavaScript` 编程中经常出现使用的场景特别多而且复杂，由于闭包会使用一些变量一直保存在内存中，不会自动释放。所以大量使用的话就会消耗大量的内存。从而影响页面性能，所以说你更应该深入理解闭包的原理，从而使交付的代码质量更好。
+
+### 六、进阶练习：带你一起实现 JSON.stringify
+
+**手工实现一个 JSON.stringify 的方法**
+
+站在全局考察你对 `JavaScript` 各种数据类型理解的深度，对各种极端的边界情况处理能力，以及 `JavaScript` 的编码能力。
+
+JSON 对象的常用方法
+
+1. 用于解析成 JSON 对象的 parse()
+2. 用于将对象转换为 JSON 字符串方法的 stringify()
+
+### 1. JSON.parse
+
+`JSON.parse` 方法用来解析 JSON 字符串，构造由字符串描述的 `JavaScript` 值或对象。
+
+- 第一个参数是需要解析处理的 `JSON` 字符串
+- 第二个参数是可选参数提供可选的 `reviver` 函数
+
+```js
+JSON.parse(text, [, reviver]);
+```
+
+通过一段代码来看一下这个参数与`reviver`参数的用法
+
+```js
+const json = '{"result":true, "count":2}';
+const obj = JSON.parse(json);
+console.log(obj.count);
+//2
+console.log(obj.result);
+// true
+/*带第二个参数的情况*/
+JSON.parse('{"p": 5}', function (k, v) {
+  if (k === "") return v; //如果k不是空,
+  return v * 2;
+  //就将属性值变为原来的2倍返回
+});
+//{ p: 10 }
+```
+
+通过上面的代码说明了，符合`JSON`格式的字符串转化成对象返回。
+
+带第二个参数的情况，可以将待处理字符串进行一定的操作处理。
