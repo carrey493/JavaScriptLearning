@@ -2,9 +2,9 @@
 
 > 学习地址：https://www.bilibili.com/video/BV1Ze411B7rS
 
-**<font color=skyblue size=6>打好 JavaScript 基石，走稳前端进阶之路。</font>**
+**打好 JavaScript 基石，走稳前端进阶之路。**
 
-**<font color=black size=4>1. 为什么要学习这门课</font>**
+**1. 为什么要学习这门课**
 
 前端技术的日新月异，前端应用的复杂度日益提升，市场上对于前端人才的要求也愈加严格。
 
@@ -12,7 +12,7 @@
 
 扎实掌握并加强原生 `JavaScript` 的核心原理及编码功底、深入理解前端框架源代码，对于提升自己的前端技术能力、提高职业生涯天花板是非常有必要的。
 
-**<font color=black size=4>2. 怎么学</font>**
+**2. 怎么学**
 
 围绕**基础原理**、**数组**、**异步编程**、**V8 引擎**几个核心知识点展开通过`4个模块`、`27讲内容`带你深挖 `JavaScript` 底层原理。
 
@@ -35,7 +35,7 @@
 
 **各种前端新技术、新框架的出现也在考验前端工程师的能力。**
 
-<font color="#f96351" size=5>如何提升技术能力、建立自己的“核心竞争力”是每一位优秀的前端工程师应该思考的问题</font>
+如何提升技术能力、建立自己的“核心竞争力”是每一位优秀的前端工程师应该思考的问题。
 
 ### 一、JavaScript 的数据类型你了解多少?
 
@@ -97,7 +97,7 @@ console.log(a.age); // 第二个console 24
 
 **数据类型检测**，也是面试过程中经常会遇到的问题。
 
-**1️. 第一种判断方法: <font color="brown" size=5>typeof</font>**
+**1️. 第一种判断方法: typeof**
 
 ```js
 typeof 1; // 'number'
@@ -116,7 +116,7 @@ typeof console.log; // 'function'
 
 此外，在引用数据类型中除了`function`会被判断为`ok(function)`以外，其余的结果都为`object`，无法具体的判断。
 
-**2️. 第二种判断方法：<font color="brown" size=5>instanceof</font>**
+**2️. 第二种判断方法：instanceof**
 
 `instanceof` 运算符可以用来判断一个对象是否是某个类的实例或者某个类的原型链中的实例，使用 `instanceof` 运算符同样会返回一个布尔值，如果 `object` 是 `class` 或者 `class` 的原型链中的实例，则返回 `true`；否则返回 `false`。
 
@@ -171,7 +171,7 @@ function mylnstanceof(left, right) {
 
 总之，单独使用其中的任何一个都无法满足所有场景的需求，只能通过二者混写的方式。这样也只是满足大多数的场景，而且写起来也比较繁琐。
 
-**3. 第三种判断方法：<font color="brown" size=5>Object.prototype.toString</font>** **(推荐)**
+**3. 第三种判断方法：Object.prototype.toString** **(推荐)**
 
 ```js
 Object.prototype.toString({}); // "[object Object]"
@@ -216,7 +216,7 @@ getType(/123/g); // "RegExp" toString返回
 
 #### 3.数据类型转换
 
-**<font color="#2f9dff" size=4>1. 强制类型转行</font>**
+**1. 强制类型转行**
 
 - Number()
 - parseInt()
@@ -267,7 +267,7 @@ Boolean("12"); // true
 Boolean({}); // true
 ```
 
-**<font color="#2f9dff" size=4>2. 隐式类型转换</font>**
+**2. 隐式类型转换**
 
 凡是通过以下的方式执行的操作，如果遇到两个数据结构不一样的情况，都会出现隐式转换。
 
@@ -390,7 +390,7 @@ console.log([1, 2, undefined, 4, 5] + 10); // 输出 "1,2,,4,510"
 
 自己创建一个对象，来接受你要重新复制或引用的对象值。如果对象属性是基本的数据类型，复制的就是基本类型的值给新对象；但如果是属性是引用数据类型，复制的就是内存中的地址，如果其中一个对象改变了这个内存中的地址，肯定会影响到另一个对象。
 
-**<font color="#2f9dff" size=4>方法一：`object.assign`</font>**
+**方法一：`object.assign`**
 
 `object.assign`是`ES6`中`object`的一个方法，该方法可以用于`JavaScript`对象的合并等多个用途，其中一个用途就是可以进行浅拷贝。
 
@@ -445,7 +445,7 @@ console.log("obj2", obj2);
 
 从图中可以看到，`object.assign`可以拷贝`Symbol`类型的对象，但是如果到了对象的第二层属性`obj1.a.b`时，前者值的改变也会影响后者第二层属性的值。说明其中依旧存在访问共同对应内存的问题。这就说明，这种方法还不能进一步的复制，只是完成了浅拷贝的功能。
 
-**<font color="#2f9dff" size=4>方法二：扩展运算符的方法</font>**
+**方法二：扩展运算符的方法**
 
 利用`JavaScript`的扩展运算符，在构造对象的同时完成浅拷贝的功能。
 
@@ -470,7 +470,7 @@ console.log(newArr); // [ 1, 2, 3 ]
 
 扩展运算符和`object.assign`有同样的缺陷：二者实现浅拷贝的功能差不多，但是如果属性都是基本类型的值，使用扩展运算符进行浅拷贝会更加方便一些。
 
-**<font color="#2f9dff" size=4>方法三：`concat`拷贝数组</font>**
+**方法三：`concat`拷贝数组**
 
 > **数组的`concat`方法其实也是浅拷贝**
 
@@ -484,7 +484,7 @@ console.log(newArr); // [1,100,3]
 
 使用`concat`方法连接一个含有引用类型数据的数组时，需要注意修改原数组中的元素的属性，因为它会影响拷贝之后连接的数组。不过`concat`只能用于数组的浅拷贝，使用场景比较局限。
 
-**<font color="#2f9dff" size=4>方法四：`slice`拷贝数组</font>**
+**方法四：`slice`拷贝数组**
 
 > **`slice`方法仅仅针对数组类型**
 
@@ -1633,7 +1633,7 @@ JSON 对象的常用方法
 1. 用于解析成 JSON 对象的 parse()
 2. 用于将对象转换为 JSON 字符串方法的 stringify()
 
-### 1. JSON.parse
+#### 1. JSON.parse
 
 `JSON.parse` 方法用来解析 JSON 字符串，构造由字符串描述的 `JavaScript` 值或对象。
 
@@ -1665,3 +1665,53 @@ JSON.parse('{"p": 5}', function (k, v) {
 通过上面的代码说明了，符合`JSON`格式的字符串转化成对象返回。
 
 带第二个参数的情况，可以将待处理字符串进行一定的操作处理。
+
+#### 2. JSON.stringify
+
+`JSON.stringify` 方法是将一个 JavaScript 值(对象或者数组)转换为一个 JSON 字符串，如果指定了`replacer`是一个函数，则可以选择性地替换值，或者如果指定了`replacer`是一个数组，可选地仅包含数组指定的属性。
+
+- 第一个参数是需要转换的对象
+- 第二个参数是可选参数提供可选的`replacer`函数
+- 第三个参数是可选参数提供可选的`space`值，用来控制结果字符串里面的间距
+
+通过一段代码来看一下后面几个参数的妙用
+
+```js
+JSON.stringify({ x: 1, y: 2 });
+// "{"x'":1,"y":2}"
+
+JSON.stringify({ x: [10, undefined, function () {}, Symbol("")] });
+// "{"x":[10,null,null,null]}"
+
+/*第二个参数的例子*/
+function replacer(key, value) {
+  if (typeof value === "string") {
+    return undefined;
+  }
+  return value;
+}
+
+var foo = {
+  foundation: "Mozilla",
+  model: "box",
+  week: 4,
+  transport: "car",
+  month: 7,
+};
+varjsonString = JSON.stringify(foo, replacer);
+console.log(jsonString);
+// "{"week":4,"month":7}"
+/*第三个参数的例子*/
+JSON.stringify({ a: 2 }, null, " ");
+/* "{
+"a": 2
+}"*/
+JSON.stringify({ a: 2 }, null, "");
+// "{"a":2}"
+```
+
+通过上面的代码可以看到，添加第二个参数可以对字符串进行过滤处理；当第三个参数传入的是多个空格的时候，可以增加结果字符串里面的间距数量。
+
+\*分析各种数据类型及边界情况\*\*
+
+![](https://2980.com/mailv2/mailfile/mails/editorimage?UserName=01816C607895D026812881F45C4BA32E1977E81D9EEA284BE5ECBCC2BE461C42&Guid=AFA7DFF7C48630ACBC358E425E94B991502D71F9B88722F0FE6F2282369DF8C4&FileName=A3037326C7A429DBE0CD18EDE3DE6E15AD16EFDFC3B633B11B183976C02C0F97)
